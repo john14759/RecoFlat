@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('../../public/fonts/Lora/Lora-VariableFont_wght.ttf');
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Lora;
+    background-image: url("../../public/img/background.jpeg");
+}
+
+.app-body {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 80%;
+    padding: 2em 0;
+    flex: 1;
+}
+
+.app-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em;
+    background-color: #DACBD0;
+    border-bottom: 5px solid #73708F;
+    height: 6vh;
+}
+
+.app-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.app-actions > .app-action {
+    padding: 0 1em;
+}
