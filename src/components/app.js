@@ -1,89 +1,68 @@
 import React from 'react';
 import { getFlats } from '../api/functions'
 import { Test, Test2 } from './test'
+import { FlatContext } from './context';
 import '../css/app.css'
 
-class Nav extends React.Component {
-  render() {
-    return (
-      <div className="app-nav">
-        <div className="app-logo">
-          RecoFlat
+const Nav = (props) => {
+  return (
+    <div className="app-nav">
+      <div className="app-logo">
+        RecoFlat
+      </div>
+      <div className="app-actions">
+        <div className="app-action">
+          How to use
         </div>
-        <div className="app-actions">
-          <div className="app-action">
-            How to use
-          </div>
-          <div className="app-action">
-            About us
-          </div>
-          <div className="app-action">
-            Login
-          </div>
+        <div className="app-action">
+          About us
+        </div>
+        <div className="app-action">
+          Login
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
+const Body = (props) => {
+  const [page, setPage] = React.useState("test")
 
-class Body extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      page: "test"
-    }
-    this.switchPage = this.switchPage.bind(this);
+  const switchPage = (newPage) => {
+    setPage(newPage)
   }
 
-  switchPage(page) {
-    this.setState({ page: page })
+  let component;
+  switch (page) {
+    case "test":
+      component = <Test switchTo={switchPage} />
+      break
+    case "test2":
+      component = <Test2 switchTo={switchPage} />
+      break
+    default:
+      component = null
+      break
   }
-
-  render() {
-    let component;
-    switch (this.state.page) {
-      case "test":
-        component = <Test flats={this.props.flats} switchTo={this.switchPage} />
-        break
-      case "test2":
-        component = <Test2 flats={this.props.flats} switchTo={this.switchPage} />
-        break
-      default:
-        component = null
-        break
-    }
-    return (
-      <div className="app-body">
-        {component}
-      </div>
-    )
-  }
+  return (
+    <div className="app-body">
+      {component}
+    </div>
+  )
 }
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      flats: []
-    }
-  }
+const App = (props) => {
+  const [flats, setFlats] = React.useState([])
+  getFlats().then((data) => setFlats(data))
 
-  componentDidMount() {
-    getFlats()
-      .then(data => {
-        this.setState({ flats: data })
-      })
-  }
-
-  render() {
-    return (
+  return (
+    <FlatContext.Provider value={flats}>
       <div className="app">
         <Nav />
-        <Body flats={this.state.flats} />
+        <Body />
       </div>
-    );
-  }
+    </FlatContext.Provider>
+  );
 }
 
 export { App }
