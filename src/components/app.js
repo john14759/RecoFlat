@@ -53,7 +53,12 @@ const Body = (props) => {
 
 const App = (props) => {
   const [flats, setFlats] = React.useState([])
-  getFlats().then((data) => setFlats(data))
+
+  // To call API only once and store in FlatContext
+  React.useEffect(() => {
+    getFlats()
+    .then(data => setFlats(data))
+  }, [])
 
   return (
     <FlatContext.Provider value={flats}>
