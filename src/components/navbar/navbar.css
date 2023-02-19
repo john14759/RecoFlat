@@ -1,0 +1,59 @@
+.app-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+    padding: 0 1em;
+    background-color: #F1D6D6;
+    border-bottom: 7px solid #73708f;
+    height: 120px;
+  }
+  
+  .app-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .app-actions > .app-action {
+    padding: 0 1em;
+  }
+  
+  .app-logo {
+    margin-left:6px;
+    position: absolute;
+    width: 141px;
+    height: 38px;
+    left: 90px;
+    top: 48px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+    color: #2a555b;
+  }
+  
+  .line {
+    border: 3px solid #e26464;
+    width: 200px;
+    height: 0px;
+    left: 945px;
+    top: 85px;
+  }
+  .line2 {
+    border: 3px solid #e26464;
+    width: 160px;
+    height: 0px;
+    left: 945px;
+    top: 85px;
+  }
+
+  .app-action > span {
+    margin-right: 10px;
+  }

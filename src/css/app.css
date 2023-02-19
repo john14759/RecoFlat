@@ -24,23 +24,3 @@ body {
     flex: 1;
 }
 
-.app-nav{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1em;
-    background-color: #F1D6D6;
-    border-bottom: 5px solid #73708F;
-    height: 6vh;
-}
-
-.app-actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.app-actions > .app-action {
-    padding: 0 1em;
-}

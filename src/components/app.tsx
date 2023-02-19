@@ -4,27 +4,8 @@ import { Test, Test2 } from './test'
 import { FlatContext } from './context';
 import '../css/app.css'
 import { AppProps } from '../functions/types';
+import Nav from './navbar/navbar';
 
-const Nav = (props: AppProps) => {
-  return (
-    <div className="app-nav">
-      <div className="app-logo">
-        RecoFlat
-      </div>
-      <div className="app-actions">
-        <div className="app-action">
-          How to use
-        </div>
-        <div className="app-action">
-          About us
-        </div>
-        <div className="app-action">
-          Login
-        </div>
-      </div>
-    </div>
-  )
-}
 
 const Body = (props: AppProps) => {
   const [page, setPage] = React.useState("test")
