@@ -1,11 +1,10 @@
 import React from 'react';
 import { getFlats } from '../functions/api'
-import { Test, Test2 } from './test'
+import { Test, Test2 } from '../pages/test'
 import { FlatContext } from './context';
 import '../css/app.css'
-import { AppProps } from '../functions/types';
 
-const Nav = (props: AppProps) => {
+const Nav = () => {
   return (
     <div className="app-nav">
       <div className="app-logo">
@@ -26,7 +25,9 @@ const Nav = (props: AppProps) => {
   )
 }
 
-const Body = (props: AppProps) => {
+// The component that displays the current page.
+// Add new pages into the switch statement
+const Body = () => {
   const [page, setPage] = React.useState("test")
 
   const switchPage = (newPage: string) => {
@@ -36,12 +37,10 @@ const Body = (props: AppProps) => {
   let component;
   switch (page) {
     case "test":
-      // component = <Test switchTo={switchPage} />
-      component = <Test />
+      component = <Test switchTo={switchPage} />
       break
     case "test2":
-      // component = <Test2 switchTo={switchPage} />
-      component = <Test2 />
+      component = <Test2 switchTo={switchPage} />
       break
     default:
       component = null
@@ -54,7 +53,7 @@ const Body = (props: AppProps) => {
   )
 }
 
-const App = (props: AppProps): JSX.Element => {
+const App = () => {
   const [flats, setFlats] = React.useState([])
 
   // To call API only once and store in FlatContext
