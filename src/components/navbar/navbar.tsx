@@ -1,8 +1,8 @@
 import React from 'react';
-import { AppProps } from '../../functions/types';
+
 import './navbar.css';
 
-const Nav = (props: AppProps) => {
+const Nav = () => {
   return (
     <div className="app-nav">
       <img src={require('./teamtwo.png')} alt="RecoFlat logo" />

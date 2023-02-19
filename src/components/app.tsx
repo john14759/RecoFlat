@@ -2,28 +2,12 @@ import React from 'react';
 import { getFlats } from '../functions/api'
 import { FlatContext } from './context';
 import '../css/app.css'
-import { AppProps } from '../functions/types';
+import { Main } from '../pages/main';
+import { LoanRecommendation } from '../pages/LoanRecommendation';
+import { IncomeCalculator } from '../pages/incomeCalculator';
+import { Explore } from '../pages/explore';
+import Nav from './navbar/navbar';
 
-const Nav = (props: AppProps) => {
-  return (
-    <div className="app-nav">
-      <div className="app-logo">
-        RecoFlat
-      </div>
-      <div className="app-actions">
-        <div className="app-action">
-          How to use
-        </div>
-        <div className="app-action">
-          About us
-        </div>
-        <div className="app-action">
-          Login
-        </div>
-      </div>
-    </div>
-  )
-}
 
 // The component that displays the current page.
 // Add new pages into the switch statement
