@@ -1,10 +1,11 @@
 import React from 'react';
-import { getFlats } from '../api/functions'
+import { getFlats } from '../functions/api'
 import { Test, Test2 } from './test'
 import { FlatContext } from './context';
 import '../css/app.css'
+import { AppProps } from '../functions/types';
 
-const Nav = (props) => {
+const Nav = (props: AppProps) => {
   return (
     <div className="app-nav">
       <div className="app-logo">
@@ -25,20 +26,22 @@ const Nav = (props) => {
   )
 }
 
-const Body = (props) => {
+const Body = (props: AppProps) => {
   const [page, setPage] = React.useState("test")
 
-  const switchPage = (newPage) => {
+  const switchPage = (newPage: string) => {
     setPage(newPage)
   }
 
   let component;
   switch (page) {
     case "test":
-      component = <Test switchTo={switchPage} />
+      // component = <Test switchTo={switchPage} />
+      component = <Test />
       break
     case "test2":
-      component = <Test2 switchTo={switchPage} />
+      // component = <Test2 switchTo={switchPage} />
+      component = <Test2 />
       break
     default:
       component = null
@@ -51,7 +54,7 @@ const Body = (props) => {
   )
 }
 
-const App = (props) => {
+const App = (props: AppProps): JSX.Element => {
   const [flats, setFlats] = React.useState([])
 
   // To call API only once and store in FlatContext
