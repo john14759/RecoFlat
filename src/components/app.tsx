@@ -1,8 +1,11 @@
 import React from 'react';
 import { getFlats } from '../functions/api'
-import { Test, Test2 } from '../pages/test'
 import { FlatContext } from './context';
 import '../css/app.css'
+import { Main } from '../pages/main';
+import { LoanRecommendation } from '../pages/LoanRecommendation';
+import { IncomeCalculator } from '../pages/incomeCalculator';
+import { Explore } from '../pages/explore';
 
 const Nav = () => {
   return (
@@ -28,19 +31,25 @@ const Nav = () => {
 // The component that displays the current page.
 // Add new pages into the switch statement
 const Body = () => {
-  const [page, setPage] = React.useState("test")
+  const [page, setPage] = React.useState("main")
 
   const switchPage = (newPage: string) => {
     setPage(newPage)
   }
 
-  let component;
+  let component = null;
   switch (page) {
-    case "test":
-      component = <Test switchTo={switchPage} />
+    case "main":
+      component = <Main switchTo={switchPage} />
       break
-    case "test2":
-      component = <Test2 switchTo={switchPage} />
+    case "explore":
+      component = <Explore switchTo={switchPage} />
+      break
+    case "incomeCalculator":
+      component = <IncomeCalculator switchTo={switchPage} />
+      break
+    case "loanRecommendation":
+      component = <LoanRecommendation switchTo={switchPage} />
       break
     default:
       component = null
