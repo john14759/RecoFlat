@@ -2,12 +2,8 @@ import React, { FC } from 'react';
 import { getFlats } from '../functions/api'
 import { FlatContext } from './context';
 import '../css/app.css'
-import { Main } from '../pages/main';
-import { LoanRecommendation } from '../pages/LoanRecommendation';
-import { IncomeCalculator } from '../pages/incomeCalculator';
-import { Explore } from '../pages/explore';
-import { AboutUs } from '../pages/aboutus/aboutus';
-import Nav from './navbar/navbar';
+import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs} from '../pages/pages'
+import Nav from './navbar';
 import { BodyProps } from '../functions/types';
 
 

@@ -4,7 +4,6 @@
     font-weight: 400;
     height: 100%;
     width: 100%;
-    
 }
 
 .text{
@@ -48,7 +47,7 @@
     height: 299px;
     margin-bottom: 10px;
     background-color: black;
-    background-image: url(buildings.png);
+    background-image: url(../../public/img/aboutus/buildings.png);
     background-size: cover;
     border: solid 26px #6F3434;
   }

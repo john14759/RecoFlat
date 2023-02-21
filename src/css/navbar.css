@@ -13,17 +13,17 @@
     border-bottom: 7px solid #73708f;
     height: 100px;
   }
-  
+
   .app-actions {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
-  
+
   .app-actions > .app-action {
     padding: 0 1em;
   }
-  
+
  .app-logo {
     position: absolute;
     margin-left: 6px;
@@ -33,7 +33,7 @@
     top: 31px;
     color: #2a555b;
 }
-  
+
   .line {
     border: 3px solid #e26464;
     width: 200px;
