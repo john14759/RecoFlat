@@ -24,20 +24,15 @@
     padding: 0 1em;
   }
   
-  .app-logo {
-    margin-left:6px;
+ .app-logo {
     position: absolute;
-    width: 141px;
-    height: 38px;
+    margin-left: 6px;
     left: 90px;
-    top: 48px;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 38px;
+    width: 141px;
+    height: 1px;
+    top: 40px;
     color: #2a555b;
-  }
+}
   
   .line {
     border: 3px solid #e26464;

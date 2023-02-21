@@ -12,7 +12,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
     font-family: Lora;
-    background-image: url("../../public/img/background.jpeg");
+    background-image: url("../../public/img/background.jpeg") ;
+    background-size: cover;
+    background-position: center bottom -80px;
 }
 
 .app-body {
