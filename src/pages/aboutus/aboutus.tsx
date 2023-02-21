@@ -4,7 +4,7 @@ import { PageProps } from '../../functions/types';
 const AboutUs = (props: PageProps) => {
     return (
       <div className='container'>
-        <span className='text'>About Us</span>
+        <div className='text'>About Us</div>
         <div className="bubble">
             <div className='message'>
             <p>Welcome to our housing planner and calculator!</p>

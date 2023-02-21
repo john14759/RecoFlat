@@ -8,14 +8,12 @@ import { IncomeCalculator } from '../pages/incomeCalculator';
 import { Explore } from '../pages/explore';
 import { AboutUs } from '../pages/aboutus/aboutus';
 import Nav from './navbar/navbar';
+import { BodyProps } from '../functions/types';
 
 
 // The component that displays the current page.
 // Add new pages into the switch statement
-type BodyProps = {
-  page: string;
-  switchTo: (newPage: string) => void;
-};
+
 const Body = ({ page, switchTo }: BodyProps) => {
   let component = null;
   switch (page) {

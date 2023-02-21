@@ -8,13 +8,14 @@
 }
 
 .text{
+    margin-bottom: 18px;
     font-size: 96px;
     line-height: 70px;
     font-family: 'Lora';
     font-style: normal;
     font-weight: 400;
     font-size: 96px;
-    text-align: center;
+    text-align: left;
 }
 
 .bubble{
@@ -39,17 +40,15 @@
     color: #000000;
 
 }
-.img{
-    flex:1;
+.img {
+    flex: 1;
     justify-content: center;
     align-items: center;
-    width: 1500px;
+    width: 88%;
     height: 299px;
-    left: 161px;
-    top: 637px;
     margin-bottom: 10px;
     background-color: black;
     background-image: url(buildings.png);
     background-size: cover;
     border: solid 26px #6F3434;
-}
+  }

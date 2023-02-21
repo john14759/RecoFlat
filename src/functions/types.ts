@@ -2,6 +2,11 @@ type PageProps = {
   switchTo: (newPage: string) => void;
 }
 
+type BodyProps = {
+  page: string;
+  switchTo: (newPage: string) => void;
+};
+
 type Flat = {
   _id: number;
   block: string;
@@ -17,4 +22,4 @@ type Flat = {
   town: string;
 }
 
-export type { PageProps, Flat }
+export type { PageProps, Flat ,BodyProps}
