@@ -22,6 +22,7 @@
 
   .app-actions > .app-action {
     padding: 0 1em;
+    cursor: pointer;
   }
 
  .app-logo {
@@ -32,6 +33,7 @@
     height: 1px;
     top: 31px;
     color: #2a555b;
+    cursor: pointer;
 }
 
   .line {
@@ -52,3 +54,4 @@
   .app-action > span {
     margin-right: 10px;
   }
+
