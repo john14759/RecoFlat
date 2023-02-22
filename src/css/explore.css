@@ -15,20 +15,46 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38px;
 }
 
 .explore-body > .explore-option {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   row-gap: 2em;
-  border-radius: 10px;
   background-color: #D25A5A;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
   padding: 1em;
   width: 25%;
 }
 
-.explore-body > .explore-option > .explore-description{
-  flex-grow: 1;
+.searchlogo{
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 276px;
+  height: 60px;
+  background: rgba(201, 201, 201, 0.3);
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+.searchlogo>img{
+  margin-top: 5px;
+  margin-left: 8px;
+}
+.explore-images>img{
+  height:9em;
+  width: auto;
+
+}
+.explore-option ul {
+  margin-top: 20px;
+ 
 }
