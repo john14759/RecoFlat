@@ -2,7 +2,7 @@ import React from 'react';
 import { getFlats } from '../functions/api'
 import { FlatContext } from './context';
 import '../css/app.css'
-import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How} from '../pages/pages'
+import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How,FilterPrice} from '../pages/pages'
 import Nav from './navbar';
 import { BodyProps } from '../functions/types';
 
@@ -30,6 +30,9 @@ const Body = ({ page, switchTo }: BodyProps) => {
       break;
     case "howtouse":
       component = <How switchTo={switchTo} />;
+      break;
+    case 'filterPrice':
+      component =<FilterPrice switchTo={switchTo}/>;
       break;
     default:
       component = null;

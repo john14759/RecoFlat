@@ -17,7 +17,7 @@ const Explore = (props: PageProps) => {
                 </li>
               </ul>
           </div>
-          <div className='searchlogo'>
+          <div onClick={() => props.switchTo("filterPrice")} className='searchlogo'>
             <span>Search</span>
           <img src='/img/explore/searchlogo.png'></img>
           </div>
@@ -31,7 +31,7 @@ const Explore = (props: PageProps) => {
                 </li>
               </ul>
           </div>
-          <div className='searchlogo'>Search
+          <div  className='searchlogo'>Search
           <img src='/img/explore/searchlogo.png'></img>
           </div>
         </div>

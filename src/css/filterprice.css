@@ -1,0 +1,59 @@
+.min-input{
+    width: 141px;
+    height: 0px;
+    left: 148px;
+    top: 341px;
+
+    border: 2px solid black;
+}
+
+.price-header{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+/* identical to box height */
+    color: #000000;
+}
+
+.price{
+    width: 100vw;
+    height: 33vh;
+    padding: 10px;
+    background: #D25A5A;
+    box-shadow: 1px 5px 4px rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+
+.priceResults{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+
+
+.tableheader{
+    width:100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid white;
+}
+
+.tableheader > div {
+    flex: 1;
+    text-align: center;
+  }
+
+.tablecontent{
+    width:100%;
+    display: flex;
+    align-items: center;
+   
+}
+.tablecontent > div {
+    flex: 1;
+    text-align: center;
+  }
