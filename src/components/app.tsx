@@ -4,7 +4,7 @@ import { FlatContext } from './context';
 import '../css/app.css'
 import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How,FilterPrice} from '../pages/pages'
 import Nav from './navbar';
-import { BodyProps } from '../functions/types';
+import { BodyProps,Flat } from '../functions/types';
 
 
 // The component that displays the current page.
@@ -47,7 +47,7 @@ const Body = ({ page, switchTo }: BodyProps) => {
 
 
 const App = () => {
-  const [flats, setFlats] = React.useState([])
+  const [flats, setFlats] = React.useState<Flat[]>([])
   const [page,setPage] = React.useState("main")
   
   const switchPage = (newPage: string) => {
@@ -56,15 +56,16 @@ const App = () => {
   
   // To call API only once and store in FlatContext
   React.useEffect(() => {
-    getFlats()
-    .then(data => setFlats(data))
+    getFlats().then(data => setFlats(data))
   }, [])
-
+  
   return (
     <FlatContext.Provider value={flats}>
       <div className="app">
+      
         <Nav switchTo={switchPage} />
         <Body page={page} switchTo={switchPage} />
+        
       </div>
     </FlatContext.Provider>
   );
