@@ -1,5 +1,6 @@
 import '../css/explore.css'
 import { PageProps } from '../functions/types';
+import { FilterFlatType } from './FilterFlatType';
 
 const Explore = (props: PageProps) => {
   return (
@@ -35,7 +36,7 @@ const Explore = (props: PageProps) => {
           <img src='/img/explore/searchlogo.png'></img>
           </div>
         </div>
-        <div className="explore-option">
+        <div className="explore-option" onClick={()=>props.switchTo("filterflattype")}>
           <div className='explore-images'><img src='/img/explore/flat.png'/></div>
           <div>Filter By Flat Type
           <ul>
