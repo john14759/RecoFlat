@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Flat, PageProps } from '../functions/types';
 import { FlatContext } from '../components/context';
+import '../css/filterflat.css'
 
 const FilterFlatType = (props: PageProps) => {
     const flats:Flat[] = useContext(FlatContext)
@@ -25,7 +26,7 @@ const FilterFlatType = (props: PageProps) => {
         const averagePrice = count ? totalPrice / count : 0;
 
         return(
-          <tr key ={town}>
+          <tr id='town' key ={town}>
             <td>{town}</td>
             <td>{count}</td>
             <td>${averagePrice.toFixed(0)}</td>
@@ -35,18 +36,34 @@ const FilterFlatType = (props: PageProps) => {
     });
     
   return (
-        <table className= "Table">
-          <thead>
+    <div className="page">
+      <div className = 'header-container'>
+        <div className = 'title'>Filter selected: Flat Type</div>
+        <div className = 'header-body'>
+        <div>Flat Type selected:</div>
+        <div className = 'flat-type'>{flatType.toLowerCase()}</div>
+        <div>Now displaying the flats in the flat type you have selected</div>
+        </div>
+      </div>
+      <div className= 'search-box'>Search Results:</div>
+      <div className='table-container'>
+        <table>
+          <thead className='table-header'>
             <tr>
               <th>Town</th>
               <th>Count</th>
-              <th>Average Resale Price</th>
+              <th>Average Resale Price ($)</th>
             </tr>
           </thead>
-          <tbody>
+        
+          <tbody className= 'table-body'>
             {rows}
           </tbody>
-        </table>
+
+          </table>
+        </div>
+      </div>
+      
   );
 }
 export { FilterFlatType }
