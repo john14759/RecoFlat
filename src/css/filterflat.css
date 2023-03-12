@@ -80,3 +80,7 @@ td{
 .table-container::-webkit-scrollbar{
     display: none;
 }
+
+.table-container::-webkit-scrollbar-thumb{
+    display:none;
+}
