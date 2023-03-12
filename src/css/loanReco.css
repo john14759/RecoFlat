@@ -36,7 +36,7 @@
     color: white;
 }
 
-form input {
+.topInputHeader form input {
   width: 300px;
   height: 25px;
   font-size: 20px;
@@ -52,7 +52,7 @@ form input {
     flex-basis: auto;
 }
 
-.topSeperator > .Inputs {
+.topSeperator > .topInputHeader {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -132,3 +132,10 @@ form input {
   text-align: left;
   color: white;
 }
+
+.botInputHeader form input {
+  width: 300px;
+  height: 25px;
+  font-size: 20px;
+}
+
