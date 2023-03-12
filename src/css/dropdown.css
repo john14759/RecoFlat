@@ -1,0 +1,14 @@
+button.dropdown-button {
+    display: flex;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+#dropdown {
+    font-family: "Lato";
+    font-size: 32px;
+    font-weight: 700;
+    background-color: #D25A5A;
+    margin-left: 10px;
+  }
