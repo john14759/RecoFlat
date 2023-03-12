@@ -1,12 +1,18 @@
-import React, { useContext } from 'react';
+import React, {useContext, useState} from 'react';
 import { Flat, PageProps } from '../functions/types';
 import { FlatContext } from '../components/context';
 import '../css/filterflat.css'
+import DropdownButton from '../components/dropdown';
 
 const FilterFlatType = (props: PageProps) => {
     const flats:Flat[] = useContext(FlatContext)
 
-    const flatType = "4 ROOM"; // replace with desired flat type
+    const [flatType, setFlatType] = useState<string>("4 ROOM");
+
+    const handleFlatTypeChange = (value: string) => {
+      setFlatType(value);
+    };
+
     const flatTypeCountByTown: {[key: string]: number} = {};
     const flatTypePriceByTown: {[key: string]: number} = {};
     
@@ -34,14 +40,14 @@ const FilterFlatType = (props: PageProps) => {
         );
         //console.log(`${town}: ${count} flats, Average Rrice $${averagePrice.toFixed(0)}`);
     });
-    
+
   return (
     <div className="page">
       <div className = 'header-container'>
         <div className = 'title'>Filter selected: Flat Type</div>
         <div className = 'header-body'>
         <div>Flat Type selected:</div>
-        <div className = 'flat-type'>{flatType.toLowerCase()}</div>
+        <div className = 'flat-type'>{flatType.toLowerCase()} <DropdownButton handleFlatTypeChange={handleFlatTypeChange} /></div>
         <div>Now displaying the flats in the flat type you have selected</div>
         </div>
       </div>
@@ -66,4 +72,5 @@ const FilterFlatType = (props: PageProps) => {
       
   );
 }
+
 export { FilterFlatType }
