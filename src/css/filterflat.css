@@ -57,6 +57,9 @@ table{
     justify-content: center;
     align-items: center;
     overflow-y: scroll;
+    max-height: 60vh;
+    padding-top: 55vh;
+    box-sizing: border-box;
 }
 
 .table-header{
@@ -68,13 +71,12 @@ td{
     white-space: nowrap;
 }
 
-/*table::-webkit-scrollbar-thumb{
-    background-image: url('../../public/img/wheel.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+.flat-type{
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
-table::-webkit-scrollbar-track{
-    background-color:#f1f1f1;
-}*/
+.table-container::-webkit-scrollbar{
+    display: none;
+}

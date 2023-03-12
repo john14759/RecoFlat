@@ -7,7 +7,7 @@ import DropdownButton from '../components/dropdown';
 const FilterFlatType = (props: PageProps) => {
     const flats:Flat[] = useContext(FlatContext)
 
-    const [flatType, setFlatType] = useState<string>("4 ROOM");
+    const [flatType, setFlatType] = useState<string>("3 ROOM");
 
     const handleFlatTypeChange = (value: string) => {
       setFlatType(value);
