@@ -75,7 +75,7 @@ const FilterPrice = (props: PageProps) => {
             <div className='pricehead'>
               <div className='price-header'>Filter selected: Price Range</div>
                 <label htmlFor="min-input">Price Range</label>
-                <img onClick={handleDropdown}src='img/dropdownlogo.png'></img>
+                <img onClick={handleDropdown}src='img/dropdownlogo.png' alt='dropdownlogo'></img>
                 <br />
                 {drop && (
                 <div className='price-input'>
