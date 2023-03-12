@@ -1,0 +1,134 @@
+.topContainer{
+    display: flex;
+    padding:10px;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    width: 80vw;
+    height: 400px;
+    background: #ce6464;
+    box-shadow: 0px 4px 4px rgba(8, 8, 8, 0.25);
+    border-radius: 10px;
+    outline: 2px solid rgb(0, 0, 0);
+}
+
+.topHeader{ 
+    font-size: 69px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 20;
+    text-align: left;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-top: 10px;
+    color: white;
+}
+
+.topBody{
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 30px;
+    font-size: 43px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 20;
+    text-align: left;
+    color: white;
+}
+
+form input {
+  width: 300px;
+  height: 25px;
+  font-size: 20px;
+}
+
+.topSeperator {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 1em;
+    font-size: 40px;
+    flex-shrink: 1;
+    flex-basis: auto;
+}
+
+.topSeperator > .Inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 40px;
+    margin-top: 30px;
+    margin-left: 34px;
+    flex-basis: 100%;
+    align-items: left;
+    text-align: left;
+    font-family: 'Lato';
+    font-size: 43px;
+    color : #ffffff;
+}
+
+.button1 {
+    display: flex;
+    padding: 2px;
+    margin-top: 65px;
+    align-self: flex-end;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+}
+
+.button1 button {
+    background-color: #C9C9C9;
+    color: rgb(0, 0, 0);
+    border: none;
+    font-weight: normal;
+    font-size: 24px;
+    width: 210px;
+    height: 60px;
+    border-radius: 15px;
+    transition: 0.4s;
+    margin-left: auto; 
+    margin-right: auto; 
+}
+  
+.button1 button:hover {
+    background-color: #7c7878cc;
+    border: 2px solid #8B2F2FCC;
+    cursor: pointer;
+}
+
+.botContainer{
+
+  display: flex;
+  padding:10px;
+  flex-direction: column;
+  width: 80vw;
+  height: 500px;
+  background-color: #181616cc;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.botHeader{ 
+  font-size: 43px;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 20;
+  text-align: left;
+  font-weight: bold;
+  margin-left: 30px;
+  margin-top: 10px;
+  color: white;
+}
+
+.botBody{
+  margin-top: 5px;
+  margin-bottom: 0px;
+  margin-left: 30px;
+  font-size: 38px;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 20;
+  text-align: left;
+  color: white;
+}
