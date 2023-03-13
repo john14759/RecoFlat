@@ -5,6 +5,7 @@ import '../css/app.css'
 import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How} from '../pages/pages'
 import Nav from './navbar';
 import { BodyProps } from '../functions/types';
+import { Location } from '../pages/location';
 
 
 // The component that displays the current page.
@@ -31,6 +32,9 @@ const Body = ({ page, switchTo }: BodyProps) => {
     case "howtouse":
       component = <How switchTo={switchTo} />;
       break;
+    case "location":
+      component = <Location switchTo={switchTo} />;
+      break;
     default:
       component = null;
       break;
@@ -45,7 +49,8 @@ const Body = ({ page, switchTo }: BodyProps) => {
 
 const App = () => {
   const [flats, setFlats] = React.useState([])
-  const [page,setPage] = React.useState("main")
+  const [page,setPage] = React.useState("location") 
+  //rmb to change this back to main
   
   const switchPage = (newPage: string) => {
     setPage(newPage)
