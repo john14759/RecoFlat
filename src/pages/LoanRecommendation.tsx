@@ -20,30 +20,38 @@ const LoanRecommendation = (props: PageProps) => {
 
     // Function for calculating the repayment schedule and then inserting them into an array to display
     const calculateRepaymentSchedule = () => {
-      // Calculation logic goes here
+      // Calculation logic goes here --> formula obtained by this website: https://www.creatifwerks.com/loan-calculator-singapore/
+
       const monthlyInterestRate = interestRate / 1200;
-      const annualPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -loanTenure));
+      const monthlyPayment = loanAmount / ((Math.pow(1 + monthlyInterestRate, loanTenure*12) - 1) / (monthlyInterestRate*(Math.pow(1 + monthlyInterestRate, loanTenure*12))));
       const repaymentSchedule: RepaymentScheduleItem[] = [];
     
       let principle = loanAmount;
       let year = Year;
-      // let month = Month;
+      let month = parseInt(Month.month);
     
       while (principle > 0) {
         const interest = principle * monthlyInterestRate;
-        const principlePaid = annualPayment - interest;
+        const principlePaid = (monthlyPayment - interest);
         principle = principle - principlePaid;
     
         const item: RepaymentScheduleItem = {
-          date: `${year}`,
+          date: `${month.toString().padStart(2, '0')}/${year}`,
           interestRate: interestRate,
-          monthlyInstalment: annualPayment/12,
+          monthlyInstalment: monthlyPayment,
           interestPaid: interest,
           endingPrinciple: principle
         };
         repaymentSchedule.push(item);
         
-        year++;
+        if (month == 12){
+          year++;
+          month=1;
+        }
+        else{
+          month++;
+        } 
+        
       }
     
       setRepaymentSchedule(repaymentSchedule);
@@ -85,28 +93,38 @@ const LoanRecommendation = (props: PageProps) => {
 
       <div className = 'botContainer'>
         <div className = 'botHeader' >Your repayment schedule:</div>
-        <div className ='botBody' >Start date:</div>
+        <div className = 'botSeperator'>
+          <div className="botBody">
+            <div>Start date:</div>
+          </div>
+          <div className="botBody">
+            <div>Estimated payoff date is {repaymentSchedule[repaymentSchedule.length - 1].date}</div>
+          </div>
+        </div>
         <div className="botInputHeader">
           <form>
             <select name="month" value={Month.month} onChange={handleDateChange}>
               <option value="">Month</option>
-              <option value="Jan">Jan</option> <option value="Feb">Feb</option> <option value="Mar">Feb</option>
-              <option value="Apr">Apr</option>
-              <option value="May">May</option>
-              <option value="Jun">Jun</option>
-              <option value="Jul">Jul</option>
-              <option value="Aug">Aug</option>
-              <option value="Sep">Sep</option>
-              <option value="Oct">Oct</option>
-              <option value="Nov">Nov</option>
-              <option value="Dec">Dec</option>
+              <option value="01">Jan</option> 
+              <option value="02">Feb</option> 
+              <option value="03">Feb</option>
+              <option value="04">Apr</option>
+              <option value="05">May</option>
+              <option value="06">Jun</option>
+              <option value="07">Jul</option>
+              <option value="08">Aug</option>
+              <option value="09">Sep</option>
+              <option value="10">Oct</option>
+              <option value="11">Nov</option>
+              <option value="12">Dec</option>
             </select>
 
             <input type= "number" value={Year} onChange={year => setYear(parseFloat(year.target.value))} placeholder='Year'  />
           </form>
         </div>
 
-        <table>
+
+        <table className='scheduleTable'>
           <thead>
             <tr>
               <th>Date</th>
@@ -119,18 +137,16 @@ const LoanRecommendation = (props: PageProps) => {
             <tbody>
               {repaymentSchedule.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.date}</td>
-                  <td>{item.interestRate}%</td>
-                  <td>{item.monthlyInstalment.toFixed(2)}</td>
-                  <td>{item.interestPaid.toFixed(2)}</td>
-                  <td>{item.endingPrinciple.toFixed(2)}</td>
+                  <td className='scheduleDate'>{item.date}</td>
+                  <td className='scheduleIntRate'>{item.interestRate}%</td>
+                  <td className='scheduleInstalment'>{item.monthlyInstalment.toFixed(2)}</td>
+                  <td className='scheduleIntPaid'>{item.interestPaid.toFixed(2)}</td>
+                  <td className='scheduleEndingPrinc'>{item.endingPrinciple.toFixed(2)}</td>
                 </tr>
               ))}
             </tbody>
         </table>
       </div>
-
-
 
     </div>
   )

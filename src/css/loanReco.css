@@ -1,3 +1,4 @@
+/* This is the design for the top container --------------------------------------------------------------------------------------*/
 .topContainer{
     display: flex;
     padding:10px;
@@ -70,7 +71,7 @@
 .button1 {
     display: flex;
     padding: 2px;
-    margin-top: 65px;
+    margin-top: 20px;
     align-self: flex-end;
     flex-direction: column;
     justify-content: right;
@@ -96,7 +97,10 @@
     border: 2px solid #8B2F2FCC;
     cursor: pointer;
 }
+/* This is the design for the top container --------------------------------------------------------------------------------------*/
 
+
+/* This is the design for the bot container --------------------------------------------------------------------------------------*/
 .botContainer{
 
   display: flex;
@@ -121,21 +125,121 @@
   color: white;
 }
 
-.botBody{
-  margin-top: 5px;
-  margin-bottom: 0px;
-  margin-left: 30px;
-  font-size: 38px;
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 20;
+.botSeperator {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 0;
+  width: 950px;
+  font-size: 30px;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+.botSeperator > .botBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 40px;
+  margin: 30px 0 0 34px;
+  flex-basis: 100%;
+  align-items: left;
   text-align: left;
-  color: white;
+  font-family: 'Lato';
+  font-size: 33px;
+  color : #ffffff;
 }
 
 .botInputHeader form input {
-  width: 300px;
-  height: 25px;
+  margin: 10px 10px 0 0;
+  width: 80px;
+  height: 20px;
   font-size: 20px;
 }
 
+.botInputHeader form select {
+  margin: 0 0 0 35px;
+  width: 80px;
+  height: 26px;
+  font-size: 20px;
+}
+/* Styling for the repayment schedule table ---------------------------------------------------------------------------------------*/
+.scheduleTable {
+  color: white;
+  border-collapse: collapse;
+  margin: 40px 0 0 30px;
+  min-width: 200px;
+  width: 1090px;
+}
+
+
+/* Editing <thead> -------------------------------------------------------------------------------------------------------------*/
+.scheduleTable thead tr {
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid #dddddd;
+}
+
+.scheduleTable thead th{
+  font-size: 25px;
+}
+
+.scheduleTable thead th:nth-last-child(1) {
+  text-align: right;
+  padding: 0 30px 0 50px;
+}
+.scheduleTable thead th:nth-last-child(2) {
+  padding: 0 30px 0 50px;
+}
+.scheduleTable thead th:nth-last-child(3) {
+  padding: 0 30px 0 50px;
+}
+.scheduleTable thead th:nth-last-child(4) {
+  padding: 0 30px 0 50px;
+}
+.scheduleTable thead th:nth-last-child(5) {
+  padding: 0 10px 0 15px;
+}
+/* Editing <thead> -------------------------------------------------------------------------------------------------------------*/
+
+
+/* Editing <tbody> -------------------------------------------------------------------------------------------------------------*/
+.scheduleTable tbody{
+  display: block;
+  height: 200px;
+  overflow-y: auto;
+}
+.scheduleTable tr{
+  display: block;
+}
+
+
+.scheduleTable tbody tr:nth-of-type(even){
+  background-color:#33777c;
+}
+
+.scheduleTable tbody tr {
+  font-size: 23px;
+}
+
+
+.scheduleTable tbody td:nth-last-child(1) {
+  padding: 0 0 0 195px;
+}
+.scheduleTable tbody td:nth-last-child(2) {
+  padding: 0 0 0 220px;
+}
+.scheduleTable tbody td:nth-last-child(3) {
+  padding: 0 0 0 215px;
+}
+.scheduleTable tbody td:nth-last-child(4) {
+  padding: 0 0 0 95px;
+}
+.scheduleTable tbody td:nth-last-child(5) {
+  padding: 0 0 0 0px;
+}
+/* Editing <tbody> -------------------------------------------------------------------------------------------------------------*/
+
+/* Styling for the repayment schedule table ---------------------------------------------------------------------------------------*/
+
+/* This is the design for the bot container --------------------------------------------------------------------------------------*/
