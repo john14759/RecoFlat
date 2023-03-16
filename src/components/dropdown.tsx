@@ -35,10 +35,9 @@ function DropdownMenu({ selectedValue, handleChange }: DropdownMenuProps) {
     <div className="dropdown-menu">
       <label htmlFor="dropdown"></label>
       <select id="dropdown" value={selectedValue} onChange={handleChange}>
-        <option value="">--Please choose an option--</option>
-        <option value="3 ROOM">3 room flats</option>
-        <option value="4 ROOM">4 room flats</option>
-        <option value="5 ROOM">5 room flats</option>
+        <option value="3 ROOM">3 room</option>
+        <option value="4 ROOM">4 room</option>
+        <option value="5 ROOM">5 room</option>
       </select>
     </div>
   );
