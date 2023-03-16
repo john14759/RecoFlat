@@ -1,14 +1,19 @@
 button.dropdown-button {
-    display: flex;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-  }
+  display: flex;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
 
-#dropdown {
-    font-family: "Lato";
-    font-size: 32px;
-    font-weight: 700;
-    background-color: #D25A5A;
-    margin-left: 10px;
-  }
+select {
+  font-family: "Lato";
+  font-size: 32px;
+  font-weight: 700;
+  background-color: #D25A5A;
+  margin-left: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  right: 155px;
+}
+
