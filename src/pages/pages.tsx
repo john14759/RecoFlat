@@ -4,4 +4,5 @@ import { IncomeCalculator } from '../pages/incomeCalculator';
 import { Explore } from '../pages/explore';
 import { AboutUs } from './aboutus';
 import { How } from './howtouse';
-export { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How}
+import { FilterPrice } from './filterprice';
+export { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How,FilterPrice}

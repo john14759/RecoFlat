@@ -10,7 +10,7 @@ const Explore = (props: PageProps) => {
       </div>
       <div className="explore-body">
         <div className="explore-option">
-          <div className='explore-images'><img src='/img/explore/price.png'/></div>
+          <div className='explore-images'><img src='/img/explore/price.png' alt='price'/></div>
           <div>Filter by Price Range
             <ul>
               <li>
@@ -18,13 +18,13 @@ const Explore = (props: PageProps) => {
                 </li>
               </ul>
           </div>
-          <div className='searchlogo'>
+          <div onClick={() => props.switchTo("filterPrice")} className='searchlogo'>
             <span>Search</span>
-          <img src='/img/explore/searchlogo.png'></img>
+          <img src='/img/explore/searchlogo.png' alt='searchlogo'></img>
           </div>
         </div>
         <div className="explore-option">
-          <div className='explore-images'><img src='/img/explore/location.png'/></div>
+          <div className='explore-images'><img src='/img/explore/location.png' alt='location'/></div>
           <div>Filter by Location
           <ul>
               <li>
@@ -32,12 +32,12 @@ const Explore = (props: PageProps) => {
                 </li>
               </ul>
           </div>
-          <div className='searchlogo'>Search
-          <img src='/img/explore/searchlogo.png'></img>
+          <div  className='searchlogo'>Search
+          <img src='/img/explore/searchlogo.png' alt='searchlogo'></img>
           </div>
         </div>
-        <div className="explore-option" onClick={()=>props.switchTo("filterflattype")}>
-          <div className='explore-images'><img src='/img/explore/flat.png'/></div>
+        <div className="explore-option">
+          <div className='explore-images'><img src='/img/explore/flat.png' alt='flat'/></div>
           <div>Filter By Flat Type
           <ul>
               <li>
@@ -46,7 +46,7 @@ const Explore = (props: PageProps) => {
               </ul>
           </div>
           <div className='searchlogo'>Search
-          <img src='/img/explore/searchlogo.png'></img>
+          <img src='/img/explore/searchlogo.png' alt='searchlogo'></img>
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ type Flat = {
   lease_commence_date: string;
   month: string;
   remaining_lease: string;
-  resale_price: string;
+  resale_price: number;
   storey_range: string;
   street_name: string;
   town: string;
