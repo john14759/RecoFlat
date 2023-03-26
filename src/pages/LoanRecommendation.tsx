@@ -9,25 +9,35 @@ const LoanRecommendation = (props: PageProps) => {
     const [interestRate, setInterestRate] = useState<number>(0);
     const [repaymentSchedule, setRepaymentSchedule] = useState<Array<RepaymentScheduleItem>>([]);
     const [Month, setMonth] = useState({month: ''});
-    const [Year, setYear] = useState<number>(0);
+    // const [Year, setYear] = useState<number>(0);
+    const [Year, setYear] = useState({year: ''});
 
-    // Handle changes to date inputs
-    const handleDateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    var checkCal = false;
+
+    // Handle changes to month inputs
+    const handleDateChangeMonth = (event: React.ChangeEvent<HTMLSelectElement>) => {
       const { name, value } = event.target;
       setMonth(prevState => ({ ...prevState, [name]: value }));
+    };
+
+    // Handle changes to year inputs
+    const handleDateChangeYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const { name, value } = event.target;
+      setYear(prevState => ({ ...prevState, [name]: value }));
     };
 
 
     // Function for calculating the repayment schedule and then inserting them into an array to display
     const calculateRepaymentSchedule = () => {
       // Calculation logic goes here --> formula obtained by this website: https://www.creatifwerks.com/loan-calculator-singapore/
-
       const monthlyInterestRate = interestRate / 1200;
       const monthlyPayment = loanAmount / ((Math.pow(1 + monthlyInterestRate, loanTenure*12) - 1) / (monthlyInterestRate*(Math.pow(1 + monthlyInterestRate, loanTenure*12))));
       const repaymentSchedule: RepaymentScheduleItem[] = [];
+      const myElement = document.getElementById("estimated") as HTMLInputElement;
     
       let principle = loanAmount;
-      let year = Year;
+      // let year = Year;
+      let year = parseInt(Year.year);
       let month = parseInt(Month.month);
     
       while (principle > 0) {
@@ -53,9 +63,15 @@ const LoanRecommendation = (props: PageProps) => {
         } 
         
       }
-    
+      
       setRepaymentSchedule(repaymentSchedule);
+
+      checkCal = true;
+      if (checkCal){
+        myElement.innerHTML = `Estimated payoff date is ${repaymentSchedule[repaymentSchedule.length - 1].date}`;
+      }
     };
+
   return (
     // TODO Loan recommendation page
     <div className = 'container'>
@@ -66,21 +82,21 @@ const LoanRecommendation = (props: PageProps) => {
           <div className="topInputHeader">
             <div>Loan Amount:</div>
             <form>
-            <input type= "number" value={loanAmount} onChange={amt => setLoanAmount(parseFloat(amt.target.value))} placeholder='Insert Amount' />
+            <input type= "number" value={loanAmount} onChange={amt => setLoanAmount(parseFloat(amt.target.value))} placeholder='Insert Amount(SGD)' />
             </form>
           </div>
 
           <div className="topInputHeader">
             <div>Loan Tenure:</div>
             <form>
-            <input type= "number" value={loanTenure} onChange={tnr => setLoanTenure(parseFloat(tnr.target.value))} placeholder='Insert Amount'/>
+            <input type= "number" value={loanTenure} onChange={tnr => setLoanTenure(parseFloat(tnr.target.value))} placeholder='Insert Years'/>
             </form>
           </div>
 
           <div className="topInputHeader">
             <div>Interest Rate:</div>
             <form>
-            <input type= "number" value={interestRate} onChange={intR => setInterestRate(parseFloat(intR.target.value))} placeholder='Insert Amount'  />
+            <input type= "number" value={interestRate} onChange={intR => setInterestRate(parseFloat(intR.target.value))} placeholder='Insert Rate(%)'  />
             </form>
           </div>
 
@@ -97,13 +113,13 @@ const LoanRecommendation = (props: PageProps) => {
           <div className="botBody">
             <div>Start date:</div>
           </div>
-          <div className="botBody">
-            <div>Estimated payoff date is {repaymentSchedule[repaymentSchedule.length - 1].date}</div>
+          <div className="botBody" id="estimated">
+            <div>Estimated payoff date is</div>
           </div>
         </div>
         <div className="botInputHeader">
           <form>
-            <select name="month" value={Month.month} onChange={handleDateChange}>
+            <select name="month" value={Month.month} onChange={handleDateChangeMonth}>
               <option value="">Month</option>
               <option value="01">Jan</option> 
               <option value="02">Feb</option> 
@@ -119,7 +135,23 @@ const LoanRecommendation = (props: PageProps) => {
               <option value="12">Dec</option>
             </select>
 
-            <input type= "number" value={Year} onChange={year => setYear(parseFloat(year.target.value))} placeholder='Year'  />
+            {/* <input type= "number" value={Year} onChange={year => setYear(parseFloat(year.target.value))} placeholder='Year'  /> */}
+            <select name="year" value={Year.year} onChange={handleDateChangeYear}>
+              <option value="">Year</option>
+              <option value="2023">2023</option> 
+              <option value="2024">2024</option> 
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+              <option value="2030">2030</option>
+              <option value="2031">2031</option>
+              <option value="2032">2032</option>
+              <option value="2033">2033</option>
+            </select>
+            
+
           </form>
         </div>
 
