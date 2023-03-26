@@ -2,7 +2,7 @@ import React from 'react';
 import { getFlats } from '../functions/api'
 import { FlatContext } from './context';
 import '../css/app.css'
-import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How} from '../pages/pages'
+import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs, How, Map} from '../pages/pages'
 import Nav from './navbar';
 import { BodyProps } from '../functions/types';
 import { FilterFlatType } from '../pages/FilterFlatType';
@@ -34,6 +34,9 @@ const Body = ({ page, switchTo }: BodyProps) => {
       break;
     case "filterflattype":
       component = <FilterFlatType switchTo={switchTo} />;
+      break;
+    case "map":
+      component = <Map switchTo={switchTo}/>;
       break;
     default:
       component = null;
