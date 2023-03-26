@@ -1,0 +1,238 @@
+/* This is the design for the top container --------------------------------------------------------------------------------------*/
+.topContainer{
+    display: flex;
+    padding:10px;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    width: 80vw;
+    height: 400px;
+    background: #ce6464;
+    box-shadow: 0px 4px 4px rgba(8, 8, 8, 0.25);
+    border-radius: 10px;
+    outline: 2px solid rgb(0, 0, 0);
+}
+
+.topHeader{ 
+    font-size: 69px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 20;
+    text-align: left;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-top: 10px;
+    color: white;
+}
+
+.topBody{
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 30px;
+    font-size: 43px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 20;
+    text-align: left;
+    color: white;
+}
+
+.topInputHeader form input {
+  width: 300px;
+  height: 25px;
+  font-size: 20px;
+}
+
+.topSeperator {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 1em;
+    font-size: 40px;
+    flex-shrink: 1;
+    flex-basis: auto;
+}
+
+.topSeperator > .topInputHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 40px;
+    margin-top: 30px;
+    margin-left: 34px;
+    flex-basis: 100%;
+    align-items: left;
+    text-align: left;
+    font-family: 'Lato';
+    font-size: 43px;
+    color : #ffffff;
+}
+
+.button1 {
+    display: flex;
+    padding: 2px;
+    margin-top: 20px;
+    align-self: flex-end;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+}
+
+.button1 button {
+    background-color: #C9C9C9;
+    color: rgb(0, 0, 0);
+    border: none;
+    font-weight: normal;
+    font-size: 24px;
+    width: 210px;
+    height: 60px;
+    border-radius: 15px;
+    transition: 0.4s;
+    margin-left: auto; 
+    margin-right: auto; 
+}
+  
+.button1 button:hover {
+    background-color: #7c7878cc;
+    border: 2px solid #8B2F2FCC;
+    cursor: pointer;
+}
+/* This is the design for the top container --------------------------------------------------------------------------------------*/
+
+
+/* This is the design for the bot container --------------------------------------------------------------------------------------*/
+.botContainer{
+
+  display: flex;
+  padding:10px;
+  flex-direction: column;
+  width: 80vw;
+  height: 500px;
+  background-color: #181616cc;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.botHeader{ 
+  font-size: 43px;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 20;
+  text-align: left;
+  font-weight: bold;
+  margin-left: 30px;
+  margin-top: 10px;
+  color: white;
+}
+
+.botSeperator {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 0;
+  width: 950px;
+  font-size: 30px;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+.botSeperator > .botBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 40px;
+  margin: 30px 0 0 34px;
+  flex-basis: 100%;
+  align-items: left;
+  text-align: left;
+  font-family: 'Lato';
+  font-size: 33px;
+  color : #ffffff;
+}
+
+.botInputHeader form select {
+  margin:  0 -20px 0 30px;
+  width: 90px;
+  height: 26px;
+  font-size: 20px;
+}
+/* Styling for the repayment schedule table ---------------------------------------------------------------------------------------*/
+.scheduleTable {
+  color: white;
+  border-collapse: collapse;
+  margin: 40px 0 0 30px;
+  min-width: 200px;
+  width: 1090px;
+}
+
+
+/* Editing <thead> -------------------------------------------------------------------------------------------------------------*/
+.scheduleTable thead tr {
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid #dddddd;
+}
+
+.scheduleTable thead th{
+  font-size: 25px;
+}
+
+.scheduleTable thead th:nth-last-child(1) {
+  text-align: right;
+  padding: 0 30px 0 50px;
+}
+.scheduleTable thead th:nth-last-child(2) {
+  padding: 0 30px 0 50px;
+}
+.scheduleTable thead th:nth-last-child(3) {
+  padding: 0 30px 0 50px;
+}
+.scheduleTable thead th:nth-last-child(4) {
+  padding: 0 30px 0 50px;
+}
+.scheduleTable thead th:nth-last-child(5) {
+  padding: 0 10px 0 15px;
+}
+/* Editing <thead> -------------------------------------------------------------------------------------------------------------*/
+
+
+/* Editing <tbody> -------------------------------------------------------------------------------------------------------------*/
+.scheduleTable tbody{
+  display: block;
+  height: 200px;
+  overflow-y: auto;
+}
+.scheduleTable tr{
+  display: block;
+}
+
+
+.scheduleTable tbody tr:nth-of-type(even){
+  background-color:#33777c;
+}
+
+.scheduleTable tbody tr {
+  font-size: 23px;
+}
+
+
+.scheduleTable tbody td:nth-last-child(1) {
+  padding: 0 0 0 195px;
+}
+.scheduleTable tbody td:nth-last-child(2) {
+  padding: 0 0 0 220px;
+}
+.scheduleTable tbody td:nth-last-child(3) {
+  padding: 0 0 0 215px;
+}
+.scheduleTable tbody td:nth-last-child(4) {
+  padding: 0 0 0 95px;
+}
+.scheduleTable tbody td:nth-last-child(5) {
+  padding: 0 0 0 0px;
+}
+/* Editing <tbody> -------------------------------------------------------------------------------------------------------------*/
+
+/* Styling for the repayment schedule table ---------------------------------------------------------------------------------------*/
+
+/* This is the design for the bot container --------------------------------------------------------------------------------------*/

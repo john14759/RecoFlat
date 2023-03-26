@@ -16,10 +16,20 @@ type Flat = {
   lease_commence_date: string;
   month: string;
   remaining_lease: string;
-  resale_price: string;
+  resale_price: number;
   storey_range: string;
   street_name: string;
   town: string;
 }
 
-export type { PageProps, Flat ,BodyProps}
+
+// Used to store the values when displaying the Loan Recommendation
+type RepaymentScheduleItem = {
+  date: string;
+  interestRate: number;
+  monthlyInstalment: number;
+  interestPaid: number;
+  endingPrinciple: number;
+}
+
+export type { PageProps, Flat ,BodyProps, RepaymentScheduleItem}
