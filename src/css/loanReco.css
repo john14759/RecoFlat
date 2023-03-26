@@ -151,7 +151,7 @@
 }
 
 .botInputHeader form select {
-  margin:  0 -20px 0 30px;
+  margin:  0 -170px 0 190px;
   width: 90px;
   height: 26px;
   font-size: 20px;
@@ -197,11 +197,12 @@
 
 
 /* Editing <tbody> -------------------------------------------------------------------------------------------------------------*/
-.scheduleTable tbody{
+.scheduleTable tbody {
   display: block;
   height: 200px;
   overflow-y: auto;
 }
+
 .scheduleTable tr{
   display: block;
 }
