@@ -1,8 +1,9 @@
-import React, {useContext, useState} from 'react';
+import {useContext, useState} from 'react';
 import { Flat, PageProps } from '../functions/types';
 import { FlatContext } from '../components/context';
 import '../css/filterflat.css'
 import DropdownButton from '../components/dropdown';
+import BigNumber from 'bignumber.js';
 
 const FilterFlatType = (props: PageProps) => {
     const flats:Flat[] = useContext(FlatContext)
@@ -13,15 +14,14 @@ const FilterFlatType = (props: PageProps) => {
       setFlatType(value);
     };
 
+    const flatTypePriceByTown: {[key: string]: BigNumber} = {};
     const flatTypeCountByTown: {[key: string]: number} = {};
-    const flatTypePriceByTown: {[key: string]: number} = {};
-    
+
     flats.filter((item) => item.flat_type === flatType).forEach((item) => {
       const town = item.town;
-      const price = parseFloat(item.resale_price);
-      const count = flatTypeCountByTown[town] || 0;
-      const total = flatTypePriceByTown[town] || 0;
-      flatTypePriceByTown[town] = total + price;
+      const price = item.resale_price;
+      const count = flatTypeCountByTown[town] || 0;      
+      flatTypePriceByTown[town].plus(price);
       flatTypeCountByTown[town] = count + 1;
     });
     
@@ -29,7 +29,7 @@ const FilterFlatType = (props: PageProps) => {
       const rows = Object.keys(flatTypeCountByTown).map((town) => {
         const count = flatTypeCountByTown[town];
         const totalPrice = flatTypePriceByTown[town] || 0;
-        const averagePrice = count ? totalPrice / count : 0;
+        const averagePrice = count ? totalPrice.dividedBy(count) : 0;
 
         return(
           <tr id='town' key ={town}>

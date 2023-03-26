@@ -37,27 +37,27 @@ const IncomeCalculator = (props: PageProps) => {
 
   // to calculate the avg cost of each
   for (let i = 0; i < flats.length; i++) {
-   if(flats[i].flat_type == "1 ROOM"){
+   if(flats[i].flat_type === "1 ROOM"){
     cost1 = cost1.plus(flats[i].resale_price);
     count1 = count1.plus(1);
    }
-   if(flats[i].flat_type == "2 ROOM"){
+   if(flats[i].flat_type === "2 ROOM"){
     cost2 = cost2.plus(flats[i].resale_price);
     count2 = count2.plus(1);
    }
-   if(flats[i].flat_type == "3 ROOM"){
+   if(flats[i].flat_type === "3 ROOM"){
     cost3 = cost3.plus(flats[i].resale_price);
     count3 = count3.plus(1);
    }
-   if(flats[i].flat_type == "4 ROOM"){
+   if(flats[i].flat_type === "4 ROOM"){
     cost4 = cost4.plus(flats[i].resale_price);
     count4 = count4.plus(1);
    }
-   if(flats[i].flat_type == "5 ROOM"){
+   if(flats[i].flat_type === "5 ROOM"){
     cost5 = cost5.plus(flats[i].resale_price);
     count5 = count5.plus(1);
    }
-   if(flats[i].flat_type == "EXECUTIVE"){
+   if(flats[i].flat_type === "EXECUTIVE"){
     coste = coste.plus(flats[i].resale_price);
     counte = counte.plus(1);
    }
@@ -86,7 +86,7 @@ const IncomeCalculator = (props: PageProps) => {
    const PAY = downPayment.trim();
   var flag = true;
   // doing a check for input value 1st error validation
-  if (typeOfFlat == 'TOF' || installPeriod == 'INS' || income == 'INC' || downPayment == 'PAY'){
+  if (typeOfFlat === 'TOF' || installPeriod === 'INS' || income === 'INC' || downPayment === 'PAY'){
      flag = true;
   }
  
@@ -239,7 +239,8 @@ const IncomeCalculator = (props: PageProps) => {
           <option value="5">5 Room</option>
           <option value="e">Executive</option>
 
-          </select>
+          </select> 
+          </form>
           <div>Cost Of Flat:</div>
           <form>
           <input type= "number" name="COF" placeholder='cost of flat'  />

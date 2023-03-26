@@ -2,7 +2,6 @@ import { PageProps } from '../functions/types';
 import React, { useState, useContext } from 'react';
 import '../css/location.css'
 import { FlatContext } from '../components/context';
-import ReactDOM from 'react-dom';
 import BigNumber from 'bignumber.js';
 
 const Location = (props: PageProps) => {
@@ -90,7 +89,7 @@ const Location = (props: PageProps) => {
           <div className='price-header'>Location selected: {/*link from map page*/}
           </div>
           <label className='subheader'>Location selected</label>
-          <img onClick={handleDropdown} src='img/dropdownlogo.png'></img>
+          <img onClick={handleDropdown} src='img/dropdownlogo.png' alt=''></img>
           <br />
           {drop && (
             <div className='dropdown'>

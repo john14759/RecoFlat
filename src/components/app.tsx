@@ -39,7 +39,7 @@ const Body = ({ page, switchTo }: BodyProps) => {
     case 'filterPrice':
       component =<FilterPrice switchTo={switchTo}/>;
       break;
-    case "filterflattype":
+    case "filterFlatType":
       component = <FilterFlatType switchTo={switchTo} />;
       break;
     default:

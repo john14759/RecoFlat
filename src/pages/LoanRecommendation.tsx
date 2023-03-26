@@ -54,7 +54,7 @@ const LoanRecommendation = (props: PageProps) => {
         };
         repaymentSchedule.push(item);
         
-        if (month == 12){
+        if (month === 12){
           year++;
           month=1;
         }
