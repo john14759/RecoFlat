@@ -31,7 +31,7 @@ const Explore = (props: PageProps) => {
                 </li>
               </ul>
           </div>
-          <div  className='searchlogo'>Search
+          <div  className='searchlogo' onClick={() => props.switchTo("location")}>Search
           <img src='/img/explore/searchlogo.png' alt='searchlogo'></img>
           </div>
         </div>
