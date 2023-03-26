@@ -181,7 +181,6 @@ h1{
   
   .result{
 
-    display: flex;
     font-weight: lighter;
     padding:10px;
     align-items: center;
@@ -191,6 +190,7 @@ h1{
    margin-top : 15px;
     color: white;
     justify-content: space-between;
+ 
 
 
   }
@@ -205,44 +205,17 @@ font-weight: lighter;
  }
 
 
-a{
 
-    font-weight: lighter;
-    padding:10px;
-    justify-content: center;
-    align-items: center;
-   font-size: 28px;
-   margin-left :0;
-   margin-right : 0;
-   margin-top : 0;
-   margin-bottom: 0;
-    color: yellow;
-      text-decoration: underline;
-
-
-  }
-
-  .loan{
-  
-
-      font-weight: lighter;
-      padding:10px;
-      justify-content: center;
-      align-items: center;
-     font-size: 28px;
-     margin-left :0;
-     margin-right : 0;
-     margin-top : 0;
-     margin-bottom: 0;
-      color: yellow;
+  .loan{  
+        display: inline-block;
+        color: yellow;
         text-decoration: underline;
-  
-  
-  
+        cursor: pointer;
+
   }
 
 
-  b{
+  .error{
     color: red; 
     
     font-size: 50px;
