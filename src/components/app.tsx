@@ -6,6 +6,7 @@ import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How,Filter
 import Nav from './navbar';
 import { BodyProps,Flat } from '../functions/types';
 import { FilterFlatType } from '../pages/FilterFlatType';
+import { Location } from '../pages/location';
 
 
 // The component that displays the current page.
@@ -31,6 +32,9 @@ const Body = ({ page, switchTo }: BodyProps) => {
       break;
     case "howtouse":
       component = <How switchTo={switchTo} />;
+      break;
+    case "location":
+      component = <Location switchTo={switchTo} />;
       break;
     case 'filterPrice':
       component =<FilterPrice switchTo={switchTo}/>;
