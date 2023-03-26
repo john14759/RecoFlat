@@ -1,10 +1,10 @@
 import { PageProps } from '../functions/types';
 import '../css/incomeCal.css'
+
 import { FlatContext } from '../components/context';
 import BigNumber from 'bignumber.js';
 import React, { useState,useContext } from 'react';
 import '../components/app'
-
 
 
 
@@ -240,6 +240,9 @@ const IncomeCalculator = (props: PageProps) => {
           <option value="e">Executive</option>
 
           </select>
+          <div>Cost Of Flat:</div>
+          <form>
+          <input type= "number" name="COF" placeholder='cost of flat'  />
           </form>
 
      
@@ -250,6 +253,7 @@ const IncomeCalculator = (props: PageProps) => {
 
           <form>
           <select name="INS" placeholder='10,15,20 Years' onChange={(e) => setInstallPeriod(e.target.value)}>
+
           <option value="">Select Installment Period:</option>
           <option value="10">10 years</option>
           <option value="15">15 years</option>
@@ -267,6 +271,7 @@ const IncomeCalculator = (props: PageProps) => {
           <div>Monthly Income:</div>
           <form>
           <input name="INC" placeholder ='monthly income' type= "number"  onChange={(e) => setIncome(e.target.value)}/>
+
           </form>
 
    
@@ -275,6 +280,7 @@ const IncomeCalculator = (props: PageProps) => {
           <div>Down Payment:</div>
           <form>
           <input name="PAY" placeholder= 'down payment' type= "number" onChange={(e) => setDownPayment(e.target.value)}/>
+
           </form>
 
       </div>
@@ -288,6 +294,7 @@ const IncomeCalculator = (props: PageProps) => {
       </div> }
       {error && <div className = "error">Please input a value or select an option!</div>}
       {submitted2 && <div className = "result">With your gross household pay of ${income} a month, you are able to afford a {typeOfFlat}-Room flat which has an overall median price of ${cost.toFormat(0)}!</div>}
+
 
     </div>
   </div>

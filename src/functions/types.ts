@@ -22,4 +22,14 @@ type Flat = {
   town: string;
 }
 
-export type { PageProps, Flat ,BodyProps}
+
+// Used to store the values when displaying the Loan Recommendation
+type RepaymentScheduleItem = {
+  date: string;
+  interestRate: number;
+  monthlyInstalment: number;
+  interestPaid: number;
+  endingPrinciple: number;
+}
+
+export type { PageProps, Flat ,BodyProps, RepaymentScheduleItem}

@@ -1,5 +1,6 @@
 import '../css/explore.css'
 import { PageProps } from '../functions/types';
+import { FilterFlatType } from './FilterFlatType';
 
 const Explore = (props: PageProps) => {
   return (
