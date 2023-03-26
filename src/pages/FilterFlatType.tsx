@@ -20,10 +20,15 @@ const FilterFlatType = (props: PageProps) => {
     flats.filter((item) => item.flat_type === flatType).forEach((item) => {
       const town = item.town;
       const price = item.resale_price;
-      const count = flatTypeCountByTown[town] || 0;      
-      flatTypePriceByTown[town].plus(price);
+      const count = flatTypeCountByTown[town] || 0;
+
+      if (!flatTypePriceByTown[town]) {
+        flatTypePriceByTown[town] = new BigNumber(0);
+      }
+      flatTypePriceByTown[town] = flatTypePriceByTown[town].plus(price);
       flatTypeCountByTown[town] = count + 1;
     });
+
     
     //console.log(`Count and Average Resale Price for ${flatType} by Town:`);
       const rows = Object.keys(flatTypeCountByTown).map((town) => {
