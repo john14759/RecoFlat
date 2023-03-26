@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('../../public/fonts/Lora/Lora-VariableFont_wght.ttf');
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Lora;
+    background-image: url("../../public/img/background.jpeg") ;
+    background-size: cover;
+    background-position: center bottom -80px;
+}
+
+.app-body {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    
+    width: 80%;
+    padding: 2em 0;
+    flex: 1;
+}
+
