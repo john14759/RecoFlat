@@ -5,6 +5,7 @@ import '../css/app.css'
 import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How,FilterPrice} from '../pages/pages'
 import Nav from './navbar';
 import { BodyProps,Flat } from '../functions/types';
+import { FilterFlatType } from '../pages/FilterFlatType';
 
 
 // The component that displays the current page.
@@ -33,6 +34,9 @@ const Body = ({ page, switchTo }: BodyProps) => {
       break;
     case 'filterPrice':
       component =<FilterPrice switchTo={switchTo}/>;
+      break;
+    case "filterflattype":
+      component = <FilterFlatType switchTo={switchTo} />;
       break;
     default:
       component = null;
