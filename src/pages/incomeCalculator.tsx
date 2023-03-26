@@ -7,14 +7,13 @@ import '../components/app'
 
 
 
+
+
 const IncomeCalculator = (props: PageProps) => {
-  //function to change page
-  function change():void{
-    return props.switchTo("loanRecommendation") ;
-
-  }
-
-
+  // setting usestate to change the result container
+  const [submitted,setsubmitted] = useState(false);
+  const [error,seterror] = useState(false);
+  const [submitted2,setsubmitted2] = useState(false);
 
   // calculation of avg price for the flat_types
   var cost1 = new BigNumber(0);
@@ -85,18 +84,18 @@ const IncomeCalculator = (props: PageProps) => {
    const INS = installPeriod.trim();
    const INC = income.trim();
    const PAY = downPayment.trim();
-
+  var flag = true;
   // doing a check for input value 1st error validation
   if (typeOfFlat == 'TOF' || installPeriod == 'INS' || income == 'INC' || downPayment == 'PAY'){
-    var flag = true;
+     flag = true;
   }
  
 //2nd error validation for extreme cases
   else if (!TOF||!INS||!INC||!PAY){
-    var flag = true;
+     flag = true;
   }
   else {
-    var flag = false;
+     flag = false;
   }
   var cost = new BigNumber(0);
   var monthly = new BigNumber(0);
@@ -157,34 +156,63 @@ const IncomeCalculator = (props: PageProps) => {
   
     // checking if the flag is trigger for error 
     if(flag){
-      myElement.innerHTML = `<b> Please input a value or select an option!</b>`;
-
+      setsubmitted2(false)
+      setsubmitted(false)
+      seterror(true)
     }
     //if no flag means it check whether the user can afford or not 
     else{
 
       if(monthly.isGreaterThan(Number(income))){
-        myElement.style.display = 'block';
+        seterror(false)
+        setsubmitted2(false)
+        setsubmitted(true);
 
-        myElement.innerHTML = `<span>With your gross household pay of $${income} a month, you are unable to afford a ${typeOfFlat}-Room flat which has an overall median price of $${cost.toFormat(0)}. You can use<a className = 'switch'>loan recommendation</a>to calculate the loans that you will need to take.</span>`;
-        console.log()
       }
 
       else{
-        
-        myElement.innerHTML = `With your gross household pay of $${income} a month, you are able to afford a ${typeOfFlat}-Room flat which has an overall median price of $${cost.toFormat(0)}!`;
-
-
+        seterror(false)
+        setsubmitted(false)
+        setsubmitted2(true);
       }
   }
 
     // error checking for no inputs
   }
+// to return the average price to be printed
+  switch(typeOfFlat){
+    case "1":
+      cost = cost1;
+      break;
 
+    case '2':
+      cost = cost2;
+      break;
+      
+    case '3':
+      cost = cost3;
+      break;
 
+    case '4' :
+      cost = cost4;
+      break;
+
+    case '5' :
+      cost = cost5;
+      break;
+
+    case 'e':
+      cost = coste;
+      break;
+
+    default:
+      break;
+
+    }
 
   //returning the page itself
   return (
+ 
 
     // TODO Income calculator page
     <div className = 'container'>
@@ -255,13 +283,14 @@ const IncomeCalculator = (props: PageProps) => {
       <div className ="button">
       <button id = "calculator" type ="button" onClick ={calculate} >Calculate</button>
       </div>
-      <div className = "result" id = "test"></div>
-      
-
+      {submitted && <div className = "result"> 
+      With your gross household pay of ${income} a month, you are unable to afford a {typeOfFlat}-Room flat which has an overall median price of ${cost.toFormat(0)}. You can use <div className = 'loan' onClick={() => props.switchTo("loanRecommendation")}>loan recommendation</div> to calculate the loans that you will need to take
+      </div> }
+      {error && <div className = "error">Please input a value or select an option!</div>}
+      {submitted2 && <div className = "result">With your gross household pay of ${income} a month, you are able to afford a {typeOfFlat}-Room flat which has an overall median price of ${cost.toFormat(0)}!</div>}
 
     </div>
   </div>
-
 
   )
   }
