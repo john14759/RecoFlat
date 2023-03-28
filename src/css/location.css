@@ -112,17 +112,18 @@
 }
 
 /* Price content scrollbar styles */
-.price-content::-webkit-scrollbar {
-    width: 30px; /* width of the scrollbar */
+.price-contents::-webkit-scrollbar {
+    width: 38px; /* width of the scrollbar */
 }
 
-.price-content::-webkit-scrollbar-track {
+.price-contents::-webkit-scrollbar-track {
     display: none; /* Remove the scrollbar track */
 }
 
-.price-content::-webkit-scrollbar-thumb {
+.price-contents::-webkit-scrollbar-thumb {
     height:55px ;
-    background-size: cover;
+    background-repeat:no-repeat;
+    background-image: url("../../public/img/scrollbar/wheel.png");
     /* rounded corners of the scrollbar button */
 }
 
@@ -133,7 +134,10 @@
     cursor: pointer;
 }
 
-
+.price-contents {
+    overflow-y: auto;
+    height: 35vh;
+}
 
 /* Style The Dropdown Button */
 .dropbtn {

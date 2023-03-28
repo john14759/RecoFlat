@@ -16,15 +16,15 @@ const Location = (props: PageProps) => {
 
   //create arrays for each location
   let eastloc: Array<string>;
-  eastloc = ["SERANGOON", "PUNGGOL", "HOUGANG", "TAMPINES", "PASIR RIS", "LOYANG", "SIMEI", "KALLANG", "KATONG", "EAST COAST", "MACPHERSON", "BEDOK", "CHANGI"];
+  eastloc = ["BEDOK", "PASIR RIS", "TAMPINES"];
   let northloc: Array<string>;
-  northloc = ["ADMIRALTY", "KRANJI", "WOODLANDS", "SEMBAWANG", "YISHUN", "YIO CHU KANG", "SELETAR", "SENGKANG"];
+  northloc = ["SEMBAWANG", "WOODLANDS", "YISHUN"];
   let centralloc: Array<string>;
-  centralloc = ["THOMSON", "MARYMOUNT", "ANG MO KIO", "BISHAN", "MACRITCHIE", "TOA PAYOH"];
-  let southloc: Array<string>;
-  southloc = ["HOLLAND", "QUEENSTOWN", "BUKIT MERAH", "TELOK BLANGAH", "PASIR PANJANG", "SENTOSA", "BUKIT TIMAH", "NEWTON", "ORCHARD", "MARINA SOUTH"];
+  centralloc = ["BISHAN", "BUKIT MERAH", "BUKIT TIMAH", "CENTRAL AREA", "GEYLANG", "KALLANG/WHAMPOA", "MARINE PARADE", "QUEENSTOWN", "TOA PAYOH"];
+  let northEloc: Array<string>;
+  northEloc = ["ANG MO KIO", "HOUGANG", "PUNGGOL", "SENGKANG", "SERANGOON"];
   let westloc: Array<string>;
-  westloc = ["LIM CHU KANG", "CHOA CHU KANG", "BUKIT PANJANG", "TUAS", "JURONG EAST", "JURONG WEST", "BUKIT BATOK", "HILLVIEW", "WEST COAST", "CLEMENTI"];
+  westloc = ["BUKIT BATOK", "BUKIT PANJANG", "CHOA CHU KANG", "CLEMENTI", "JURONG EAST", "JURONG WEST", "TENGAH"];
 
   //group by each location
   const flats = useContext(FlatContext);
@@ -103,8 +103,6 @@ const Location = (props: PageProps) => {
             <div className='dropdown'>
             <button className='dropbtn'>{locations}</button>
             <br></br>
-            <br></br>
-            <br></br>
             <p>Now displaying the flats in the price range that you have selected</p>
             </div>
           )}
@@ -115,10 +113,10 @@ const Location = (props: PageProps) => {
         <div className='search-area'>Search Results:</div>
         <div className='tableheader'>
           <div>Flat types</div>
-          <div>Location</div>
-          <div>Average sale price</div>
+          <div>Count</div>
+          <div>Average Resale Price ($)</div>
         </div>
-        <div className='price-content'>
+        <div className='price-contents'>
         {displayTable(locations)}
         </div>
       </div>
