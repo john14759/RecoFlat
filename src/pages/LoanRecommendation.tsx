@@ -39,12 +39,11 @@ const LoanRecommendation = (props: PageProps) => {
       // let year = Year;
       let year = parseInt(Year.year);
       let month = parseInt(Month.month);
-    
+      var interest = principle * monthlyInterestRate;
+      var principlePaid = (monthlyPayment - interest);
+      principle = principle - principlePaid;
+      
       while (principle > 0) {
-        const interest = principle * monthlyInterestRate;
-        const principlePaid = (monthlyPayment - interest);
-        principle = principle - principlePaid;
-    
         const item: RepaymentScheduleItem = {
           date: `${month.toString().padStart(2, '0')}/${year}`,
           interestRate: interestRate,
@@ -54,14 +53,34 @@ const LoanRecommendation = (props: PageProps) => {
         };
         repaymentSchedule.push(item);
         
-        if (month === 12){
+        if (month == 12){
           year++;
           month=1;
         }
         else{
           month++;
         } 
+        interest = principle * monthlyInterestRate;
+        principlePaid = (monthlyPayment - interest);
+        principle = principle - principlePaid;
+      }
+      if(principle > -0.009){
+        const item: RepaymentScheduleItem = {
+          date: `${month.toString().padStart(2, '0')}/${year}`,
+          interestRate: interestRate,
+          monthlyInstalment: monthlyPayment,
+          interestPaid: interest,
+          endingPrinciple: principle
+        };
+        repaymentSchedule.push(item);
         
+        if (month == 12){
+          year++;
+          month=1;
+        }
+        else{
+          month++;
+        } 
       }
       
       setRepaymentSchedule(repaymentSchedule);
