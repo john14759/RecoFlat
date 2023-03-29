@@ -6,7 +6,7 @@
     justify-content: left;
     align-items: left;
     width: 80vw;
-    height: 400px;
+    height: 450px;
     background: #ce6464;
     box-shadow: 0px 4px 4px rgba(8, 8, 8, 0.25);
     border-radius: 10px;
@@ -14,7 +14,7 @@
 }
 
 .topHeader{ 
-    font-size: 69px;
+    font-size: 50px;
     font-family: 'Lato';
     font-style: normal;
     font-weight: 20;
@@ -29,7 +29,7 @@
     margin-top: 5px;
     margin-bottom: 0px;
     margin-left: 30px;
-    font-size: 43px;
+    font-size: 35px;
     font-family: 'Lato';
     font-style: normal;
     font-weight: 20;
@@ -42,6 +42,7 @@
   height: 25px;
   font-size: 20px;
 }
+
 
 .topSeperator {
     display: flex;
@@ -69,13 +70,13 @@
 }
 
 .button1 {
-    display: flex;
-    padding: 2px;
-    margin-top: 20px;
-    align-self: flex-end;
-    flex-direction: column;
-    justify-content: right;
-    align-items: flex-end;
+  display: flex;
+  padding: 2px;
+  margin-top: auto;
+  align-self: flex-end;
+  flex-direction: column;
+  justify-content: right;
+  align-items: flex-end;
 }
 
 .button1 button {
@@ -97,6 +98,8 @@
     border: 2px solid #8B2F2FCC;
     cursor: pointer;
 }
+
+
 /* This is the design for the top container --------------------------------------------------------------------------------------*/
 
 
@@ -174,28 +177,30 @@
 }
 
 .scheduleTable thead th{
+  text-align: left;
   font-size: 25px;
 }
 
 .scheduleTable thead th:nth-last-child(1) {
   width:5%;
-  /* padding: 0 30px 0 50px; */
+  padding: 0 0 0 0px;
 }
 .scheduleTable thead th:nth-last-child(2) {
   width:5%;
-  /* padding: 0 30px 0 50px; */
+  padding: 0 0 0 0px;
 }
 .scheduleTable thead th:nth-last-child(3) {
   width:5%;
-  /* padding: 0 30px 0 50px; */
+  padding: 0 0 0 0px;
 }
 .scheduleTable thead th:nth-last-child(4) {
   width:5%;
-  /* padding: 0 30px 0 50px; */
+  padding: 0 0 0 0px;
 }
 .scheduleTable thead th:nth-last-child(5) {
-  width:1%;
-  /* padding: 0 10px 0 15px; */
+
+  width:3%;
+  padding: 0 0 0 0px;
 }
 /* Editing <thead> -------------------------------------------------------------------------------------------------------------*/
 
@@ -222,28 +227,51 @@
   font-size: 23px;
 }
 
+/* .scheduleTable tbody td {
+  text-align: right;
+} */
+
+
 .scheduleTable tbody td:nth-last-child(1) {
-  width:5%;
-  padding: 0 0 0 150px;
-}
-.scheduleTable tbody td:nth-last-child(2) {
-  width:2%;
-  padding: 0 0 0 210px;
-}
-.scheduleTable tbody td:nth-last-child(3) {
-  width:2%;
-  padding: 0 0 0 130px;
-}
-.scheduleTable tbody td:nth-last-child(4) {
-  width:5%;
-  padding: 0 0 0 95px;
-}
-.scheduleTable tbody td:nth-last-child(5) {
-  width:1%;
+  text-align: right;
+  width: 240px;
   padding: 0 0 0 0px;
 }
+.scheduleTable tbody td:nth-last-child(2) {
+  text-align: center;
+  width: 100px;
+  padding: 0 0 0 0px;
+}
+.scheduleTable tbody td:nth-last-child(3) {
+  text-align: center;
+  width: 370px;
+  padding: 0 0 0 0px;
+}
+.scheduleTable tbody td:nth-last-child(4) {
+  text-align: center;
+  width: 120px;
+  padding: 0 0 0 0px;
+}
+.scheduleTable tbody td:nth-last-child(5) {
+  text-align: left;
+  width: 150px;
+  padding: 0 0 0 0px;
+}
+
 /* Editing <tbody> -------------------------------------------------------------------------------------------------------------*/
 
 /* Styling for the repayment schedule table ---------------------------------------------------------------------------------------*/
 
 /* This is the design for the bot container --------------------------------------------------------------------------------------*/
+
+
+/* This is the error message -----------------------------------------------------------------------------------------------------*/
+/* .top-error-message{
+
+} */
+
+/* .bottom-error-message{
+
+} */
+
+/* This is the error message -----------------------------------------------------------------------------------------------------*/

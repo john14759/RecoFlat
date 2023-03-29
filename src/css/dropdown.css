@@ -1,8 +1,9 @@
-button.dropdown-button {
-  display: flex;
-  border: none;
-  background: transparent;
-  cursor: pointer;
+select option{
+  font-family: "Lato";
+  font-size: 32px;
+  font-weight: 700;
+  background-color: #D25A5A;
+  color: black;
 }
 
 select {
@@ -10,10 +11,5 @@ select {
   font-size: 32px;
   font-weight: 700;
   background-color: #D25A5A;
-  margin-left: 10px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  position: relative;
-  right: 155px;
+  color: black;
 }
-

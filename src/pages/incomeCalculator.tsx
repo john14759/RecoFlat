@@ -241,10 +241,6 @@ const IncomeCalculator = (props: PageProps) => {
 
           </select> 
           </form>
-          <div>Cost Of Flat:</div>
-          <form>
-          <input type= "number" name="COF" placeholder='cost of flat'  />
-          </form>
 
      
    
