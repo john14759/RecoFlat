@@ -2,16 +2,18 @@ import { PageProps } from '../functions/types';
 import { RepaymentScheduleItem } from '../functions/types';
 import React, { useState } from 'react';
 import '../css/loanReco.css'
+import { exit } from 'process';
 
 const LoanRecommendation = (props: PageProps) => {
-    const [loanAmount, setLoanAmount] = useState<number>(0);
-    const [loanTenure, setLoanTenure] = useState<number>(0);
-    const [interestRate, setInterestRate] = useState<number>(0);
+    const [loanAmount, setLoanAmount] = useState<number>(NaN);
+    const [loanTenure, setLoanTenure] = useState<number>(NaN);
+    const [interestRate, setInterestRate] = useState<number>(NaN);
     const [repaymentSchedule, setRepaymentSchedule] = useState<Array<RepaymentScheduleItem>>([]);
     const [Month, setMonth] = useState({month: ''});
     // const [Year, setYear] = useState<number>(0);
     const [Year, setYear] = useState({year: ''});
-
+    var topErrorMessageElement = document.getElementById("top-error-message") as HTMLDivElement;
+    var bottomErrorMessageElement = document.getElementById("bottom-error-message") as HTMLDivElement;
     var checkCal = false;
 
     // Handle changes to month inputs
@@ -26,75 +28,161 @@ const LoanRecommendation = (props: PageProps) => {
       setYear(prevState => ({ ...prevState, [name]: value }));
     };
 
+    function checkLoanAmount(amount: number){
+      /* 
+      Error Validation considerations:
+      Loan amount should be 2 decimals, cannot be 0
+      */
+      if (amount == 0){
+        topErrorMessageElement.textContent = "Please enter an amount above 0!";
+        return true;
+      }
+      else if ((amount.toFixed(0) !== amount.toString()) && (amount.toFixed(1) !== amount.toString()) && (amount.toFixed(2) !== amount.toString())){
+        topErrorMessageElement.textContent = "Please enter a valid loan amount!";
+        return true;
+      }
+
+      return false;
+    }
+
+    function checkLoanTenure(tenure: number){
+      /* 
+      Error Validation considerations:
+      Loan tenure should not be 0, should be capped at 25 years, 
+      */
+      if(tenure == 0){
+        topErrorMessageElement.textContent = "Please enter a tenure above 0!";
+        return true;
+      }
+      else if (tenure > 25){
+        topErrorMessageElement.textContent = "Maximum tenure limit is 25 years!";
+        return true;
+      }
+
+      return false;
+    }
+
+    function checkInterestRate(rate: number){
+      /* 
+      Error Validation considerations:
+      Interest rate cannot be 0, should be capped at 9%, input should be per annum 
+      */
+      if(rate == 0){
+        topErrorMessageElement.textContent = "Please enter an interest rate above 0!";
+        return true;
+      }
+      else if(rate>10){
+        topErrorMessageElement.textContent = "Maximum interest rate limit is 9%!";
+        return true;
+      }
+
+       return false;
+    }
+
+    function checkMonth(M: number){
+      if(Number.isNaN(M)){
+        bottomErrorMessageElement.textContent = "Please select month!";
+        return true;
+      }
+      return false;
+    }
+    function checkYear(Y: number){
+
+      if (Number.isNaN(Y)){
+        bottomErrorMessageElement.textContent = "Please select year!";
+        return true;
+      }
+      return false;
+    }
 
     // Function for calculating the repayment schedule and then inserting them into an array to display
-    const calculateRepaymentSchedule = () => {
-      // Calculation logic goes here --> formula obtained by this website: https://www.creatifwerks.com/loan-calculator-singapore/
-      const monthlyInterestRate = interestRate / 1200;
-      const monthlyPayment = loanAmount / ((Math.pow(1 + monthlyInterestRate, loanTenure*12) - 1) / (monthlyInterestRate*(Math.pow(1 + monthlyInterestRate, loanTenure*12))));
-      const repaymentSchedule: RepaymentScheduleItem[] = [];
+    function calculateRepaymentSchedule(): void{
       const myElement = document.getElementById("estimated") as HTMLInputElement;
-      
-      /* Error Validation considerations:
-      Loan amount should be 2 decimals, cannot be 0,
-      Loan tenure should not be 0, should be capped at 35 years
-      Interest rate cannot be 0, should be capped at __% 
-      Month and Year should be selected*/
-    
-      let principle = loanAmount;
-      // let year = Year;
-      let year = parseInt(Year.year);
-      let month = parseInt(Month.month);
-      var interest = principle * monthlyInterestRate;
-      var principlePaid = (monthlyPayment - interest);
-      principle = principle - principlePaid;
-      
-      while (principle > 0) {
-        const item: RepaymentScheduleItem = {
-          date: `${month.toString().padStart(2, '0')}/${year}`,
-          interestRate: interestRate,
-          monthlyInstalment: monthlyPayment,
-          interestPaid: interest,
-          endingPrinciple: principle
-        };
-        repaymentSchedule.push(item);
-        
-        if (month == 12){
-          year++;
-          month=1;
-        }
-        else{
-          month++;
-        } 
-        interest = principle * monthlyInterestRate;
-        principlePaid = (monthlyPayment - interest);
-        principle = principle - principlePaid;
-      }
-      if(principle > -0.009){
-        const item: RepaymentScheduleItem = {
-          date: `${month.toString().padStart(2, '0')}/${year}`,
-          interestRate: interestRate,
-          monthlyInstalment: monthlyPayment,
-          interestPaid: interest,
-          endingPrinciple: principle
-        };
-        repaymentSchedule.push(item);
-        
-        if (month == 12){
-          year++;
-          month=1;
-        }
-        else{
-          month++;
-        } 
-      }
-      
-      setRepaymentSchedule(repaymentSchedule);
 
-      checkCal = true;
-      if (checkCal){
-        myElement.innerHTML = `Estimated payoff date is ${repaymentSchedule[repaymentSchedule.length - 1].date}`;
+      // Calculation logic goes here --> formula obtained from this website: https://www.creatifwerks.com/loan-calculator-singapore/
+      // Loan Details obtained from this website: https://www.singsaver.com.sg/blog/loan-tenure-singapore
+      if(Number.isNaN(loanAmount) || Number.isNaN(loanTenure) || Number.isNaN(interestRate)){
+        bottomErrorMessageElement.textContent = "";
+        topErrorMessageElement.textContent = "Please fill up the fields above!";
+        const repaymentSchedule: RepaymentScheduleItem[] = [];
+        setRepaymentSchedule(repaymentSchedule);
+        myElement.innerHTML = `Estimated payoff date is`;
       }
+      else if (checkLoanAmount(loanAmount) || checkLoanTenure(loanTenure) || checkInterestRate(interestRate)){ 
+        bottomErrorMessageElement.textContent = "";
+        const repaymentSchedule: RepaymentScheduleItem[] = [];
+        setRepaymentSchedule(repaymentSchedule);
+        myElement.innerHTML = `Estimated payoff date is`;
+      }
+      else if(checkMonth(parseInt(Month.month)) || checkYear(parseInt(Year.year))){
+        topErrorMessageElement.textContent = "";
+        const repaymentSchedule: RepaymentScheduleItem[] = [];
+        setRepaymentSchedule(repaymentSchedule);
+        myElement.innerHTML = `Estimated payoff date is`;
+      }
+      else{
+        topErrorMessageElement.textContent = "";
+        bottomErrorMessageElement.textContent = "";
+        const monthlyInterestRate = interestRate / 1200;
+        const monthlyPayment = loanAmount / ((Math.pow(1 + monthlyInterestRate, loanTenure*12) - 1) / (monthlyInterestRate*(Math.pow(1 + monthlyInterestRate, loanTenure*12))));
+        const repaymentSchedule: RepaymentScheduleItem[] = [];
+  
+        let principle = loanAmount;
+        // let year = Year;
+        let year = parseInt(Year.year);
+        let month = parseInt(Month.month);
+        var interest = principle * monthlyInterestRate;
+        var principlePaid = (monthlyPayment - interest);
+        principle = principle - principlePaid;
+        
+        while (principle > 0) {
+          const item: RepaymentScheduleItem = {
+            date: `${month.toString().padStart(2, '0')}/${year}`,
+            // interestRate: monthlyInterestRate,
+            monthlyInstalment: monthlyPayment,
+            interestPaid: interest,
+            endingPrinciple: principle
+          };
+          repaymentSchedule.push(item);
+          
+          if (month == 12){
+            year++;
+            month=1;
+          }
+          else{
+            month++;
+          } 
+          interest = principle * monthlyInterestRate;
+          principlePaid = (monthlyPayment - interest);
+          principle = principle - principlePaid;
+        }
+        if(principle > -0.009){
+          const item: RepaymentScheduleItem = {
+            date: `${month.toString().padStart(2, '0')}/${year}`,
+            // interestRate: monthlyInterestRate,
+            monthlyInstalment: monthlyPayment,
+            interestPaid: interest,
+            endingPrinciple: principle
+          };
+          repaymentSchedule.push(item);
+          
+          if (month == 12){
+            year++;
+            month=1;
+          }
+          else{
+            month++;
+          } 
+        }
+        
+        setRepaymentSchedule(repaymentSchedule);
+  
+        checkCal = true;
+        if (checkCal){
+          myElement.innerHTML = `Estimated payoff date is ${repaymentSchedule[repaymentSchedule.length - 1].date}`;
+        }
+      }
+
     };
 
   return (
@@ -107,27 +195,28 @@ const LoanRecommendation = (props: PageProps) => {
           <div className="topInputHeader">
             <div>Loan Amount:</div>
             <form>
-            <input type= "number" value={loanAmount} onChange={amt => setLoanAmount(parseFloat(amt.target.value))} placeholder='Insert Amount(SGD)' />
+            <input placeholder='Insert Amount(SGD)' type='number' value={loanAmount} onChange={(amt) => setLoanAmount(parseFloat(amt.target.value))} required/>
             </form>
           </div>
 
           <div className="topInputHeader">
             <div>Loan Tenure:</div>
             <form>
-            <input type= "number" value={loanTenure} onChange={tnr => setLoanTenure(parseFloat(tnr.target.value))} placeholder='Insert Years'/>
+            <input required type="number" value={loanTenure} onChange={tnr => setLoanTenure(parseFloat(tnr.target.value))} placeholder='Insert Years'/>
             </form>
           </div>
 
           <div className="topInputHeader">
             <div>Interest Rate:</div>
             <form>
-            <input type= "number" value={interestRate} onChange={intR => setInterestRate(parseFloat(intR.target.value))} placeholder='Insert Rate(%)'  />
+            <input required type="number" value={interestRate} onChange={intR => setInterestRate(parseFloat(intR.target.value))} placeholder='Insert Rate(%)'  />
             </form>
           </div>
         </div>
+        <div id='top-error-message'></div>
         
         <div className ="button1">
-          <button id = "calculator" type ="button"  onClick={calculateRepaymentSchedule}>Calculate</button>
+          <button id = "calculator" type="button"  onClick={calculateRepaymentSchedule}>Calculate</button>
         </div>
         
       </div>
@@ -146,7 +235,7 @@ const LoanRecommendation = (props: PageProps) => {
         <div className="botInputHeader">
           <form>
             <select name="month" value={Month.month} onChange={handleDateChangeMonth}>
-              <option value="">Month</option>
+              <option value="nothing">Month</option>
               <option value="01">Jan</option> 
               <option value="02">Feb</option> 
               <option value="03">Feb</option>
@@ -163,7 +252,7 @@ const LoanRecommendation = (props: PageProps) => {
 
             {/* <input type= "number" value={Year} onChange={year => setYear(parseFloat(year.target.value))} placeholder='Year'  /> */}
             <select name="year" value={Year.year} onChange={handleDateChangeYear}>
-              <option value="">Year</option>
+              <option value="nothing">Year</option>
               <option value="2023">2023</option> 
               <option value="2024">2024</option> 
               <option value="2025">2025</option>
@@ -185,7 +274,7 @@ const LoanRecommendation = (props: PageProps) => {
           <thead>
             <tr>
               <th>Date</th>
-              <th>Interest Rate</th>
+              {/* <th>Interest Rate</th> */}
               <th>Monthly Instalment</th>
               <th>Interest Paid</th>
               <th>Ending Principle</th>
@@ -195,10 +284,10 @@ const LoanRecommendation = (props: PageProps) => {
               {repaymentSchedule.map((item, index) => (
                 <tr key={index}>
                   <td className='scheduleDate'>{item.date}</td>
-                  <td className='scheduleIntRate'>{item.interestRate}%</td>
-                  <td className='scheduleInstalment'>{item.monthlyInstalment.toFixed(2)}</td>
-                  <td className='scheduleIntPaid'>{item.interestPaid.toFixed(2)}</td>
-                  <td className='scheduleEndingPrinc'>{item.endingPrinciple.toFixed(2)}</td>
+                  {/* <td className='scheduleIntRate'>{item.interestRate.toFixed(2)}%</td> */}
+                  <td className='scheduleInstalment'>${item.monthlyInstalment.toFixed(2)}</td>
+                  <td className='scheduleIntPaid'>${item.interestPaid.toFixed(2)}</td>
+                  <td className='scheduleEndingPrinc'>${item.endingPrinciple.toFixed(2)}</td>
                 </tr>
               ))}
             </tbody>
