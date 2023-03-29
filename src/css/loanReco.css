@@ -130,7 +130,7 @@
   flex-direction: row;
   justify-content: space-between;
   column-gap: 0;
-  width: 950px;
+  width: 1000px;
   font-size: 30px;
   flex-shrink: 1;
   flex-basis: auto;
@@ -168,9 +168,9 @@
 
 /* Editing <thead> -------------------------------------------------------------------------------------------------------------*/
 .scheduleTable thead tr {
-  text-align: left;
   font-weight: bold;
   border-bottom: 2px solid #dddddd;
+  display: block;
 }
 
 .scheduleTable thead th{
@@ -178,20 +178,24 @@
 }
 
 .scheduleTable thead th:nth-last-child(1) {
-  text-align: right;
-  padding: 0 30px 0 50px;
+  width:5%;
+  /* padding: 0 30px 0 50px; */
 }
 .scheduleTable thead th:nth-last-child(2) {
-  padding: 0 30px 0 50px;
+  width:5%;
+  /* padding: 0 30px 0 50px; */
 }
 .scheduleTable thead th:nth-last-child(3) {
-  padding: 0 30px 0 50px;
+  width:5%;
+  /* padding: 0 30px 0 50px; */
 }
 .scheduleTable thead th:nth-last-child(4) {
-  padding: 0 30px 0 50px;
+  width:5%;
+  /* padding: 0 30px 0 50px; */
 }
 .scheduleTable thead th:nth-last-child(5) {
-  padding: 0 10px 0 15px;
+  width:1%;
+  /* padding: 0 10px 0 15px; */
 }
 /* Editing <thead> -------------------------------------------------------------------------------------------------------------*/
 
@@ -201,11 +205,12 @@
   display: block;
   height: 200px;
   overflow-y: auto;
+  
 }
-
+/* 
 .scheduleTable tr{
   display: block;
-}
+} */
 
 
 .scheduleTable tbody tr:nth-of-type(even){
@@ -213,23 +218,28 @@
 }
 
 .scheduleTable tbody tr {
+  display: block;
   font-size: 23px;
 }
 
-
 .scheduleTable tbody td:nth-last-child(1) {
-  padding: 0 0 0 195px;
+  width:5%;
+  padding: 0 0 0 150px;
 }
 .scheduleTable tbody td:nth-last-child(2) {
-  padding: 0 0 0 220px;
+  width:2%;
+  padding: 0 0 0 210px;
 }
 .scheduleTable tbody td:nth-last-child(3) {
-  padding: 0 0 0 215px;
+  width:2%;
+  padding: 0 0 0 130px;
 }
 .scheduleTable tbody td:nth-last-child(4) {
+  width:5%;
   padding: 0 0 0 95px;
 }
 .scheduleTable tbody td:nth-last-child(5) {
+  width:1%;
   padding: 0 0 0 0px;
 }
 /* Editing <tbody> -------------------------------------------------------------------------------------------------------------*/
