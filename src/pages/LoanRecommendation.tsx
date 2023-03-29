@@ -34,6 +34,12 @@ const LoanRecommendation = (props: PageProps) => {
       const monthlyPayment = loanAmount / ((Math.pow(1 + monthlyInterestRate, loanTenure*12) - 1) / (monthlyInterestRate*(Math.pow(1 + monthlyInterestRate, loanTenure*12))));
       const repaymentSchedule: RepaymentScheduleItem[] = [];
       const myElement = document.getElementById("estimated") as HTMLInputElement;
+      
+      /* Error Validation considerations:
+      Loan amount should be 2 decimals, cannot be 0,
+      Loan tenure should not be 0, should be capped at 35 years
+      Interest rate cannot be 0, should be capped at __% 
+      Month and Year should be selected*/
     
       let principle = loanAmount;
       // let year = Year;
@@ -118,11 +124,12 @@ const LoanRecommendation = (props: PageProps) => {
             <input type= "number" value={interestRate} onChange={intR => setInterestRate(parseFloat(intR.target.value))} placeholder='Insert Rate(%)'  />
             </form>
           </div>
-
         </div>
+        
         <div className ="button1">
-        <button id = "calculator" type ="button"  onClick={calculateRepaymentSchedule}>Calculate</button>
+          <button id = "calculator" type ="button"  onClick={calculateRepaymentSchedule}>Calculate</button>
         </div>
+        
       </div>
 
 
@@ -169,8 +176,7 @@ const LoanRecommendation = (props: PageProps) => {
               <option value="2032">2032</option>
               <option value="2033">2033</option>
             </select>
-            
-
+            <div id="bottom-error-message"></div>
           </form>
         </div>
 

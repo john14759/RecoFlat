@@ -68,14 +68,19 @@
     color : #ffffff;
 }
 
-.button1 {
+
+.topSeperator2 > .testing {
     display: flex;
-    padding: 2px;
-    margin-top: 20px;
-    align-self: flex-end;
-    flex-direction: column;
-    justify-content: right;
-    align-items: flex-end;
+}
+
+.button1 {
+  display: flex;
+  padding: 2px;
+  margin-top: 20px;
+  align-self: flex-end;
+  flex-direction: column;
+  justify-content: right;
+  align-items: flex-end;
 }
 
 .button1 button {
@@ -97,6 +102,8 @@
     border: 2px solid #8B2F2FCC;
     cursor: pointer;
 }
+
+
 /* This is the design for the top container --------------------------------------------------------------------------------------*/
 
 
@@ -257,3 +264,15 @@
 /* Styling for the repayment schedule table ---------------------------------------------------------------------------------------*/
 
 /* This is the design for the bot container --------------------------------------------------------------------------------------*/
+
+
+/* This is the error message -----------------------------------------------------------------------------------------------------*/
+/* .top-error-message{
+
+} */
+
+/* .bottom-error-message{
+
+} */
+
+/* This is the error message -----------------------------------------------------------------------------------------------------*/
