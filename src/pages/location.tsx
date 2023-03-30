@@ -86,9 +86,9 @@ const Location = (props: PageProps) => {
     <div className='container price'>
       <div className='price-filter'>
         <div className='pricehead'>
-          <div className='price-header'>Location selected: {/*link from map page*/}
+          <div className='price-headerr'>Location selected: {/*link from map page*/}
           </div>
-          <label className='subheader'>Location selected</label>
+          <label className='subheaderr'>Select Town:</label>
           <img onClick={handleDropdown} src='img/dropdownlogo.png' alt=''></img>
           <br />
           {drop && (
@@ -102,8 +102,7 @@ const Location = (props: PageProps) => {
           locations !== "" && (
             <div className='dropdown'>
             <button className='dropbtn'>{locations}</button>
-            <br></br>
-            <p>Now displaying the flats in the price range that you have selected</p>
+            <div className ="dropbtn-result">Now displaying the flats in the region that you have selected</div>
             </div>
           )}
 
