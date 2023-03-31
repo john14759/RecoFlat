@@ -7,6 +7,12 @@ type BodyProps = {
   switchTo: (newPage: string) => void;
 };
 
+type LocationProps = {
+  region: string;
+  setView: (newView: string) => void;
+  setRegion: (newRegion: string) => void;
+}
+
 type Flat = {
   _id: number;
   block: string;
@@ -32,4 +38,4 @@ type RepaymentScheduleItem = {
   endingPrinciple: number;
 }
 
-export type { PageProps, Flat ,BodyProps, RepaymentScheduleItem}
+export type { PageProps, LocationProps, Flat ,BodyProps, RepaymentScheduleItem}

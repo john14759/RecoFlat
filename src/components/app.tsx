@@ -2,11 +2,10 @@ import React from 'react';
 import { getFlats } from '../functions/api'
 import { FlatContext } from './context';
 import '../css/app.css'
-import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How, Map,FilterPrice} from '../pages/pages'
+import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How, Map,FilterPrice, Location} from '../pages/pages'
 import Nav from './navbar';
 import { BodyProps,Flat } from '../functions/types';
 import { FilterFlatType } from '../pages/FilterFlatType';
-import { Location } from '../pages/location';
 
 
 // The component that displays the current page.
@@ -41,9 +40,6 @@ const Body = ({ page, switchTo }: BodyProps) => {
       break;
     case "filterFlatType":
       component = <FilterFlatType switchTo={switchTo} />;
-      break;
-    case "map":
-      component = <Map switchTo={switchTo}/>;
       break;
     default:
       component = null;
