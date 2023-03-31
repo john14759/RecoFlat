@@ -35,6 +35,7 @@
 }
 
 .searchlogo{
+  cursor: pointer;
   display: flex;
   position: relative;
   align-items: center;

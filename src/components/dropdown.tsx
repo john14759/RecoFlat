@@ -1,47 +1,35 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import '../css/dropdown.css'
 
-function DropdownButton(props: { handleFlatTypeChange: (value: string) => void }) {
-  const [selectedValue, setSelectedValue] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedValue(event.target.value);
-    setIsDropdownOpen(false);
-    props.handleFlatTypeChange(event.target.value);
-  };
-
-  return (
-    <button className="dropdown-button" onClick={toggleDropdown}>
-      <img src="../../img/dropdownlogo.png" alt="dropdown icon" />
-      {isDropdownOpen && (
-        <DropdownMenu selectedValue={selectedValue} handleChange={handleChange} />
-      )}
-    </button>
-  );
-}
-
-type DropdownMenuProps = {
-  selectedValue: string;
-  handleChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+type Option = {
+  value: string;
+  label: string;
 };
 
-function DropdownMenu({ selectedValue, handleChange }: DropdownMenuProps) {
+type DropdownMenuProps = {
+  selectedOption: Option['value'] | null;
+  options: Option[];
+  onOptionSelect: (value: Option['value']) => void;
+};
+
+function DropdownMenu(props: DropdownMenuProps) {
+  const { selectedOption, options, onOptionSelect } = props;
+
+  function handleOptionSelect(event: React.ChangeEvent<HTMLSelectElement>) {
+    onOptionSelect(event.target.value);
+  }
+
   return (
-    <div className="dropdown-menu">
-      <label htmlFor="dropdown"></label>
-      <select id="dropdown" value={selectedValue} onChange={handleChange}>
-        <option value="3 ROOM">3 room</option>
-        <option value="4 ROOM">4 room</option>
-        <option value="5 ROOM">5 room</option>
-      </select>
-    </div>
+    <select value={selectedOption || ''} onChange={handleOptionSelect}>
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
   );
 }
 
-export default DropdownButton;
+export default DropdownMenu;
+
 

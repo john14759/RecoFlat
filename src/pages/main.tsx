@@ -14,11 +14,11 @@ const Main = (props: PageProps) => {
           <div className="main-explore">Get Started</div>
         </div>
         <div className="main-option" onClick={() => props.switchTo("incomeCalculator")}>
-          <div className='imgur'><img src="/img/main/income.png"></img></div>
+          <div className='imgur'><img src="/img/main/income.png" alt=""></img></div>
           <div>Income Calculator</div>
         </div>
         <div className="main-option" onClick={() => props.switchTo("loanRecommendation")}>
-          <div className='imgur'><img src="/img/main/loan.png"></img></div>
+          <div className='imgur'><img src="/img/main/loan.png" alt=""></img></div>
           <div>Loan Recommendation</div>
         </div>
       </div>

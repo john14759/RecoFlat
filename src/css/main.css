@@ -19,7 +19,10 @@
 
 .main-header > .main-header-subtitle {
   margin: 0 0 1em 0;
-  font-size: 18px;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
 }
 
 .main-body {

@@ -1,5 +1,5 @@
 import React from 'react';
-
-const FlatContext = React.createContext([])
+import { Flat } from '../functions/types';
+const FlatContext = React.createContext<Flat[]>([]);
 
 export {FlatContext}

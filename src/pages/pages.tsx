@@ -5,4 +5,5 @@ import { Explore } from '../pages/explore';
 import { AboutUs } from './aboutus';
 import { How } from './howtouse';
 import { Map } from './map';
-export { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How, Map}
+import { FilterPrice } from './filterprice';
+export { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs, How, Map, FilterPrice}

@@ -1,8 +1,9 @@
-import React, {useContext, useState} from 'react';
+import {useContext, useState} from 'react';
 import { Flat, PageProps } from '../functions/types';
 import { FlatContext } from '../components/context';
 import '../css/filterflat.css'
-import DropdownButton from '../components/dropdown';
+import BigNumber from 'bignumber.js';
+import DropdownMenu from '../components/dropdown';
 
 const FilterFlatType = (props: PageProps) => {
     const flats:Flat[] = useContext(FlatContext)
@@ -13,23 +14,26 @@ const FilterFlatType = (props: PageProps) => {
       setFlatType(value);
     };
 
+    const flatTypePriceByTown: {[key: string]: BigNumber} = {};
     const flatTypeCountByTown: {[key: string]: number} = {};
-    const flatTypePriceByTown: {[key: string]: number} = {};
-    
+
     flats.filter((item) => item.flat_type === flatType).forEach((item) => {
       const town = item.town;
-      const price = parseFloat(item.resale_price);
+      const price = item.resale_price;
       const count = flatTypeCountByTown[town] || 0;
-      const total = flatTypePriceByTown[town] || 0;
-      flatTypePriceByTown[town] = total + price;
+
+      if (!flatTypePriceByTown[town]) {
+        flatTypePriceByTown[town] = new BigNumber(0);
+      }
+      flatTypePriceByTown[town] = flatTypePriceByTown[town].plus(price);
       flatTypeCountByTown[town] = count + 1;
     });
+
     
-    //console.log(`Count and Average Resale Price for ${flatType} by Town:`);
       const rows = Object.keys(flatTypeCountByTown).map((town) => {
         const count = flatTypeCountByTown[town];
         const totalPrice = flatTypePriceByTown[town] || 0;
-        const averagePrice = count ? totalPrice / count : 0;
+        const averagePrice = count ? totalPrice.dividedBy(count) : 0;
 
         return(
           <tr id='town' key ={town}>
@@ -38,7 +42,7 @@ const FilterFlatType = (props: PageProps) => {
             <td>${averagePrice.toFixed(0)}</td>
           </tr>
         );
-        //console.log(`${town}: ${count} flats, Average Rrice $${averagePrice.toFixed(0)}`);
+       
     });
 
   return (
@@ -47,7 +51,20 @@ const FilterFlatType = (props: PageProps) => {
         <div className = 'title'>Filter selected: Flat Type</div>
         <div className = 'header-body'>
         <div>Flat Type selected:</div>
-        <div className = 'flat-type'>{flatType.toLowerCase()} <DropdownButton handleFlatTypeChange={handleFlatTypeChange} /></div>
+        <DropdownMenu
+  selectedOption={flatType}
+  options={[
+    { value: '1 ROOM', label: '1 Room' },
+    { value: '2 ROOM', label: '2 Room' },
+    { value: '3 ROOM', label: '3 Room' },
+    { value: '4 ROOM', label: '4 Room' },
+    { value: '5 ROOM', label: '5 Room' },
+    { value: 'EXECUTIVE', label: 'Executive' },
+    { value: 'MULTI-GENERATION', label: 'Generation' },
+  ]}
+  onOptionSelect={handleFlatTypeChange}
+/>
+
         <div>Now displaying the flats in the flat type you have selected</div>
         </div>
       </div>
