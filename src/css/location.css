@@ -10,8 +10,15 @@
 
 .location-tabs > .location-tab {
   padding: 1em;
-  background-color: aqua;
-  border: solid black 1px;
+  background-color: #F1D6D6;
+  border: solid #73708f 1px;
+  border-bottom: 0;
+  color: black;
+}
+
+.location-tabs > .location-tab.active {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
 .location-tabs > .location-tab:first-of-type {

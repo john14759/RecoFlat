@@ -24,8 +24,8 @@ const Location = (props: PageProps) => {
   return (
     <div className="location-container">
       {view !== "map" && <div className="location-tabs">
-        <div onClick={() => setView("filter")} className="location-tab">Filter!</div>
-        <div onClick={() => setView("nearby")} className="location-tab">Nearby!</div>
+        <div onClick={() => setView("filter")} className={view === "filter" ? "location-tab active" : "location-tab"}>Filter!</div>
+        <div onClick={() => setView("nearby")} className={view === "nearby" ? "location-tab active" : "location-tab"}>Nearby!</div>
         <div onClick={() => setView("map")} className="location-tab">Back to Map!</div>
       </div>}
       <div className="location-body">
