@@ -1,8 +1,11 @@
-import { LocationProps } from '../functions/types';
+import { Flat, LocationProps } from '../functions/types';
 import '../css/map.css'
 import { centralPath, eastPath, northEastPath, northPath, westPath } from '../functions/constants';
+import { useContext } from 'react';
+import { FlatContext } from '../components/context';
+import BigNumber from 'bignumber.js';
 
-const Map = (props: LocationProps) => {
+const MapView = (props: LocationProps) => {
   const selectRegion = (region: string) => {
     props.setRegion(region);
     props.setView("filter");
@@ -11,6 +14,48 @@ const Map = (props: LocationProps) => {
   const west = 2;
   const east = 3;
   const north = 4, central = 5, northeast = 6;
+  const flats: Array<Flat> = useContext(FlatContext);
+
+  const eastLoc = new Map(["BEDOK", "PASIR RIS", "TAMPINES"].map(town => [town, "East"]));
+  const northLoc = new Map(["SEMBAWANG", "WOODLANDS", "YISHUN"].map(town => [town, "North"]));
+  const centralLoc = new Map(["BISHAN", "BUKIT MERAH", "BUKIT TIMAH", "CENTRAL AREA", "GEYLANG", "KALLANG/WHAMPOA", "MARINE PARADE", "QUEENSTOWN", "TOA PAYOH"].map(town => [town, "Central"]));
+  const northELoc = new Map(["ANG MO KIO", "HOUGANG", "PUNGGOL", "SENGKANG", "SERANGOON"].map(town => [town, "Northeast"]));
+  const westLoc = new Map(["BUKIT BATOK", "BUKIT PANJANG", "CHOA CHU KANG", "CLEMENTI", "JURONG EAST", "JURONG WEST", "TENGAH"].map(town => [town, "West"]))
+
+  const locMap: Map<string, string> = new Map();
+
+  eastLoc.forEach((value, key) => locMap.set(key, value))
+  northLoc.forEach((value, key) => locMap.set(key, value))
+  centralLoc.forEach((value, key) => locMap.set(key, value))
+  northELoc.forEach((value, key) => locMap.set(key, value))
+  westLoc.forEach((value, key) => locMap.set(key, value))
+
+  type LocationPrices = {
+    "East": [BigNumber, number],
+    "North": [BigNumber, number],
+    "Central": [BigNumber, number],
+    "Northeast": [BigNumber, number],
+    "West": [BigNumber, number]
+  }
+
+  const locAcc: LocationPrices = {
+    "East": [new BigNumber(0), 0],
+    "North": [new BigNumber(0), 0],
+    "Central": [new BigNumber(0), 0],
+    "Northeast": [new BigNumber(0), 0],
+    "West": [new BigNumber(0), 0],
+  }
+
+  const avgPrices = flats.reduce((acc: LocationPrices, flat) => {
+    const region = locMap.get(flat.town) ?? ""
+
+    if (acc.hasOwnProperty(region)) {
+      const val = acc[region as keyof typeof acc]
+      acc[region as keyof typeof acc] = [val[0].plus(flat.resale_price), val[1] + 1];
+    }
+
+    return acc;
+  }, locAcc);
 
   return (
     <div className="map-container">
@@ -109,28 +154,28 @@ const Map = (props: LocationProps) => {
           <div className="cost-header">Average Cost</div>
           <div className="cost-region">
             <div className="cost-label label-west"></div>
-            West: ${west}
+            West: ${avgPrices.West[0].div(avgPrices.West[1]).toFormat(0)}
           </div>
           <div className="cost-region">
             <div className="cost-label label-north"></div>
-            North: ${north}
+            North: ${avgPrices.North[0].div(avgPrices.North[1]).toFormat(0)}
           </div>
           <div className="cost-region">
             <div className="cost-label label-central"></div>
-            <div>Central: ${central}</div>
+            <div>Central: ${avgPrices.Central[0].div(avgPrices.Central[1]).toFormat(0)}</div>
           </div>
           <div className="cost-region">
             <div className="cost-label label-northeast"></div>
-            <div>Northeast: ${northeast}</div>
+            <div>Northeast: ${avgPrices.Northeast[0].div(avgPrices.Northeast[1]).toFormat(0)}</div>
           </div>
           <div className="cost-region">
             <div className="cost-label label-east"></div>
-            <div>East: ${east}</div>
+            <div>East: ${avgPrices.East[0].div(avgPrices.East[1]).toFormat(0)}</div>
           </div>
         </div>
     </div>
   )
 }
 
-export { Map }
+export { MapView }
 

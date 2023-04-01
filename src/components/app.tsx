@@ -2,7 +2,7 @@ import React from 'react';
 import { getFlats } from '../functions/api'
 import { FlatContext } from './context';
 import '../css/app.css'
-import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How, Map,FilterPrice, Location} from '../pages/pages'
+import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How, MapView, FilterPrice, Location} from '../pages/pages'
 import Nav from './navbar';
 import { BodyProps,Flat } from '../functions/types';
 import { FilterFlatType } from '../pages/FilterFlatType';

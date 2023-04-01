@@ -1,5 +1,5 @@
 import { PageProps } from '../functions/types';
-import { Map } from './map';
+import { MapView } from './map';
 import { useState } from 'react';
 import { FilterByLocation } from './filterByLocation';
 import { Nearby } from './nearby';
@@ -12,7 +12,7 @@ const Location = (props: PageProps) => {
   let LocationView = <div></div>;
   switch (view) {
     case "map":
-      LocationView = <Map region={region} setView={setView} setRegion={setRegion}></Map>
+      LocationView = <MapView region={region} setView={setView} setRegion={setRegion}></MapView>
       break;
     case "filter":
       LocationView = <FilterByLocation region={region} setView={setView} setRegion={setRegion}></FilterByLocation>
