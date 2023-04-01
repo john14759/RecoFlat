@@ -11,9 +11,6 @@ const MapView = (props: LocationProps) => {
     props.setView("filter");
   }
 
-  const west = 2;
-  const east = 3;
-  const north = 4, central = 5, northeast = 6;
   const flats: Array<Flat> = useContext(FlatContext);
 
   const eastLoc = new Map(["BEDOK", "PASIR RIS", "TAMPINES"].map(town => [town, "East"]));
