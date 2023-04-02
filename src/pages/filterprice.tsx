@@ -8,7 +8,6 @@ import React, { useState, useContext } from 'react';
 const FilterPrice = (props: PageProps) => {
     const [min, setMin] = useState<number | undefined>(undefined);
     const [max, setMax] = useState<number | undefined>(undefined);
-    const [drop, setDrop] = useState<boolean>(false);
     const [filteredGroups, setFilteredGroups] = useState<
         Array<{
             town: string;
@@ -18,10 +17,22 @@ const FilterPrice = (props: PageProps) => {
         }>
     >([]);
     const flats = useContext(FlatContext);
+    const validateMinMax = (minValue: number | undefined, maxValue: number | undefined): boolean => {
+        if (minValue && maxValue && (minValue >= maxValue)) {
+            window.alert('Minimum price should be less than maximum price');
+            return false;
+
+        } 
+        else if(maxValue && (maxValue>=9999999)){
+            window.alert('Maximum price out of range');
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
     const handleDropdown = () => {
-        if (drop) {
-            setDrop(false);
-        } else {
+            if(validateMinMax(minVal(),maxVal())){
             const groups = flats.reduce(
                 (result, flat) => {
                     const key = `${flat.town}-${flat.flat_type}`;
@@ -49,9 +60,7 @@ const FilterPrice = (props: PageProps) => {
                     const avgPriceB = b.totalPrice.dividedBy(b.count).toNumber();
                     return avgPriceA - avgPriceB;
                 });
-            setFilteredGroups(filtered);
-            setDrop(true);
-        }
+            setFilteredGroups(filtered);}
     };
     const handleMinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
