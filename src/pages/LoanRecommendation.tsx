@@ -209,7 +209,7 @@ const LoanRecommendation = (props: PageProps) => {
           <div className="topInputHeader">
             <div>Interest Rate:</div>
             <form>
-            <input required type="number" value={interestRate} onChange={intR => setInterestRate(parseFloat(intR.target.value))} placeholder='Insert Rate(%)'  />
+            <input required type="number" value={interestRate} onChange={intR => setInterestRate(parseFloat(intR.target.value))} placeholder='Insert Rate P.A (%)'  />
             </form>
           </div>
         </div>

@@ -154,11 +154,12 @@
 }
 
 .botInputHeader form select {
-  margin:  0 -170px 0 190px;
+  margin:  0 -30px 0 35px;
   width: 90px;
   height: 26px;
   font-size: 20px;
 }
+
 /* Styling for the repayment schedule table ---------------------------------------------------------------------------------------*/
 .scheduleTable {
   color: white;
@@ -178,30 +179,30 @@
 
 .scheduleTable thead th{
   text-align: left;
-  font-size: 25px;
+  font-size: 30px;
 }
 
-.scheduleTable thead th:nth-last-child(1) {
-  width:5%;
-  padding: 0 0 0 0px;
-}
-.scheduleTable thead th:nth-last-child(2) {
-  width:5%;
-  padding: 0 0 0 0px;
-}
-.scheduleTable thead th:nth-last-child(3) {
-  width:5%;
-  padding: 0 0 0 0px;
-}
-.scheduleTable thead th:nth-last-child(4) {
-  width:5%;
-  padding: 0 0 0 0px;
-}
-.scheduleTable thead th:nth-last-child(5) {
-
+.scheduleTable thead th:nth-last-child(1) { /*Ending Principle*/
   width:3%;
   padding: 0 0 0 0px;
 }
+.scheduleTable thead th:nth-last-child(2) { /*Interest Paid*/
+  width:5%;
+  padding: 0 0 0 0px;
+}
+.scheduleTable thead th:nth-last-child(3) { /*Monthly Instalment*/
+  width:6%;
+  padding: 0 0 0 0px;
+}
+
+.scheduleTable thead th:nth-last-child(4) { /*Date*/
+  width:3%;
+  padding: 0 0 0 0px;
+}
+/* .scheduleTable thead th:nth-last-child(5) {
+  width:3%;
+  padding: 0 0 0 0px;
+} */
 /* Editing <thead> -------------------------------------------------------------------------------------------------------------*/
 
 
@@ -209,13 +210,8 @@
 .scheduleTable tbody {
   display: block;
   height: 200px;
-  overflow-y: auto;
-  
+  overflow-y: auto; 
 }
-/* 
-.scheduleTable tr{
-  display: block;
-} */
 
 
 .scheduleTable tbody tr:nth-of-type(even){
@@ -227,36 +223,31 @@
   font-size: 23px;
 }
 
-/* .scheduleTable tbody td {
+.scheduleTable tbody td:nth-last-child(1) { /*Ending Principle*/
   text-align: right;
-} */
-
-
-.scheduleTable tbody td:nth-last-child(1) {
-  text-align: right;
-  width: 240px;
+  width: 200px;
   padding: 0 0 0 0px;
 }
-.scheduleTable tbody td:nth-last-child(2) {
+.scheduleTable tbody td:nth-last-child(2) { /*Interest Paid*/
   text-align: center;
-  width: 100px;
+  width: 400px;
   padding: 0 0 0 0px;
 }
-.scheduleTable tbody td:nth-last-child(3) {
+.scheduleTable tbody td:nth-last-child(3) { /*Monthly Instalment*/
   text-align: center;
-  width: 370px;
+  width: 260px;
   padding: 0 0 0 0px;
 }
-.scheduleTable tbody td:nth-last-child(4) {
-  text-align: center;
-  width: 120px;
-  padding: 0 0 0 0px;
-}
-.scheduleTable tbody td:nth-last-child(5) {
+.scheduleTable tbody td:nth-last-child(4) { /*Date*/
   text-align: left;
-  width: 150px;
+  width: 170px;
   padding: 0 0 0 0px;
 }
+/* .scheduleTable tbody td:nth-last-child(5) {
+  text-align: left;
+  width: px;
+  padding: 0 0 0 0px;
+} */
 
 /* Editing <tbody> -------------------------------------------------------------------------------------------------------------*/
 
@@ -266,12 +257,16 @@
 
 
 /* This is the error message -----------------------------------------------------------------------------------------------------*/
-/* .top-error-message{
+#top-error-message{
+  color: red;
+  font-weight: bold;
+  margin: auto 0 0 34px;
+}
 
-} */
-
-/* .bottom-error-message{
-
-} */
+#bottom-error-message{
+  color: red;
+  font-weight: bold;
+  margin: 0 0 0 34px;
+}
 
 /* This is the error message -----------------------------------------------------------------------------------------------------*/
