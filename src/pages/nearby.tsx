@@ -1,133 +1,135 @@
-import { GoogleMap, LoadScript } from "@react-google-maps/api"
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api"
 import "../css/nearby.css"
 import { useRef, useState } from "react"
+import Geocode from "react-geocode"
+import { LocationProps } from "../functions/types";
 
-type Place = {
-  id: string;
-  name: string;
+type LibrariesType = "places" | "drawing" | "geometry" | "localContext" | "visualization";
+
+type GeocodeResult = {
+  location: {
+    lat: number;
+    lng: number;
+  };
+  address: string;
 }
 
-// Nearby
-// https://developers.google.com/maps/documentation/places/web-service/search-nearby
+// TODO add more attributes if needed
+type Facility = {
+  lat: number;
+  lng: number;
+  name?: string;
+}
 
-// Places
-// https://developers.google.com/maps/documentation/places/web-service/search-find-place
+const libraries: LibrariesType[] = ['places'];
+const placeTypes = "hospital,restaurant,train_station,shopping_mall"
 
-// Geocoder
-// https://developers.google.com/maps/documentation/javascript/geocoding
-
-const Nearby = () => {
+const Nearby = (props: LocationProps) => {
   const apiKey = process.env.REACT_APP_GOOGLE_MAP_API_KEY ?? ""
+  Geocode.setApiKey(apiKey)
 
-  const [places, setPlaces] = useState<Place[]>([]);
+  const [query, setQuery] = useState<string>('');
+  const [facilities, setFacilities] = useState<Facility[]>([]);
+  const [result, setResult] = useState<GeocodeResult | null>(null);
+  const [location, setLocation] = useState<string>('')
+  const [dropdownLocation, setDropdownLocation] = useState<boolean>(false);
 
-  // TODO find lat, long of center of sg
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  // const handlePlacesSearch = (service: google.maps.places.PlacesService, map:google.maps.Map) => {
-  //   const request = {
-  //     location: map.getCenter(),
-  //     radius: 500, // Search radius in meters
-  //     input: '1600 Amphitheatre Parkway, Mountain View, CA', // Address to search for
-  //     inputType: 'textquery', // Specify that the input is an address
-  //   };
+    Geocode.fromAddress(query).then(
+      (response) => {
+        const {lat, lng} = response.results[0].geometry.location
+        const address = response.results[0].formatted_address;
 
-  //   service.findPlaceFromQuery(request, (results, status) => {
-  //     if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-  //       const hasResults = (results: unknown): results is google.maps.places.PlaceResult[] => {
-  //         return Boolean(results && Array.isArray(results));
-  //       };
+        console.log(lat, lng);
+        // Set the result in the state
+        setResult({ location: { lat: lat, lng: lng }, address });
+      },
+      (err) => {
+        console.error(err)
+      });
+  };
 
-  //       if (hasResults(results)) {
-  //         const formattedPlaces = results.map(({ place_id: id, name = '' }) => ({
-  //           id: id || '',
-  //           name,
-  //         }));
+  const handleLoad = (map: google.maps.Map) => {
+    const service = new window.google.maps.places.PlacesService(map);
+    const request = {
+      location: map.getCenter(),
+      type: placeTypes,
+      rankBy: google.maps.places.RankBy.DISTANCE,
+      maxResults: 10
+    };
+    service.nearbySearch(request, (results, status) => {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
+        setFacilities(
+          results.map((place) => ({
+            lat: place.geometry?.location?.lat() || 0,
+            lng: place.geometry?.location?.lng() || 0,
+            name: place.name,
+          }))
+        );
+      }
+    });
+  }
 
-  //         setPlaces(formattedPlaces);
-  //       }
-  //     }
-  //   });
-  // };
-  // interface GeocodeResult {
-  //   location: {
-  //     lat: number;
-  //     lng: number;
-  //   };
-  //   address: string;
-  // }
+  const handleDropdown = () => {
+    setDropdownLocation(!dropdownLocation);
+  }
 
-  // const [query, setQuery] = useState<string>('');
-  // const [result, setResult] = useState<GeocodeResult | null>(null);
+  const dropdownLocationItems = props.locationList.map((newLocation) =>
+    <div className={newLocation === location ? "nearby-option selected" : "nearby-option"} onClick={() => { setLocation(newLocation); handleDropdown(); }}>{newLocation}</div>
+  );
 
-  // const geocoderRef = useRef<google.maps.Geocoder>();
-
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   // Create the Geocoder instance if it doesn't exist yet
-  //   if (!geocoderRef.current) {
-
-  //   }
-
-  //   // Define the request object with the query
-  //   const request = {
-  //     address: query,
-  //   };
-
-  //   // Call the geocode method with the request
-  //   (geocoderRef.current ?? new google.maps.Geocoder()).geocode(request, (results, status) => {
-  //     if (status === google.maps.GeocoderStatus.OK && results && results.length > 0) {
-  //       const { lat, lng } = results[0].geometry.location;
-  //       const address = results[0].formatted_address;
-
-  //       // Set the result in the state
-  //       setResult({ location: { lat: lat(), lng: lng() }, address });
-  //     } else {
-  //       // Show an error message if geocoding fails
-  //       alert('Geocoding failed. Please try again.');
-  //     }
-  //   });
-  // };
+  const FacilitiesList = facilities.map((facility) =>
+    <div className = "nearby-location">
+      {facility.name}
+    </div>
+  )
 
   return (
     <div className="nearby-container">
-        {/* <form onSubmit={handleSubmit}>
+      <div className="nearby-header">
+        <div>Choose</div>
+        <form onSubmit={handleSubmit}>
           <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
+          {/* <div className="nearby-menu">
+            {dropdownLocation && dropdownLocationItems}
+          </div> */}
           <button type="submit">Search</button>
         </form>
-        {result && (
-        <div>
-          <p>Location: {result.location.lat}, {result.location.lng}</p>
-          <p>Address: {result.address}</p>
+      </div>
+      <div className="nearby-body">
+        {/* {result && (
+          <div>
+            <p>Location: {result.location.lat}, {result.location.lng}</p>
+            <p>Address: {result.address}</p>
         </div>
-      )} */}
-        {/* <LoadScript
-          googleMapsApiKey={apiKey}
-          libraries={["places"]}
-        >
-          <GoogleMap
-            center={{ lat: 1.3147, lng: 103.8454 }}
-            zoom={15}
-            onClick={(e) => console.log(e.latLng?.toJSON())}
-            onLoad={(map) => {
-              const service = new window.google.maps.places.PlacesService(map);
-              handlePlacesSearch(service, map);
-            }}
+        )} */}
+        {result &&
+        <div className="nearby-map">
+          <LoadScript
+            googleMapsApiKey={apiKey}
+            libraries={libraries}
           >
-          {places.map((place) => (
-            <div key={place.id}>{place.name}</div>
-          ))}
-        </GoogleMap>
-      </LoadScript> */}
-      {/* <iframe
-        title="nearby-location"
-        width="600"
-        height="450"
-        loading="lazy"
-        allowFullScreen
-        referrerPolicy="no-referrer-when-downgrade"
-        src={"https://www.google.com/maps/embed/v1/place?key=" + apiKey + "&q=Space+Needle,Seattle+WA"}>
-      </iframe> */}
+            <GoogleMap
+              mapContainerStyle={{width: "100%", height: "100%"}}
+              center={{ lat: result.location.lat, lng: result.location.lng }}
+              zoom={17}
+              onLoad={(map) => handleLoad(map)}
+            >
+              {facilities.map((facility, index) => (
+                <Marker key={index} position={{ lat: facility.lat, lng: facility.lng }} />
+              ))}
+            </GoogleMap>
+          </LoadScript>
+        </div>
+        }
+        { result &&
+        <div className="nearby-locations">
+          {FacilitiesList}
+        </div>
+        }
+      </div>
     </div>
   )
 }

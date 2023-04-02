@@ -1,8 +1,55 @@
 .nearby-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
-  background-color: aliceblue;
+  background-color: rgba(0, 255, 0, 0.2);
+}
+
+.nearby-header {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  background-color: rgba(0, 0, 255, 0.2);
+}
+
+.nearby-menu {
+  /* position: absolute; */
+  width: 100%;
+  padding: 1em; /* remove dis */
+  background-color: red;
+}
+
+.nearby-menu > .nearby-option {
+  padding: 0.5em;
+}
+
+.nearby-menu > .nearby-option.selected {
+  background: #F8BBD0;
+  font-weight: 700;
+}
+
+.nearby-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  max-height: 100%;
+}
+
+.nearby-map {
+  flex-grow: 1
+}
+
+.nearby-locations {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.nearby-location {
+  padding: 1em;
+  border: 1px solid;
 }

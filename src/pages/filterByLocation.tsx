@@ -11,34 +11,6 @@ const FilterByLocation = (props: LocationProps) => {
     setDrop(!drop)
   }
 
-  //create arrays for each region
-  const eastLoc: Array<string> = ["BEDOK", "PASIR RIS", "TAMPINES"];
-  const northLoc: Array<string> = ["SEMBAWANG", "WOODLANDS", "YISHUN"];
-  const centralLoc: Array<string> = ["BISHAN", "BUKIT MERAH", "BUKIT TIMAH", "CENTRAL AREA", "GEYLANG", "KALLANG/WHAMPOA", "MARINE PARADE", "QUEENSTOWN", "TOA PAYOH"];
-  const northELoc: Array<string> = ["ANG MO KIO", "HOUGANG", "PUNGGOL", "SENGKANG", "SERANGOON"];
-  const westLoc: Array<string> = ["BUKIT BATOK", "BUKIT PANJANG", "CHOA CHU KANG", "CLEMENTI", "JURONG EAST", "JURONG WEST", "TENGAH"];
-  let locationList: Array<string> = [];
-  switch (props.region) {
-    case "East":
-      locationList = eastLoc;
-      break;
-    case "North":
-      locationList = northLoc;
-      break;
-    case "Central":
-      locationList = centralLoc;
-      break;
-    case "Northeast":
-      locationList = northELoc;
-      break;
-    case "West":
-      locationList = westLoc;
-      break;
-    default:
-      locationList = [];
-      break;
-  }
-
   //group by each location
   const flats = useContext(FlatContext);
   const Group = (name: string) => {
@@ -65,8 +37,8 @@ const FilterByLocation = (props: LocationProps) => {
     return group;
   }
 
-   // Calculate the average price for each group and render the result
-   const displayTable = (place: string) => {
+  // Calculate the average price for each group and render the result
+  const displayTable = (place: string) => {
     const filteredGroups = Object.values(Count(Group(place)))
     .sort((a : any, b : any) =>{
       const nameA :string = a.flatType;
@@ -75,11 +47,21 @@ const FilterByLocation = (props: LocationProps) => {
       if(nameA<nameB) return -1;
       return 0;
     });
-    if (filteredGroups.length === 0) return (
-      <div className="empty-table">
-        Select a town to see the list of flat types!
-      </div>
-    )
+    if (filteredGroups.length === 0) {
+      if (location) {
+        return (
+          <div className="empty-table">
+            Sorry, there are no flats found for the selected town option. :(
+          </div>
+        )
+      }
+      return (
+        <div className="empty-table">
+          Select a town to see the list of flat types!
+        </div>
+      )
+    }
+
     return filteredGroups.map((group : any, i : any) => {
       const averagePrice = group.totalPrice.dividedBy(group.count).toFormat(0);
       return (
@@ -88,15 +70,15 @@ const FilterByLocation = (props: LocationProps) => {
           <div>{group.count}</div>
           <div>{averagePrice}</div>
         </div>
-        );
-      });
+      );
+    });
    }
 
   //clicking on dropdown
   const [location, setLocation] = useState("");
 
   //to display dropdown
-  const listItems = locationList.map((newLocation) =>
+  const listItems = props.locationList.map((newLocation) =>
     <div className={newLocation === location ? "filter-option selected" : "filter-option"} onClick={() => { setLocation(newLocation); handleDropdown(); }}>{newLocation}</div>
   );
 

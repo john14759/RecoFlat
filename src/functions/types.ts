@@ -11,6 +11,7 @@ type LocationProps = {
   region: string;
   setView: (newView: string) => void;
   setRegion: (newRegion: string) => void;
+  locationList: string[]
 }
 
 type Flat = {
