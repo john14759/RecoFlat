@@ -34,12 +34,9 @@
     position: relative;
 }
 
-.filter-dropdown > .btn-dropdown {
+.filter-dropdown > .dropdown-icon {
     width: 1em;
     height: 1em;
-}
-
-.filter-dropdown > img {
     margin-right: 0.5em;
 }
 

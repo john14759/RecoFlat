@@ -93,7 +93,7 @@ const FilterByLocation = (props: LocationProps) => {
           <div className="filter-dropdown" onClick={() => handleDropdown()}>
             {location ? <div className="filter-input">{location}</div> : <div className="filter-input default">Select Town</div>}
             {drop && <div className='filter-menu'>{listItems}</div>}
-            <img className="btn-dropdown" src='img/dropdown.png' alt=''></img>
+            <img className="dropdown-icon" src='img/dropdown.png' alt=''></img>
           </div>
         </div>
       </div>

@@ -4,21 +4,73 @@
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 255, 0, 0.2);
+  background-color: #c2695b;
+  /*
+  #c2695b
+  #e5606d
+  #c24341
+  */
+  color: white;
 }
 
 .nearby-header {
   display: flex;
   flex-direction: column;
   padding: 1em;
-  background-color: rgba(0, 0, 255, 0.2);
+  background-color: #D25A5A;
 }
 
-.nearby-menu {
-  /* position: absolute; */
+.nearby-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 1em;
+  padding: 1em 0;
+}
+
+.nearby-inputs > .nearby-input-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 1em;
   width: 100%;
-  padding: 1em; /* remove dis */
+}
+
+.nearby-dropdown {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid;
+  position: relative;
+}
+
+.nearby-dropdown > .dropdown-icon {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+}
+
+.nearby-dropdown > .nearby-input {
+  padding: 0.5em;
+}
+
+.nearby-dropdown > .nearby-input.default {
+  color: rgba(255,255,255,.69);
+}
+
+
+.nearby-menu {
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  width: 100%;
+  z-index: 100;
   background-color: red;
+  border: 1px solid;
+  max-height: 50vh;
+  overflow-y: auto;
 }
 
 .nearby-menu > .nearby-option {
@@ -28,6 +80,19 @@
 .nearby-menu > .nearby-option.selected {
   background: #F8BBD0;
   font-weight: 700;
+}
+
+.nearby-submit-btn {
+  background-color: #C9C9C99C;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  transition: 0.4s;
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+}
+
+.nearby-submit-btn:hover {
+  background-color: #D2C9C9;
+  cursor: pointer;
 }
 
 .nearby-body {
@@ -45,11 +110,28 @@
   display: flex;
   flex-direction: column;
   width: 50%;
-  max-height: 50vh;
+  max-height: 60vh;
+  overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
 }
 
 .nearby-location {
+  display: flex;
+  flex-direction: column;
   padding: 1em;
   border: 1px solid;
+}
+
+.nearby-location > .nearby-location-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.nearby-location > .nearby-location-img {
+  position: absolute;
+  right: 3%;
+  width: 75px;
+  height: 75px;
+  border-radius: 10px;
 }
