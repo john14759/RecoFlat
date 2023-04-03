@@ -4,20 +4,16 @@
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  background-color: #c2695b;
-  /*
-  #c2695b
-  #e5606d
-  #c24341
-  */
+  background-color: rgba(0, 0, 0, 0.3);
   color: white;
 }
 
 .nearby-header {
   display: flex;
   flex-direction: column;
+  row-gap: 1em;
   padding: 1em;
-  background-color: #D25A5A;
+  background-color: rgba(210, 90, 90, 0.3);
 }
 
 .nearby-inputs {
@@ -25,7 +21,7 @@
   flex-direction: row;
   justify-content: space-between;
   column-gap: 1em;
-  padding: 1em 0;
+  padding: 0.5em 0;
 }
 
 .nearby-inputs > .nearby-input-field {
@@ -60,14 +56,13 @@
   color: rgba(255,255,255,.69);
 }
 
-
 .nearby-menu {
   position: absolute;
   top: 100%;
   left: -1px;
   width: 100%;
   z-index: 100;
-  background-color: red;
+  background-color: rgba(210, 90, 90);
   border: 1px solid;
   max-height: 50vh;
   overflow-y: auto;
@@ -100,6 +95,7 @@
   display: flex;
   flex-direction: row;
   max-height: 100%;
+  background-color: transparent;
 }
 
 .nearby-map {
@@ -120,7 +116,27 @@
   display: flex;
   flex-direction: column;
   padding: 1em;
+  row-gap: 0.5em;
   border: 1px solid;
+}
+
+.nearby-location:nth-child(odd) {
+  background-color: #e5606d;
+}
+
+.nearby-location:nth-child(even) {
+  background-color: #c24341;
+}
+
+.nearby-location > .nearby-location-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 0.5em;
+}
+
+.nearby-location > .nearby-location-field > .nearby-location-logo {
+  width: 25px;
 }
 
 .nearby-location > .nearby-location-name {
