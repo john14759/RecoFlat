@@ -209,7 +209,7 @@ const LoanRecommendation = (props: PageProps) => {
           <div className="topInputHeader">
             <div>Interest Rate:</div>
             <form>
-            <input required type="number" value={interestRate} onChange={intR => setInterestRate(parseFloat(intR.target.value))} placeholder='Insert Rate(%)'  />
+            <input required type="number" value={interestRate} onChange={intR => setInterestRate(parseFloat(intR.target.value))} placeholder='Insert Rate P.A (%)'  />
             </form>
           </div>
         </div>
@@ -269,7 +269,7 @@ const LoanRecommendation = (props: PageProps) => {
           </form>
         </div>
 
-
+        
         <table className='scheduleTable'>
           <thead>
             <tr>
@@ -280,6 +280,7 @@ const LoanRecommendation = (props: PageProps) => {
               <th>Ending Principle</th>
             </tr>
           </thead>
+          
             <tbody>
               {repaymentSchedule.map((item, index) => (
                 <tr key={index}>
@@ -291,6 +292,7 @@ const LoanRecommendation = (props: PageProps) => {
                 </tr>
               ))}
             </tbody>
+            
         </table>
       </div>
 
