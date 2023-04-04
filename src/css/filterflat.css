@@ -67,9 +67,6 @@
     padding-left: 350px;
 }
 
-
-td{
-    height: 60px;
-    padding-left: 200px;
-    padding-right: 200px;
+.table-container::-webkit-scrollbar-thumb{
+    display:none;
 }

@@ -4,7 +4,6 @@ import { FlatContext } from '../components/context';
 import BigNumber from 'bignumber.js';
 import React, { useState, useContext } from 'react';
 
-
 const FilterPrice = (props: PageProps) => {
     const [min, setMin] = useState<number | undefined>(undefined);
     const [max, setMax] = useState<number | undefined>(undefined);
@@ -98,14 +97,13 @@ const FilterPrice = (props: PageProps) => {
                 <label htmlFor="min-input">Price Range</label>
                 <img onClick={handleDropdown}src='/img/explore/searchlogo.png' alt='searchbutton'></img>
                 <br />
-                
+               
                 <div className='price-input'>
                   <input type="text" id="min-input" name="min" value={min ?? ""} onChange={handleMinChange} style={{ marginRight: '15px' }}/>
                   to
                   <input type="text" id="max-input" name="max" value={max ?? ""} onChange={handleMaxChange} style={{ marginLeft: '15px' }}/> 
                   <p>Now displaying the flats in the price range that you have selected</p>
-                </div>
-             
+                </div>      
               </div>
             </div>
             <div className='priceResults'>
@@ -117,7 +115,6 @@ const FilterPrice = (props: PageProps) => {
             </div>
             <div className='price-content'>{displayPrice()}</div>
           </div>
-  
         </div>
     )
 }

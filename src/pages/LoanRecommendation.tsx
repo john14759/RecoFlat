@@ -134,7 +134,7 @@ const LoanRecommendation = (props: PageProps) => {
         var interest = principle * monthlyInterestRate;
         var principlePaid = (monthlyPayment - interest);
         principle = principle - principlePaid;
-        
+
         while (principle > 0) {
           const item: RepaymentScheduleItem = {
             date: `${month.toString().padStart(2, '0')}/${year}`,
@@ -182,7 +182,6 @@ const LoanRecommendation = (props: PageProps) => {
           myElement.innerHTML = `Estimated payoff date is ${repaymentSchedule[repaymentSchedule.length - 1].date}`;
         }
       }
-
     };
 
   return (
