@@ -36,7 +36,7 @@ const FilterFlatType = (props: PageProps) => {
         const averagePrice = count ? totalPrice.dividedBy(count) : 0;
 
         return(
-          <tr id='town' key ={town}>
+          <tr className='flat-table'>
             <td>{town}</td>
             <td>{count}</td>
             <td>${averagePrice.toFixed(0)}</td>
@@ -69,24 +69,19 @@ const FilterFlatType = (props: PageProps) => {
         </div>
       </div>
       <div className= 'search-box'>Search Results:</div>
-      <div className='table-container'>
-        <table>
-          <thead className='table-header'>
-            <tr>
-              <th>Town</th>
-              <th>Count</th>
-              <th>Average Resale Price ($)</th>
-            </tr>
-          </thead>
-        
-          <tbody className= 'table-body'>
-            {rows}
-          </tbody>
-
-          </table>
+      <table className= 'table'>
+        <tr className= 'table-header'>
+          <th className='location'>Location:</th>
+          <th className='count'>Count:</th>
+          <th className='resale'>Average Resale Price ($):</th>
+        </tr>
+        <tbody className='table-body'>
+        <div>
+        {rows}
         </div>
+        </tbody>
+        </table>
       </div>
-      
   );
 }
 

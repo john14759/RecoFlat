@@ -2,10 +2,11 @@ import React from 'react';
 import { getFlats } from '../functions/api'
 import { FlatContext } from './context';
 import '../css/app.css'
-import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs,How, FilterPrice, Location} from '../pages/pages'
+import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs, How, FilterPrice, Location} from '../pages/pages'
 import Nav from './navbar';
 import { BodyProps,Flat } from '../functions/types';
 import { FilterFlatType } from '../pages/FilterFlatType';
+import { Location } from '../pages/location';
 
 
 // The component that displays the current page.

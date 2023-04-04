@@ -33,7 +33,7 @@ type Flat = {
 // Used to store the values when displaying the Loan Recommendation
 type RepaymentScheduleItem = {
   date: string;
-  interestRate: number;
+  // interestRate: number;
   monthlyInstalment: number;
   interestPaid: number;
   endingPrinciple: number;

@@ -1,5 +1,12 @@
 import { PageProps } from '../functions/types';
 import '../css/incomeCal.css'
+import {cost1,cost2,cost3,cost4,cost5,coste} from  '../components/Avgprice'
+import { FlatContext } from '../components/context';
+import BigNumber from 'bignumber.js';
+import React, { useState,useContext } from 'react';
+import '../components/app'
+
+
 
 import { FlatContext } from '../components/context';
 import BigNumber from 'bignumber.js';
@@ -10,70 +17,72 @@ import '../components/app'
 
 
 const IncomeCalculator = (props: PageProps) => {
+
+  // calculation of avg price for the flat_types
+var cost1 = new BigNumber(0);
+var count1 = new BigNumber(0);
+
+var cost2 = new BigNumber(0);
+var count2 = new BigNumber(0);
+
+var cost3 = new BigNumber(0);
+var count3 = new BigNumber(0);
+
+var cost4 = new BigNumber(0);
+var count4 = new BigNumber(0);
+
+var cost5 = new BigNumber(0);
+var count5 = new BigNumber(0);
+
+var coste = new BigNumber(0);
+var counte = new BigNumber(0);
+const flats = useContext(FlatContext);
+
+// to calculate the avg cost of each
+for (let i = 0; i < flats.length; i++) {
+ if(flats[i].flat_type === "1 ROOM"){
+  cost1 = cost1.plus(flats[i].resale_price);
+  count1 = count1.plus(1);
+ }
+ if(flats[i].flat_type === "2 ROOM"){
+  cost2 = cost2.plus(flats[i].resale_price);
+  count2 = count2.plus(1);
+ }
+ if(flats[i].flat_type === "3 ROOM"){
+  cost3 = cost3.plus(flats[i].resale_price);
+  count3 = count3.plus(1);
+ }
+ if(flats[i].flat_type === "4 ROOM"){
+  cost4 = cost4.plus(flats[i].resale_price);
+  count4 = count4.plus(1);
+ }
+ if(flats[i].flat_type === "5 ROOM"){
+  cost5 = cost5.plus(flats[i].resale_price);
+  count5 = count5.plus(1);
+ }
+ if(flats[i].flat_type === "EXECUTIVE"){
+  coste = coste.plus(flats[i].resale_price);
+  counte = counte.plus(1);
+ }
+
+
+}
+cost1 = (cost1.dividedBy(count1));
+cost2 = (cost2.dividedBy(count2));
+cost3 = (cost3.dividedBy(count3));
+cost4 = (cost4.dividedBy(count4));
+cost5 = (cost5.dividedBy(count5));
+coste = (coste.dividedBy(counte));
   // setting usestate to change the result container
   const [submitted,setsubmitted] = useState(false);
   const [error,seterror] = useState(false);
   const [submitted2,setsubmitted2] = useState(false);
 
-  // calculation of avg price for the flat_types
-  var cost1 = new BigNumber(0);
-  var count1 = new BigNumber(0);
+  //error validation for the values to be fixed
+  const [income1, setIncome1] = useState('income');
+  const [typeOfFlat1, setTypeOfFlat1] = useState('Typeofflat');
+  const [cst, setCost] = useState('cost');
 
-  var cost2 = new BigNumber(0);
-  var count2 = new BigNumber(0);
-
-  var cost3 = new BigNumber(0);
-  var count3 = new BigNumber(0);
-
-  var cost4 = new BigNumber(0);
-  var count4 = new BigNumber(0);
-
-  var cost5 = new BigNumber(0);
-  var count5 = new BigNumber(0);
-  
-  var coste = new BigNumber(0);
-  var counte = new BigNumber(0);
-  const flats = useContext(FlatContext);
-
-  // to calculate the avg cost of each
-  for (let i = 0; i < flats.length; i++) {
-   if(flats[i].flat_type === "1 ROOM"){
-    cost1 = cost1.plus(flats[i].resale_price);
-    count1 = count1.plus(1);
-   }
-   if(flats[i].flat_type === "2 ROOM"){
-    cost2 = cost2.plus(flats[i].resale_price);
-    count2 = count2.plus(1);
-   }
-   if(flats[i].flat_type === "3 ROOM"){
-    cost3 = cost3.plus(flats[i].resale_price);
-    count3 = count3.plus(1);
-   }
-   if(flats[i].flat_type === "4 ROOM"){
-    cost4 = cost4.plus(flats[i].resale_price);
-    count4 = count4.plus(1);
-   }
-   if(flats[i].flat_type === "5 ROOM"){
-    cost5 = cost5.plus(flats[i].resale_price);
-    count5 = count5.plus(1);
-   }
-   if(flats[i].flat_type === "EXECUTIVE"){
-    coste = coste.plus(flats[i].resale_price);
-    counte = counte.plus(1);
-   }
-
-
-  }
-  cost1 = (cost1.dividedBy(count1));
-  cost2 = (cost2.dividedBy(count2));
-  cost3 = (cost3.dividedBy(count3));
-  cost4 = (cost4.dividedBy(count4));
-  cost5 = (cost5.dividedBy(count5));
-  coste = (coste.dividedBy(counte));
-
-  
-
-  
     // getting the input values
   const [typeOfFlat, setTypeOfFlat] = useState('TOF');
   const [installPeriod, setInstallPeriod] = useState('INS');
@@ -167,7 +176,6 @@ const IncomeCalculator = (props: PageProps) => {
         seterror(false)
         setsubmitted2(false)
         setsubmitted(true);
-
       }
 
       else{
@@ -175,40 +183,18 @@ const IncomeCalculator = (props: PageProps) => {
         setsubmitted(false)
         setsubmitted2(true);
       }
+      // error validation to set the user input values fixed everytime button is clicked
+      setIncome1(income)
+      setTypeOfFlat1(typeOfFlat)
+      setCost(cost.toFormat(0).toString())
+
+
   }
+
 
     // error checking for no inputs
   }
-// to return the average price to be printed
-  switch(typeOfFlat){
-    case "1":
-      cost = cost1;
-      break;
 
-    case '2':
-      cost = cost2;
-      break;
-      
-    case '3':
-      cost = cost3;
-      break;
-
-    case '4' :
-      cost = cost4;
-      break;
-
-    case '5' :
-      cost = cost5;
-      break;
-
-    case 'e':
-      cost = coste;
-      break;
-
-    default:
-      break;
-
-    }
 
   //returning the page itself
   return (
@@ -230,14 +216,14 @@ const IncomeCalculator = (props: PageProps) => {
       <div className="Inputs">
           <div>Type Of Flat:</div>
           <form>
-          <select name="TOF" placeholder='type of flat' onChange={(e) => setTypeOfFlat(e.target.value)} >
-          <option value="">Select type of flat:</option>
-          <option value="1">1 Room</option>
-          <option value="2">2 Room</option>
-          <option value="3">3 Room</option>
-          <option value="4">4 Room</option>
-          <option value="5">5 Room</option>
-          <option value="e">Executive</option>
+          <select className="TOF" placeholder='type of flat' onChange={(e) => setTypeOfFlat(e.target.value)} >
+          <option className ="ICopt" value="">Select type of flat:</option>
+          <option className ="ICopt" value="1">1 Room</option>
+          <option className ="ICopt" value="2">2 Room</option>
+          <option className ="ICopt" value="3">3 Room</option>
+          <option className ="ICopt" value="4">4 Room</option>
+          <option className ="ICopt" value="5">5 Room</option>
+          <option className ="ICopt" value="e">Executive</option>
 
           </select> 
           </form>
@@ -267,8 +253,7 @@ const IncomeCalculator = (props: PageProps) => {
       <div className="Inputs">
           <div>Monthly Income:</div>
           <form>
-          <input name="INC" placeholder ='monthly income' type= "number"  onChange={(e) => setIncome(e.target.value)}/>
-
+          <input name="INC" id = "income" placeholder ='monthly income' type= "number"  onChange={(e) => setIncome(e.target.value)}/>
           </form>
 
    
@@ -287,10 +272,10 @@ const IncomeCalculator = (props: PageProps) => {
       <button id = "calculator" type ="button" onClick ={calculate} >Calculate</button>
       </div>
       {submitted && <div className = "result"> 
-      With your gross household pay of ${income} a month, you are unable to afford a {typeOfFlat}-Room flat which has an overall median price of ${cost.toFormat(0)}. You can use <div className = 'loan' onClick={() => props.switchTo("loanRecommendation")}>loan recommendation</div> to calculate the loans that you will need to take
+      With your gross household pay of ${income1} a month, you are unable to afford a {typeOfFlat1}-Room flat which has an overall median price of ${cst}. You can use <div className = 'loan' onClick={() => props.switchTo("loanRecommendation")}>loan recommendation</div> to calculate the loans that you will need to take
       </div> }
       {error && <div className = "error">Please input a value or select an option!</div>}
-      {submitted2 && <div className = "result">With your gross household pay of ${income} a month, you are able to afford a {typeOfFlat}-Room flat which has an overall median price of ${cost.toFormat(0)}!</div>}
+      {submitted2 && <div className = "result">With your gross household pay of ${income1} a month, you are able to afford a {typeOfFlat1}-Room flat which has an overall median price of ${cst}!</div>}
 
 
     </div>
