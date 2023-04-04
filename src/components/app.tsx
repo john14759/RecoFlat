@@ -6,7 +6,6 @@ import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs, How, Filt
 import Nav from './navbar';
 import { BodyProps,Flat } from '../functions/types';
 import { FilterFlatType } from '../pages/FilterFlatType';
-import { Location } from '../pages/location';
 
 
 // The component that displays the current page.

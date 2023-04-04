@@ -90,6 +90,16 @@
   cursor: pointer;
 }
 
+.nearby-error-message {
+  background-color: #ffe8e6;
+  color: #db2828;
+  box-shadow: 0 0 0 1px #db2828 inset,0 0 0 0 transparent;
+  padding: 1em;
+  /* background-color: #fff6f6;
+  box-shadow: 0 0 0 1px #e0b4b4 inset,0 0 0 0 transparent;
+  color: rgb(159, 58, 56); */
+}
+
 .nearby-body {
   flex-grow: 1;
   display: flex;

@@ -1,20 +1,9 @@
 import { PageProps } from '../functions/types';
 import '../css/incomeCal.css'
-import {cost1,cost2,cost3,cost4,cost5,coste} from  '../components/Avgprice'
 import { FlatContext } from '../components/context';
 import BigNumber from 'bignumber.js';
 import React, { useState,useContext } from 'react';
 import '../components/app'
-
-
-
-import { FlatContext } from '../components/context';
-import BigNumber from 'bignumber.js';
-import React, { useState,useContext } from 'react';
-import '../components/app'
-
-
-
 
 const IncomeCalculator = (props: PageProps) => {
 
