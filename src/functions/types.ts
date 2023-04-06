@@ -7,6 +7,13 @@ type BodyProps = {
   switchTo: (newPage: string) => void;
 };
 
+type LocationProps = {
+  region: string;
+  setView: (newView: string) => void;
+  setRegion: (newRegion: string) => void;
+  locationList: string[]
+}
+
 type Flat = {
   _id: number;
   block: string;
@@ -26,10 +33,10 @@ type Flat = {
 // Used to store the values when displaying the Loan Recommendation
 type RepaymentScheduleItem = {
   date: string;
-  interestRate: number;
+  // interestRate: number;
   monthlyInstalment: number;
   interestPaid: number;
   endingPrinciple: number;
 }
 
-export type { PageProps, Flat ,BodyProps, RepaymentScheduleItem}
+export type { PageProps, LocationProps, Flat ,BodyProps, RepaymentScheduleItem}
