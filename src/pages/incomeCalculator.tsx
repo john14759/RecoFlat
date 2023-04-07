@@ -1,5 +1,6 @@
 import { PageProps } from '../functions/types';
 import '../css/incomeCal.css'
+
 import { FlatContext } from '../components/context';
 import BigNumber from 'bignumber.js';
 import React, { useState,useContext } from 'react';
@@ -7,7 +8,7 @@ import '../components/app'
 
 const IncomeCalculator = (props: PageProps) => {
 
-  // calculation of avg price for the flat_types
+// calculation of avg price for the flat_types
 var cost1 = new BigNumber(0);
 var count1 = new BigNumber(0);
 
@@ -165,12 +166,14 @@ coste = (coste.dividedBy(counte));
         seterror(false)
         setsubmitted2(false)
         setsubmitted(true);
+
       }
 
       else{
         seterror(false)
         setsubmitted(false)
         setsubmitted2(true);
+
       }
       // error validation to set the user input values fixed everytime button is clicked
       setIncome1(income)
@@ -224,13 +227,13 @@ coste = (coste.dividedBy(counte));
           <div>Installment Period:</div>
 
           <form>
-          <select name="INS" placeholder='10,15,20 Years' onChange={(e) => setInstallPeriod(e.target.value)}>
+          <select className="TOF" placeholder='10,15,20 Years' onChange={(e) => setInstallPeriod(e.target.value)}>
 
-          <option value="">Select Installment Period:</option>
-          <option value="10">10 years</option>
-          <option value="15">15 years</option>
-          <option value="20">20 years</option>
-          <option value="25">25 years</option>
+          <option className ="ICopt" value="">Select Installment Period:</option>
+          <option className ="ICopt" value="10">10 years</option>
+          <option className ="ICopt"  value="15">15 years</option>
+          <option className ="ICopt" value="20">20 years</option>
+          <option className ="ICopt" value="25">25 years</option>
 
           </select>
 
@@ -243,6 +246,7 @@ coste = (coste.dividedBy(counte));
           <div>Monthly Income:</div>
           <form>
           <input name="INC" id = "income" placeholder ='monthly income' type= "number"  onChange={(e) => setIncome(e.target.value)}/>
+
           </form>
 
    
