@@ -6,9 +6,19 @@
 
 .location-tabs {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.location-tabs > .location-tab {
+.location-tabs-group {
+  display: flex;
+  flex-direction: row;
+}
+.location-tabs-group > .location-tab {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 0.5em;
   padding: 1em;
   background-color: #F1D6D6;
   border: solid #73708f 1px;
@@ -16,16 +26,20 @@
   color: black;
 }
 
-.location-tabs > .location-tab.active {
+.location-tabs-group > .location-tab.active {
   background-color: rgba(0, 0, 0, 0.3);
   color: white;
 }
 
-.location-tabs > .location-tab:first-of-type {
+.location-tabs-group > .location-tab > .location-tab-icon {
+  width: 25px;
+}
+
+.location-tabs-group > .location-tab:first-of-type {
   border-top-left-radius: 10px;
 }
 
-.location-tabs > .location-tab:last-of-type {
+.location-tabs-group > .location-tab:last-of-type {
   border-top-right-radius: 10px;
 }
 

@@ -53,9 +53,22 @@ const Location = (props: PageProps) => {
     <div className="location-container">
       {view !== "map" &&
       <div className="location-tabs">
-        <div onClick={() => setView("filter")} className={view === "filter" ? "location-tab active" : "location-tab"}>Filter!</div>
-        <div onClick={() => setView("nearby")} className={view === "nearby" ? "location-tab active" : "location-tab"}>Nearby!</div>
-        <div onClick={() => setView("map")} className="location-tab">Back to Map!</div>
+        <div className="location-tabs-group">
+          <div onClick={() => setView("filter")} className={view === "filter" ? "location-tab active" : "location-tab"}>
+          <img className="location-tab-icon" src="/img/location/filter.png" alt="map-logo"></img>
+            <div>Filter!</div>
+          </div>
+          <div onClick={() => setView("nearby")} className={view === "nearby" ? "location-tab active" : "location-tab"}>
+            <img className="location-tab-icon" src="/img/location/nearby.png" alt="map-logo"></img>
+            <div>Nearby!</div>
+          </div>
+        </div>
+        <div className="location-tabs-group">
+          <div onClick={() => setView("map")} className="location-tab">
+            <img className="location-tab-icon" src="/img/location/map.png" alt="map-logo"></img>
+            <div>Back to Map!</div>
+          </div>
+        </div>
       </div>}
       <div className="location-body">
         {LocationView}
