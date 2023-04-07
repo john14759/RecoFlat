@@ -1,52 +1,40 @@
 import '../css/explore.css'
-import { PageProps } from '../functions/types';
+import { BodyProps, PageProps } from '../functions/types';
+
+const SearchBtn = (props: BodyProps) => {
+  return (
+    <div className="search-btn" onClick={() => props.switchTo(props.page)}>
+      <img className="search-logo" src='/img/explore/searchlogo.png' alt='searchlogo'></img>
+      <div >Search</div>
+    </div>
+  )
+
+}
 
 const Explore = (props: PageProps) => {
   return (
     <div className="explore-container">
-      <div className="text">
-        Choose filters:
+      <div className="explore-header">
+        Explore flats by:
       </div>
       <div className="explore-body">
         <div className="explore-option">
-          <div className='explore-images'><img src='/img/explore/price.png' alt='price'/></div>
-          <div>Filter by Price Range
-            <ul>
-              <li>
-                This filter allows you to view and compare flats within your budget
-                </li>
-              </ul>
-          </div>
-          <div onClick={() => props.switchTo("filterPrice")} className='searchlogo'>
-            <span>Search</span>
-          <img src='/img/explore/searchlogo.png' alt='searchlogo'></img>
-          </div>
+          <img className='explore-image' src='/img/explore/price.png' alt='price'/>
+          <div className="explore-title">Price Range</div>
+          <div>View and compare flats within your budget</div>
+          <SearchBtn switchTo={props.switchTo} page="filterPrice"></SearchBtn>
         </div>
         <div className="explore-option">
-          <div className='explore-images'><img src='/img/explore/location.png' alt='location'/></div>
-          <div>Filter by Location
-          <ul>
-              <li>
-              This filter allows you to view and compare flats within the different areas of Singapore
-                </li>
-              </ul>
-          </div>
-          <div  className='searchlogo' onClick={() => props.switchTo("location")}>Search
-          <img src='/img/explore/searchlogo.png' alt='searchlogo'></img>
-          </div>
+          <img className="explore-image" src='/img/explore/location.png' alt='location'/>
+          <div className="explore-title">Location</div>
+          <div>View and compare flats within the different areas of Singapore</div>
+          <SearchBtn switchTo={props.switchTo} page="location"></SearchBtn>
         </div>
         <div className="explore-option">
-          <div className='explore-images'><img src='/img/explore/flat.png' alt='flat'/></div>
-          <div>Filter By Flat Type
-          <ul>
-              <li>
-              This filter allows you to view and compare flats within the different areas of Singapore
-                </li>
-              </ul>
-          </div>
-          <div className='searchlogo' onClick={() => props.switchTo("filterFlatType")}>Search
-          <img src='/img/explore/searchlogo.png' alt='searchlogo'></img>
-          </div>
+          <img className='explore-image' src='/img/explore/flat.png' alt='flat'/>
+          <div className="explore-title">Flat Type</div>
+          <div>View and compare flats within the different room types</div>
+          <SearchBtn switchTo={props.switchTo} page="filterFlatType"></SearchBtn>
         </div>
       </div>
     </div>

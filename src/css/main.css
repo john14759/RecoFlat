@@ -15,29 +15,28 @@
 
 .main-header > .main-header-title {
   font-size: 96px;
+  margin-bottom: 0.5em;
 }
 
 .main-header > .main-header-subtitle {
-  margin: 0 0 1em 0;
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
+  margin-bottom: 1em;
 }
 
 .main-body {
   flex-grow: 1;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  column-gap: 1em;
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 48px;
+  row-gap: 1em;
 }
 
-.main-body > .main-option {
+.main-options {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1em;
+}
+
+.main-option {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -46,12 +45,10 @@
   padding: 1em;
   flex-basis: 100%;
   align-items: center;
-  text-align: center;
-  height:355px;
   cursor: pointer;
 }
 
-.main-body > .main-option > .main-explore {
+.main-explore {
   background-color: #D25A5A;
   padding: 0.5em;
   border-radius: 10px;
@@ -59,15 +56,13 @@
 }
 
 .explore{
-  width:328px;
-  line-height: 58px;
+  
 }
 
 .imgur{
-  margin-top: 20px;
+  
 }
 
 .imgur img {
-  width: 170px;
-  height: auto;
+
 }

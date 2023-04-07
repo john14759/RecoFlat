@@ -1,25 +1,20 @@
 .explore-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   row-gap: 2em;
 }
 
 .explore-header {
-  font-size: 48px;
+  font-size: 36px;
 }
 
 .explore-body {
-  flex-grow: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 38px;
+  height: 60%;
 }
 
 .explore-body > .explore-option {
@@ -30,32 +25,32 @@
   background-color: #D25A5A;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  padding: 1em;
+  padding: 2em 1em;
   width: 25%;
 }
 
-.searchlogo{
-  cursor: pointer;
+.explore-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.search-btn{
+  align-self: stretch;
   display: flex;
-  position: relative;
   align-items: center;
   justify-content: center;
-  width: 276px;
-  height: 60px;
+  column-gap: 1em;
+  padding: 0.5em;
   background: rgba(201, 201, 201, 0.3);
   border: 1px solid #000000;
   border-radius: 10px;
+  cursor: pointer;
 }
-.searchlogo>img{
-  margin-top: 5px;
-  margin-left: 8px;
-}
-.explore-images>img{
-  height:9em;
-  width: auto;
 
+.search-btn > .search-logo{
+  width: 25px;
 }
-.explore-option ul {
-  margin-top: 20px;
- 
+
+.explore-image{
+  height: 20%;
 }
