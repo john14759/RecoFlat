@@ -1,16 +1,14 @@
 import { PageProps } from '../functions/types';
 import '../css/incomeCal.css'
-import {cost1,cost2,cost3,cost4,cost5,coste} from  '../components/Avgprice'
+
 import { FlatContext } from '../components/context';
 import BigNumber from 'bignumber.js';
 import React, { useState,useContext } from 'react';
 import '../components/app'
 
-
-
-
 const IncomeCalculator = (props: PageProps) => {
-  // calculation of avg price for the flat_types
+
+// calculation of avg price for the flat_types
 var cost1 = new BigNumber(0);
 var count1 = new BigNumber(0);
 
@@ -69,9 +67,7 @@ coste = (coste.dividedBy(counte));
   const [submitted,setsubmitted] = useState(false);
   const [error,seterror] = useState(false);
   const [submitted2,setsubmitted2] = useState(false);
-  //
-  
-  
+
   //error validation for the values to be fixed
   const [income1, setIncome1] = useState('income');
   const [typeOfFlat1, setTypeOfFlat1] = useState('Typeofflat');
@@ -170,7 +166,7 @@ coste = (coste.dividedBy(counte));
         seterror(false)
         setsubmitted2(false)
         setsubmitted(true);
-        
+
       }
 
       else{
@@ -250,7 +246,6 @@ coste = (coste.dividedBy(counte));
           <div>Monthly Income:</div>
           <form>
           <input name="INC" id = "income" placeholder ='monthly income' type= "number"  onChange={(e) => setIncome(e.target.value)}/>
-          
 
           </form>
 
