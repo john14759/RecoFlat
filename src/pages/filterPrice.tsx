@@ -1,4 +1,4 @@
-import '../css/filterprice.css'
+import '../css/filterPrice.css'
 import { PageProps } from '../functions/types';
 import { FlatContext } from '../components/context';
 import BigNumber from 'bignumber.js';
@@ -20,8 +20,7 @@ const FilterPrice = (props: PageProps) => {
         if (minValue && maxValue && (minValue >= maxValue)) {
             window.alert('Minimum price should be less than maximum price');
             return false;
-
-        } 
+        }
         else if(maxValue && (maxValue>=9999999)){
             window.alert('Maximum price out of range');
             return false;
@@ -89,21 +88,20 @@ const FilterPrice = (props: PageProps) => {
     const minVal = () => min ?? 0;
     const maxVal = () => max ?? 3000000;
     return (
-        <div className='container price'>
+        <div className='price-container'>
             <div className='price-filter'>
                 <div className='pricehead'>
-                    <div className='price-header'>Filter selected
- Price Range</div>
-                <label htmlFor="min-input">Price Range</label>
-                <img onClick={handleDropdown}src='/img/explore/searchlogo.png' alt='searchbutton'></img>
-                <br />
-               
+                    <div className='price-header'>Filter selected: Price Range</div>
                 <div className='price-input'>
+                    <label className="price-input-label" htmlFor="min-input">Price Range</label>
                   <input type="text" id="min-input" name="min" value={min ?? ""} onChange={handleMinChange} style={{ marginRight: '15px' }}/>
                   to
-                  <input type="text" id="max-input" name="max" value={max ?? ""} onChange={handleMaxChange} style={{ marginLeft: '15px' }}/> 
-                  <p>Now displaying the flats in the price range that you have selected</p>
-                </div>      
+                  <input type="text" id="max-input" name="max" value={max ?? ""} onChange={handleMaxChange} style={{ marginLeft: '15px' }}/>
+                </div>
+                <div className="price-search" onClick={handleDropdown}>
+                    <img src='/img/explore/searchlogo.png' alt='searchbutton'></img>
+                    <div>Search</div>
+                </div>
               </div>
             </div>
             <div className='priceResults'>

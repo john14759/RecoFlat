@@ -3,8 +3,8 @@ import { PageProps } from '../functions/types';
 
 const AboutUs = (props: PageProps) => {
     return (
-      <div className='container'>
-        <div className='text'>About Us</div>
+      <div className='about-us-container'>
+        <div className='about-us-header'>About Us</div>
         <div className="bubble">
             <div className='message'>
             <p>Welcome to our housing planner and calculator!</p>

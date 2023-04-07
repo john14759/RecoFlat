@@ -200,7 +200,7 @@ coste = (coste.dividedBy(counte));
 
 
     <div className = 'bot'>
-      <h1>Calculator:</h1>
+      <h1 className="calculator-header">Calculator:</h1>
       <div className = 'seperator'>
       <div className="Inputs">
           <div>Type Of Flat:</div>
@@ -261,7 +261,7 @@ coste = (coste.dividedBy(counte));
       <button id = "calculator" type ="button" onClick ={calculate} >Calculate</button>
       </div>
       {submitted && <div className = "result"> 
-      With your gross household pay of ${income1} a month, you are unable to afford a {typeOfFlat1}-Room flat which has an overall median price of ${cst}. You can use <div className = 'loan' onClick={() => props.switchTo("loanRecommendation")}>loan recommendation</div> to calculate the loans that you will need to take
+      With your gross household pay of ${income1} a month, you are unable to afford a {typeOfFlat1}-Room flat which has an overall median price of ${cst}. You can use <div className = 'loan' onClick={() => props.switchTo("loanRecommendation")}>loan recommendation</div> to calculate the loans that you will need to take.
       </div> }
       {error && <div className = "error">Please input a value or select an option!</div>}
       {submitted2 && <div className = "result">With your gross household pay of ${income1} a month, you are able to afford a {typeOfFlat1}-Room flat which has an overall median price of ${cst}!</div>}

@@ -1,7 +1,7 @@
 .main-container {
   display: flex;
   flex-direction: column;
-  row-gap: 5em;
+  row-gap: 2em;
   width: 100%;
 }
 
@@ -11,15 +11,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1em 0;
 }
 
 .main-header > .main-header-title {
-  font-size: 96px;
-  margin-bottom: 0.5em;
+  font-size: 64px;
 }
 
 .main-header > .main-header-subtitle {
-  margin-bottom: 1em;
+  font-size: 24px;
 }
 
 .main-body {
@@ -39,30 +39,20 @@
 .main-option {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  row-gap: 1em;
+  font-size: 24px;
   background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 50px;
+  border-radius: 25px;
   padding: 1em;
   flex-basis: 100%;
   align-items: center;
   cursor: pointer;
 }
 
-.main-explore {
+.main-explore-btn {
   background-color: #D25A5A;
   padding: 0.5em;
   border-radius: 10px;
   cursor: pointer;
-}
-
-.explore{
-  
-}
-
-.imgur{
-  
-}
-
-.imgur img {
-
 }

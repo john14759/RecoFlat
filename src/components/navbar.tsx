@@ -8,12 +8,12 @@ const Nav = (props: PageProps) => {
         <img className="app-logo" src="/img/navbar/logo.png" alt="RecoFlat logo" />
       </div>
       <div className="app-actions">
-        <div className="app-action">
-          <div onClick={() =>props.switchTo("howtouse")}>How to use?</div>
+        <div className="app-action" onClick={() =>props.switchTo("howtouse")}>
+          <div>How to use?</div>
           <img className="app-logo" src="img/navbar/Vector.png" alt="icon"/>
         </div>
-        <div className="app-action">
-          <div onClick={() =>props.switchTo("aboutus")}>About us</div>
+        <div className="app-action" onClick={() =>props.switchTo("aboutus")}>
+          <div>About us</div>
           <img className="app-logo" src="/img/navbar/human.png" alt="icon"/>
         </div>
       </div>

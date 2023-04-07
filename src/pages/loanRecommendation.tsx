@@ -46,9 +46,9 @@ const LoanRecommendation = (props: PageProps) => {
     }
 
     function checkLoanTenure(tenure: number){
-      /* 
+      /*
       Error Validation considerations:
-      Loan tenure should not be 0, should be capped at 25 years, 
+      Loan tenure should not be 0, should be capped at 25 years,
       */
       if(tenure == 0){
         topErrorMessageElement.textContent = "Please enter a tenure above 0!";
@@ -63,9 +63,9 @@ const LoanRecommendation = (props: PageProps) => {
     }
 
     function checkInterestRate(rate: number){
-      /* 
+      /*
       Error Validation considerations:
-      Interest rate cannot be 0, should be capped at 9%, input should be per annum 
+      Interest rate cannot be 0, should be capped at 9%, input should be per annum
       */
       if(rate == 0){
         topErrorMessageElement.textContent = "Please enter an interest rate above 0!";
@@ -108,7 +108,7 @@ const LoanRecommendation = (props: PageProps) => {
         setRepaymentSchedule(repaymentSchedule);
         myElement.innerHTML = `Estimated payoff date is`;
       }
-      else if (checkLoanAmount(loanAmount) || checkLoanTenure(loanTenure) || checkInterestRate(interestRate)){ 
+      else if (checkLoanAmount(loanAmount) || checkLoanTenure(loanTenure) || checkInterestRate(interestRate)){
         bottomErrorMessageElement.textContent = "";
         const repaymentSchedule: RepaymentScheduleItem[] = [];
         setRepaymentSchedule(repaymentSchedule);
@@ -126,7 +126,7 @@ const LoanRecommendation = (props: PageProps) => {
         const monthlyInterestRate = interestRate / 1200;
         const monthlyPayment = loanAmount / ((Math.pow(1 + monthlyInterestRate, loanTenure*12) - 1) / (monthlyInterestRate*(Math.pow(1 + monthlyInterestRate, loanTenure*12))));
         const repaymentSchedule: RepaymentScheduleItem[] = [];
-  
+
         let principle = loanAmount;
         // let year = Year;
         let year = parseInt(Year.year);
@@ -144,14 +144,14 @@ const LoanRecommendation = (props: PageProps) => {
             endingPrinciple: principle
           };
           repaymentSchedule.push(item);
-          
+
           if (month == 12){
             year++;
             month=1;
           }
           else{
             month++;
-          } 
+          }
           interest = principle * monthlyInterestRate;
           principlePaid = (monthlyPayment - interest);
           principle = principle - principlePaid;
@@ -165,18 +165,18 @@ const LoanRecommendation = (props: PageProps) => {
             endingPrinciple: principle
           };
           repaymentSchedule.push(item);
-          
+
           if (month == 12){
             year++;
             month=1;
           }
           else{
             month++;
-          } 
+          }
         }
-        
+
         setRepaymentSchedule(repaymentSchedule);
-  
+
         checkCal = true;
         if (checkCal){
           myElement.innerHTML = `Estimated payoff date is ${repaymentSchedule[repaymentSchedule.length - 1].date}`;
@@ -185,11 +185,10 @@ const LoanRecommendation = (props: PageProps) => {
     };
 
   return (
-    // TODO Loan recommendation page
-    <div className = 'container'>
+    <div className = 'loan-recommendation-container'>
       <div className = 'topContainer'>
         <div className = 'topHeader' >Loan Recommendation</div>
-        <div className ='topBody' > Calculate your monthly mortgage repayments and plan your monthly expenses well</div>
+        <div className ='topBody' > Calculate your monthly mortgage repayments and plan your monthly expenses well!</div>
         <div className = 'topSeperator'>
           <div className="topInputHeader">
             <div>Loan Amount:</div>
@@ -213,11 +212,11 @@ const LoanRecommendation = (props: PageProps) => {
           </div>
         </div>
         <div id='top-error-message'></div>
-        
+
         <div className ="button1">
           <button id = "calculator" type="button"  onClick={calculateRepaymentSchedule}>Calculate</button>
         </div>
-        
+
       </div>
 
 
@@ -235,8 +234,8 @@ const LoanRecommendation = (props: PageProps) => {
           <form>
             <select name="month" value={Month.month} onChange={handleDateChangeMonth}>
               <option value="nothing">Month</option>
-              <option value="01">Jan</option> 
-              <option value="02">Feb</option> 
+              <option value="01">Jan</option>
+              <option value="02">Feb</option>
               <option value="03">Feb</option>
               <option value="04">Apr</option>
               <option value="05">May</option>
@@ -252,8 +251,8 @@ const LoanRecommendation = (props: PageProps) => {
             {/* <input type= "number" value={Year} onChange={year => setYear(parseFloat(year.target.value))} placeholder='Year'  /> */}
             <select name="year" value={Year.year} onChange={handleDateChangeYear}>
               <option value="nothing">Year</option>
-              <option value="2023">2023</option> 
-              <option value="2024">2024</option> 
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
               <option value="2025">2025</option>
               <option value="2026">2026</option>
               <option value="2027">2027</option>
@@ -268,7 +267,6 @@ const LoanRecommendation = (props: PageProps) => {
           </form>
         </div>
 
-        
         <table className='scheduleTable'>
           <thead>
             <tr>
@@ -279,7 +277,6 @@ const LoanRecommendation = (props: PageProps) => {
               <th>Ending Principle</th>
             </tr>
           </thead>
-          
             <tbody>
               {repaymentSchedule.map((item, index) => (
                 <tr key={index}>
@@ -291,7 +288,6 @@ const LoanRecommendation = (props: PageProps) => {
                 </tr>
               ))}
             </tbody>
-            
         </table>
       </div>
 

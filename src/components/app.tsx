@@ -5,7 +5,7 @@ import '../css/app.css'
 import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs, How, FilterPrice, Location} from '../pages/pages'
 import Nav from './navbar';
 import { BodyProps,Flat } from '../functions/types';
-import { FilterFlatType } from '../pages/FilterFlatType';
+import { FilterFlatType } from '../pages/filterFlatType';
 
 
 // The component that displays the current page.

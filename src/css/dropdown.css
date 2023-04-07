@@ -1,15 +1,4 @@
-select option{
-  font-family: "Lato";
-  font-size: 32px;
-  font-weight: 700;
-  background-color: #D25A5A;
-  color: black;
-}
-
-select {
-  font-family: "Lato";
-  font-size: 32px;
-  font-weight: 700;
+.dropdown-select, .dropdown-select .dropdown-option{
   background-color: #D25A5A;
   color: black;
 }
