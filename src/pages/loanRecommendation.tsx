@@ -212,9 +212,10 @@ const LoanRecommendation = (props: PageProps) => {
             </form>
           </div>
         </div>
+        {errorMessage &&
         <div id='top-error-message'>
           {errorMessage}
-        </div>
+        </div>}
 
         <div className ="button1">
           <button id = "calculator" type="button"  onClick={calculateRepaymentSchedule}>Calculate</button>
