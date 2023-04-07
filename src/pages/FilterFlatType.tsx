@@ -1,4 +1,5 @@
 import {useContext, useState} from 'react';
+import * as React from 'react';
 import { Flat, PageProps } from '../functions/types';
 import { FlatContext } from '../components/context';
 import '../css/filterflat.css'
@@ -30,20 +31,36 @@ const FilterFlatType = (props: PageProps) => {
     });
 
     
-      const rows = Object.keys(flatTypeCountByTown).map((town) => {
+      const table = Object.keys(flatTypeCountByTown).map((town, index) => {
         const count = flatTypeCountByTown[town];
         const totalPrice = flatTypePriceByTown[town] || 0;
         const averagePrice = count ? totalPrice.dividedBy(count) : 0;
 
-        return(
-          <tr className='flat-table'>
-            <td>{town}</td>
-            <td>{count}</td>
-            <td>${averagePrice.toFixed(0)}</td>
-          </tr>
-        );
-       
-    });
+        if (index === 0) {
+          return (
+            <React.Fragment key="table-headers">
+              <tr>
+                <th>Location:</th>
+                <th>Count:</th>
+                <th>Average Resale Price ($)</th>
+              </tr>
+              <tr className='flat-table'>
+                <td className="town-entry">{town}</td>
+                <td className="count-entry">{count}</td>
+                <td className="averageprice-entry">${averagePrice.toFixed(0)}</td>
+              </tr>
+            </React.Fragment>
+          );
+        } else {
+          return (
+            <tr className='flat-table' key={town}>
+              <td className="town-entry">{town}</td>
+              <td className="count-entry">{count}</td>
+              <td className="averageprice-entry">${averagePrice.toFixed(0)}</td>
+            </tr>
+          );
+        }
+      });
 
   return (
     <div className="page">
@@ -69,19 +86,12 @@ const FilterFlatType = (props: PageProps) => {
         </div>
       </div>
       <div className= 'search-box'>Search Results:</div>
-      <table className= 'table'>
-        <tr className= 'table-header'>
-          <th className='location'>Location:</th>
-          <th className='count'>Count:</th>
-          <th className='resale'>Average Resale Price ($):</th>
-        </tr>
-        <tbody className='table-body'>
-        <div>
-        {rows}
-        </div>
-        </tbody>
-        </table>
-      </div>
+      <div className = "table-container">
+      <table className = 'filter-table'>
+       {table}
+       </table>
+       </div>
+       </div>
   );
 }
 
