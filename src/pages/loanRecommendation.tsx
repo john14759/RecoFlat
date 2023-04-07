@@ -12,7 +12,8 @@ const LoanRecommendation = (props: PageProps) => {
     const [Month, setMonth] = useState({month: ''});
     // const [Year, setYear] = useState<number>(0);
     const [Year, setYear] = useState({year: ''});
-    var topErrorMessageElement = document.getElementById("top-error-message") as HTMLDivElement;
+    const [errorMessage, setErrorMessage] = useState("")
+    // var topErrorMessageElement = document.getElementById("top-error-message") as HTMLDivElement;
     var bottomErrorMessageElement = document.getElementById("bottom-error-message") as HTMLDivElement;
     var checkCal = false;
 
@@ -33,12 +34,12 @@ const LoanRecommendation = (props: PageProps) => {
       Error Validation considerations:
       Loan amount should be 2 decimals, cannot be 0
       */
-      if (amount == 0){
-        topErrorMessageElement.textContent = "Please enter an amount above 0!";
+      if (amount === 0){
+        setErrorMessage("Please enter an amount above 0!");
         return true;
       }
       else if ((amount.toFixed(0) !== amount.toString()) && (amount.toFixed(1) !== amount.toString()) && (amount.toFixed(2) !== amount.toString())){
-        topErrorMessageElement.textContent = "Please enter a valid loan amount!";
+        setErrorMessage("Please enter a valid loan amount!");
         return true;
       }
 
@@ -51,11 +52,11 @@ const LoanRecommendation = (props: PageProps) => {
       Loan tenure should not be 0, should be capped at 25 years,
       */
       if(tenure == 0){
-        topErrorMessageElement.textContent = "Please enter a tenure above 0!";
+        setErrorMessage("Please enter a tenure above 0!");
         return true;
       }
       else if (tenure > 25){
-        topErrorMessageElement.textContent = "Maximum tenure limit is 25 years!";
+        setErrorMessage("Maximum tenure limit is 25 years!");
         return true;
       }
 
@@ -68,11 +69,11 @@ const LoanRecommendation = (props: PageProps) => {
       Interest rate cannot be 0, should be capped at 9%, input should be per annum
       */
       if(rate == 0){
-        topErrorMessageElement.textContent = "Please enter an interest rate above 0!";
+        setErrorMessage("Please enter an interest rate above 0!");
         return true;
       }
       else if(rate>10){
-        topErrorMessageElement.textContent = "Maximum interest rate limit is 9%!";
+        setErrorMessage("Maximum interest rate limit is 9%!");
         return true;
       }
 
@@ -103,7 +104,7 @@ const LoanRecommendation = (props: PageProps) => {
       // Loan Details obtained from this website: https://www.singsaver.com.sg/blog/loan-tenure-singapore
       if(Number.isNaN(loanAmount) || Number.isNaN(loanTenure) || Number.isNaN(interestRate)){
         bottomErrorMessageElement.textContent = "";
-        topErrorMessageElement.textContent = "Please fill up the fields above!";
+        setErrorMessage("Please fill up the fields above!");
         const repaymentSchedule: RepaymentScheduleItem[] = [];
         setRepaymentSchedule(repaymentSchedule);
         myElement.innerHTML = `Estimated payoff date is`;
@@ -115,13 +116,13 @@ const LoanRecommendation = (props: PageProps) => {
         myElement.innerHTML = `Estimated payoff date is`;
       }
       else if(checkMonth(parseInt(Month.month)) || checkYear(parseInt(Year.year))){
-        topErrorMessageElement.textContent = "";
+        setErrorMessage("");
         const repaymentSchedule: RepaymentScheduleItem[] = [];
         setRepaymentSchedule(repaymentSchedule);
         myElement.innerHTML = `Estimated payoff date is`;
       }
       else{
-        topErrorMessageElement.textContent = "";
+        setErrorMessage("");
         bottomErrorMessageElement.textContent = "";
         const monthlyInterestRate = interestRate / 1200;
         const monthlyPayment = loanAmount / ((Math.pow(1 + monthlyInterestRate, loanTenure*12) - 1) / (monthlyInterestRate*(Math.pow(1 + monthlyInterestRate, loanTenure*12))));
@@ -211,7 +212,9 @@ const LoanRecommendation = (props: PageProps) => {
             </form>
           </div>
         </div>
-        <div id='top-error-message'></div>
+        <div id='top-error-message'>
+          {errorMessage}
+        </div>
 
         <div className ="button1">
           <button id = "calculator" type="button"  onClick={calculateRepaymentSchedule}>Calculate</button>
