@@ -82,24 +82,24 @@ coste = (coste.dividedBy(counte));
    const INS = installPeriod.trim();
    const INC = income.trim();
    const PAY = downPayment.trim();
-  var flag = true;
-  // doing a check for input value 1st error validation
-  if (typeOfFlat === 'TOF' || installPeriod === 'INS' || income === 'INC' || downPayment === 'PAY'){
-     flag = true;
-  }
+   var flag = true;
  
-//2nd error validation for extreme cases
-  else if (!TOF||!INS||!INC||!PAY){
-     flag = true;
-  }
-  else {
-     flag = false;
-  }
   var cost = new BigNumber(0);
   var monthly = new BigNumber(0);
     //functions on caclulating the monthly payment for the resale flat
     function calculate(): void {
-      const myElement = document.getElementById("test") as HTMLInputElement;
+    // doing a check for input value 1st error validation
+  if (typeOfFlat === 'TOF' || installPeriod === 'INS' || income === 'INC' || downPayment === 'PAY'){
+    flag = true;
+  }
+
+  //2nd error validation for extreme cases
+  else if (!TOF||!INS||!INC||!PAY){
+      flag = true;
+  }
+  else {
+      flag = false;
+  }
       //cost depends on what type of flat
     switch(typeOfFlat){
       case "1":
@@ -127,7 +127,6 @@ coste = (coste.dividedBy(counte));
         break;
 
       default:
-        myElement.innerHTML = "Please input the type of flat you are looking for!";
         break;
 
       }
@@ -257,13 +256,13 @@ coste = (coste.dividedBy(counte));
       </div>
 
       </div>
+      {error && <div className = "error">Please fill up the fields above!</div>}
       <div className ="button">
       <button id = "calculator" type ="button" onClick ={calculate} >Calculate</button>
       </div>
       {submitted && <div className = "result"> 
       With your gross household pay of ${income1} a month, you are unable to afford a {typeOfFlat1}-Room flat which has an overall median price of ${cst}. You can use <div className = 'loan' onClick={() => props.switchTo("loanRecommendation")}>loan recommendation</div> to calculate the loans that you will need to take.
       </div> }
-      {error && <div className = "error">Please input a value or select an option!</div>}
       {submitted2 && <div className = "result">With your gross household pay of ${income1} a month, you are able to afford a {typeOfFlat1}-Room flat which has an overall median price of ${cst}!</div>}
 
 
