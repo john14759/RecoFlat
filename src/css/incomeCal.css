@@ -125,7 +125,7 @@
   .button {
     display: flex;
     padding: 10px;
-    margin-top: 100px;
+    margin-top: 70px;
     align-self: flex-end;
     flex-direction: column;
     justify-content: right;
@@ -200,10 +200,10 @@ font-weight: lighter;
 
 
   .error{
-    color: red; 
-    
-    font-size: 24px;
-    margin-top : 0;
+    background-color: #ffe8e6;
+    color: #db2828;
+    box-shadow: 0 0 0 1px #db2828 inset,0 0 0 0 transparent;
+    padding: 0.5em 2em;
+    font-weight: bold;
 
-    text-shadow: 2px 2px 4px #000000;
   }
