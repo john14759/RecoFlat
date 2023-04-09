@@ -241,7 +241,7 @@ coste = (coste.dividedBy(counte));
       <div className="Inputs">
           <div>Monthly Income:</div>
           <form>
-          <input name="INC" id = "income" placeholder ='monthly income' type= "number"  onChange={(e) => setIncome(e.target.value)}/>
+          <input name="INC" id = "income" placeholder ='Monthly Income' type= "number"  onChange={(e) => setIncome(e.target.value)}/>
           </form>
 
    
@@ -249,7 +249,7 @@ coste = (coste.dividedBy(counte));
       <div className="Inputs">
           <div>Down Payment:</div>
           <form>
-          <input name="PAY" placeholder= 'down payment' type= "number" onChange={(e) => setDownPayment(e.target.value)}/>
+          <input name="PAY" placeholder= 'Down Payment' type= "number" onChange={(e) => setDownPayment(e.target.value)}/>
 
           </form>
 

@@ -93,7 +93,7 @@ const FilterPrice = (props: PageProps) => {
                 <div className='pricehead'>
                     <div className='price-header'>Filter selected: Price Range</div>
                 <div className='price-input'>
-                    <label className="price-input-label" htmlFor="min-input">Price Range</label>
+                    <label className="price-input-label" htmlFor="min-input">Price Range ($)</label>
                   <input type="text" id="min-input" name="min" value={min ?? ""} onChange={handleMinChange} style={{ marginRight: '15px' }}/>
                   to
                   <input type="text" id="max-input" name="max" value={max ?? ""} onChange={handleMaxChange} style={{ marginLeft: '15px' }}/>

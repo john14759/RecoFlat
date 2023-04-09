@@ -91,7 +91,7 @@ const FilterFlatType = (props: PageProps) => {
           </tr>
         </thead>
         <tbody className="filter-table-body">
-          {table}
+          <div className ="body-table">{table}</div>
         </tbody>
        </table>
        </div>
