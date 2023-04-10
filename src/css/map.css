@@ -164,11 +164,11 @@
   align-items: center;
   position: absolute;
   bottom: 0;
-  left: 0;
+  right: 0;
   padding: 1em;
   margin: 1em;
   border-radius: 5px;
-  width: 15%;
+  width: 20%;
   background-color: #FEA3A3;
 }
 

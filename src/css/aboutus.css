@@ -1,53 +1,38 @@
-.container{
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    height: 100%;
-    width: 100%;
+.about-us-container {
+    display: flex;
+    flex-direction: column;
 }
 
-.text{
+.about-us-header {
     margin-bottom: 18px;
-    font-size: 96px;
-    line-height: 70px;
-    font-family: 'Lora';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 96px;
-    text-align: left;
+    font-size: 36px;
+    font-weight: bold;
 }
 
 .bubble{
+    flex-grow: 1;
     display: flex;
-    padding:10px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 1em;
     width: 80vw;
-    height: 70vh;
     background: #D25A5A;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
 }
 
 .message{
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 38px;
     color: #000000;
-
 }
+
 .img {
     flex: 1;
     justify-content: center;
     align-items: center;
-    width: 88%;
-    height: 299px;
-    margin-bottom: 10px;
-    background-color: black;
+    width: 90%;
+    margin-bottom: 1em;
     background-image: url(../../public/img/aboutus/buildings.png);
     background-size: cover;
-    border: solid 26px #6F3434;
+    border: solid 1em #6F3434;
   }

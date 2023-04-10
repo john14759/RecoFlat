@@ -20,9 +20,9 @@ function DropdownMenu(props: DropdownMenuProps) {
   }
 
   return (
-    <select value={selectedOption || ''} onChange={handleOptionSelect}>
+    <select className="dropdown-select" value={selectedOption || ''} onChange={handleOptionSelect}>
       {options.map((option) => (
-        <option key={option.value} value={option.value}>
+        <option className="dropdown-option" key={option.value} value={option.value}>
           {option.label}
         </option>
       ))}

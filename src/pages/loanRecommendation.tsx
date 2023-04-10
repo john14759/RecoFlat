@@ -2,7 +2,6 @@ import { PageProps } from '../functions/types';
 import { RepaymentScheduleItem } from '../functions/types';
 import React, { useState } from 'react';
 import '../css/loanReco.css'
-import { exit } from 'process';
 
 const LoanRecommendation = (props: PageProps) => {
     const [loanAmount, setLoanAmount] = useState<number>(NaN);
@@ -12,7 +11,8 @@ const LoanRecommendation = (props: PageProps) => {
     const [Month, setMonth] = useState({month: ''});
     // const [Year, setYear] = useState<number>(0);
     const [Year, setYear] = useState({year: ''});
-    var topErrorMessageElement = document.getElementById("top-error-message") as HTMLDivElement;
+    const [errorMessage, setErrorMessage] = useState("")
+    // var topErrorMessageElement = document.getElementById("top-error-message") as HTMLDivElement;
     var bottomErrorMessageElement = document.getElementById("bottom-error-message") as HTMLDivElement;
     var checkCal = false;
 
@@ -33,12 +33,12 @@ const LoanRecommendation = (props: PageProps) => {
       Error Validation considerations:
       Loan amount should be 2 decimals, cannot be 0
       */
-      if (amount == 0){
-        topErrorMessageElement.textContent = "Please enter an amount above 0!";
+      if (amount === 0){
+        setErrorMessage("Please enter an amount above 0!");
         return true;
       }
       else if ((amount.toFixed(0) !== amount.toString()) && (amount.toFixed(1) !== amount.toString()) && (amount.toFixed(2) !== amount.toString())){
-        topErrorMessageElement.textContent = "Please enter a valid loan amount!";
+        setErrorMessage("Please enter a valid loan amount!");
         return true;
       }
 
@@ -46,16 +46,16 @@ const LoanRecommendation = (props: PageProps) => {
     }
 
     function checkLoanTenure(tenure: number){
-      /* 
+      /*
       Error Validation considerations:
-      Loan tenure should not be 0, should be capped at 25 years, 
+      Loan tenure should not be 0, should be capped at 25 years,
       */
-      if(tenure == 0){
-        topErrorMessageElement.textContent = "Please enter a tenure above 0!";
+      if (tenure === 0){
+        setErrorMessage("Please enter a tenure above 0!");
         return true;
       }
       else if (tenure > 25){
-        topErrorMessageElement.textContent = "Maximum tenure limit is 25 years!";
+        setErrorMessage("Maximum tenure limit is 25 years!");
         return true;
       }
 
@@ -63,16 +63,16 @@ const LoanRecommendation = (props: PageProps) => {
     }
 
     function checkInterestRate(rate: number){
-      /* 
+      /*
       Error Validation considerations:
-      Interest rate cannot be 0, should be capped at 9%, input should be per annum 
+      Interest rate cannot be 0, should be capped at 9%, input should be per annum
       */
-      if(rate == 0){
-        topErrorMessageElement.textContent = "Please enter an interest rate above 0!";
+      if (rate === 0){
+        setErrorMessage("Please enter an interest rate above 0!");
         return true;
       }
       else if(rate>10){
-        topErrorMessageElement.textContent = "Maximum interest rate limit is 9%!";
+        setErrorMessage("Maximum interest rate limit is 9%!");
         return true;
       }
 
@@ -103,30 +103,30 @@ const LoanRecommendation = (props: PageProps) => {
       // Loan Details obtained from this website: https://www.singsaver.com.sg/blog/loan-tenure-singapore
       if(Number.isNaN(loanAmount) || Number.isNaN(loanTenure) || Number.isNaN(interestRate)){
         bottomErrorMessageElement.textContent = "";
-        topErrorMessageElement.textContent = "Please fill up the fields above!";
+        setErrorMessage("Please fill up the fields above!");
         const repaymentSchedule: RepaymentScheduleItem[] = [];
         setRepaymentSchedule(repaymentSchedule);
         myElement.innerHTML = `Estimated payoff date is`;
       }
-      else if (checkLoanAmount(loanAmount) || checkLoanTenure(loanTenure) || checkInterestRate(interestRate)){ 
+      else if (checkLoanAmount(loanAmount) || checkLoanTenure(loanTenure) || checkInterestRate(interestRate)){
         bottomErrorMessageElement.textContent = "";
         const repaymentSchedule: RepaymentScheduleItem[] = [];
         setRepaymentSchedule(repaymentSchedule);
         myElement.innerHTML = `Estimated payoff date is`;
       }
       else if(checkMonth(parseInt(Month.month)) || checkYear(parseInt(Year.year))){
-        topErrorMessageElement.textContent = "";
+        setErrorMessage("");
         const repaymentSchedule: RepaymentScheduleItem[] = [];
         setRepaymentSchedule(repaymentSchedule);
         myElement.innerHTML = `Estimated payoff date is`;
       }
       else{
-        topErrorMessageElement.textContent = "";
+        setErrorMessage("");
         bottomErrorMessageElement.textContent = "";
         const monthlyInterestRate = interestRate / 1200;
         const monthlyPayment = loanAmount / ((Math.pow(1 + monthlyInterestRate, loanTenure*12) - 1) / (monthlyInterestRate*(Math.pow(1 + monthlyInterestRate, loanTenure*12))));
         const repaymentSchedule: RepaymentScheduleItem[] = [];
-  
+
         let principle = loanAmount;
         // let year = Year;
         let year = parseInt(Year.year);
@@ -144,14 +144,14 @@ const LoanRecommendation = (props: PageProps) => {
             endingPrinciple: principle
           };
           repaymentSchedule.push(item);
-          
-          if (month == 12){
+
+          if (month === 12){
             year++;
             month=1;
           }
           else{
             month++;
-          } 
+          }
           interest = principle * monthlyInterestRate;
           principlePaid = (monthlyPayment - interest);
           principle = principle - principlePaid;
@@ -165,18 +165,18 @@ const LoanRecommendation = (props: PageProps) => {
             endingPrinciple: principle
           };
           repaymentSchedule.push(item);
-          
-          if (month == 12){
+
+          if (month === 12){
             year++;
             month=1;
           }
           else{
             month++;
-          } 
+          }
         }
-        
+
         setRepaymentSchedule(repaymentSchedule);
-  
+
         checkCal = true;
         if (checkCal){
           myElement.innerHTML = `Estimated payoff date is ${repaymentSchedule[repaymentSchedule.length - 1].date}`;
@@ -185,39 +185,41 @@ const LoanRecommendation = (props: PageProps) => {
     };
 
   return (
-    // TODO Loan recommendation page
-    <div className = 'container'>
+    <div className = 'loan-recommendation-container'>
       <div className = 'topContainer'>
         <div className = 'topHeader' >Loan Recommendation</div>
-        <div className ='topBody' > Calculate your monthly mortgage repayments and plan your monthly expenses well</div>
+        <div className ='topBody' > Calculate your monthly mortgage repayments and plan your monthly expenses well!</div>
         <div className = 'topSeperator'>
           <div className="topInputHeader">
-            <div>Loan Amount:</div>
+            <div>Loan Amount ($): </div>
             <form>
-            <input placeholder='Insert Amount(SGD)' type='number' value={loanAmount} onChange={(amt) => setLoanAmount(parseFloat(amt.target.value))} required/>
+            <input placeholder='Insert Amount (SGD)' type='number' value={loanAmount} onChange={(amt) => setLoanAmount(parseFloat(amt.target.value))} required/>
             </form>
           </div>
 
           <div className="topInputHeader">
-            <div>Loan Tenure:</div>
+            <div>Loan Tenure (Years):</div>
             <form>
             <input required type="number" value={loanTenure} onChange={tnr => setLoanTenure(parseFloat(tnr.target.value))} placeholder='Insert Years'/>
             </form>
           </div>
 
           <div className="topInputHeader">
-            <div>Interest Rate:</div>
+            <div>Interest Rate (%):</div>
             <form>
             <input required type="number" value={interestRate} onChange={intR => setInterestRate(parseFloat(intR.target.value))} placeholder='Insert Rate P.A (%)'  />
             </form>
           </div>
         </div>
-        <div id='top-error-message'></div>
-        
+        {errorMessage &&
+        <div id='top-error-message'>
+          {errorMessage}
+        </div>}
+
         <div className ="button1">
           <button id = "calculator" type="button"  onClick={calculateRepaymentSchedule}>Calculate</button>
         </div>
-        
+
       </div>
 
 
@@ -235,9 +237,9 @@ const LoanRecommendation = (props: PageProps) => {
           <form>
             <select name="month" value={Month.month} onChange={handleDateChangeMonth}>
               <option value="nothing">Month</option>
-              <option value="01">Jan</option> 
-              <option value="02">Feb</option> 
-              <option value="03">Feb</option>
+              <option value="01">Jan</option>
+              <option value="02">Feb</option>
+              <option value="03">Mar</option>
               <option value="04">Apr</option>
               <option value="05">May</option>
               <option value="06">Jun</option>
@@ -252,8 +254,8 @@ const LoanRecommendation = (props: PageProps) => {
             {/* <input type= "number" value={Year} onChange={year => setYear(parseFloat(year.target.value))} placeholder='Year'  /> */}
             <select name="year" value={Year.year} onChange={handleDateChangeYear}>
               <option value="nothing">Year</option>
-              <option value="2023">2023</option> 
-              <option value="2024">2024</option> 
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
               <option value="2025">2025</option>
               <option value="2026">2026</option>
               <option value="2027">2027</option>
@@ -268,7 +270,6 @@ const LoanRecommendation = (props: PageProps) => {
           </form>
         </div>
 
-        
         <table className='scheduleTable'>
           <thead>
             <tr>
@@ -279,7 +280,6 @@ const LoanRecommendation = (props: PageProps) => {
               <th>Ending Principle</th>
             </tr>
           </thead>
-          
             <tbody>
               {repaymentSchedule.map((item, index) => (
                 <tr key={index}>
@@ -291,7 +291,6 @@ const LoanRecommendation = (props: PageProps) => {
                 </tr>
               ))}
             </tbody>
-            
         </table>
       </div>
 
