@@ -21,19 +21,19 @@ const Explore = (props: PageProps) => {
         <div className="explore-option">
           <img className='explore-image' src='/img/explore/price.png' alt='price'/>
           <div className="explore-title">Price Range</div>
-          <div>View and compare flats within your budget</div>
+          <div className="explore-description">View and compare flats within your budget</div>
           <SearchBtn switchTo={props.switchTo} page="filterPrice"></SearchBtn>
         </div>
         <div className="explore-option">
           <img className="explore-image" src='/img/explore/location.png' alt='location'/>
           <div className="explore-title">Location</div>
-          <div>View and compare flats within the different areas of Singapore</div>
+          <div className="explore-description">View and compare flats within the different areas of Singapore</div>
           <SearchBtn switchTo={props.switchTo} page="location"></SearchBtn>
         </div>
         <div className="explore-option">
           <img className='explore-image' src='/img/explore/flat.png' alt='flat'/>
           <div className="explore-title">Flat Type</div>
-          <div>View and compare flats within the different room types</div>
+          <div className="explore-description">View and compare flats within the different room types</div>
           <SearchBtn switchTo={props.switchTo} page="filterFlatType"></SearchBtn>
         </div>
       </div>

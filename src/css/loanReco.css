@@ -154,30 +154,24 @@
 .scheduleTable thead tr {
   font-weight: bold;
   border-bottom: 2px solid #dddddd;
-  display: block;
 }
 
 .scheduleTable thead th{
   text-align: left;
 }
 
-.scheduleTable thead th:nth-last-child(1) { /*Ending Principle*/
-  width:3%;
-  padding: 0 0 0 0px;
-}
 .scheduleTable thead th:nth-last-child(2) { /*Interest Paid*/
-  width:5%;
-  padding: 0 0 0 0px;
+  flex-basis: 25%;
 }
 .scheduleTable thead th:nth-last-child(3) { /*Monthly Instalment*/
-  width:6%;
-  padding: 0 0 0 0px;
+  flex-basis: 25%;
 }
 
 .scheduleTable thead th:nth-last-child(4) { /*Date*/
-  width:3%;
-  padding: 0 0 0 0px;
+  flex-basis: 25%;
 }
+
+
 /* .scheduleTable thead th:nth-last-child(5) {
   width:3%;
   padding: 0 0 0 0px;
@@ -198,35 +192,21 @@
   background-color:#33777c;
 }
 
-.scheduleTable tbody tr {
-  display: block;
+.scheduleTable thead tr, .scheduleTable tbody tr {
+  display: flex;
+  flex-direction: row;
+  padding: 0 1em;
 }
 
-.scheduleTable tbody td:nth-last-child(1) { /*Ending Principle*/
-  text-align: right;
-  width: 130px;
-  padding: 0 0 0 0px;
+.scheduleTable tbody tr td:nth-last-child(2) { /*Interest Paid*/
+  flex-basis: 25%;
 }
-.scheduleTable tbody td:nth-last-child(2) { /*Interest Paid*/
-  text-align: center;
-  width: 720px;
-  padding: 0 0 0 0px;
+.scheduleTable tbody tr td:nth-last-child(3) { /*Monthly Instalment*/
+  flex-basis: 25%;
 }
-.scheduleTable tbody td:nth-last-child(3) { /*Monthly Instalment*/
-  text-align: center;
-  width: 300px;
-  padding: 0 0 0 0px;
+.scheduleTable tbody tr td:nth-last-child(4) { /*Date*/
+  flex-basis: 25%;
 }
-.scheduleTable tbody td:nth-last-child(4) { /*Date*/
-  text-align: left;
-  width: 170px;
-  padding: 0 0 0 0px;
-}
-/* .scheduleTable tbody td:nth-last-child(5) {
-  text-align: left;
-  width: px;
-  padding: 0 0 0 0px;
-} */
 
 /* Editing <tbody> -------------------------------------------------------------------------------------------------------------*/
 

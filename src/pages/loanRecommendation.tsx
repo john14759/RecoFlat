@@ -192,9 +192,9 @@ const LoanRecommendation = (props: PageProps) => {
         <div className ='topBody' > Calculate your monthly mortgage repayments and plan your monthly expenses well!</div>
         <div className = 'topSeperator'>
           <div className="topInputHeader">
-            <div>Loan Amount: ($)</div>
+            <div>Loan Amount ($): </div>
             <form>
-            <input placeholder='Insert Amount(SGD)' type='number' value={loanAmount} onChange={(amt) => setLoanAmount(parseFloat(amt.target.value))} required/>
+            <input placeholder='Insert Amount (SGD)' type='number' value={loanAmount} onChange={(amt) => setLoanAmount(parseFloat(amt.target.value))} required/>
             </form>
           </div>
 
@@ -240,7 +240,7 @@ const LoanRecommendation = (props: PageProps) => {
               <option value="nothing">Month</option>
               <option value="01">Jan</option>
               <option value="02">Feb</option>
-              <option value="03">March</option>
+              <option value="03">Mar</option>
               <option value="04">Apr</option>
               <option value="05">May</option>
               <option value="06">Jun</option>
