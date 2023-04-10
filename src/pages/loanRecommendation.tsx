@@ -2,7 +2,6 @@ import { PageProps } from '../functions/types';
 import { RepaymentScheduleItem } from '../functions/types';
 import React, { useState } from 'react';
 import '../css/loanReco.css'
-import { exit } from 'process';
 
 const LoanRecommendation = (props: PageProps) => {
     const [loanAmount, setLoanAmount] = useState<number>(NaN);
@@ -51,7 +50,7 @@ const LoanRecommendation = (props: PageProps) => {
       Error Validation considerations:
       Loan tenure should not be 0, should be capped at 25 years,
       */
-      if(tenure == 0){
+      if (tenure === 0){
         setErrorMessage("Please enter a tenure above 0!");
         return true;
       }
@@ -68,7 +67,7 @@ const LoanRecommendation = (props: PageProps) => {
       Error Validation considerations:
       Interest rate cannot be 0, should be capped at 9%, input should be per annum
       */
-      if(rate == 0){
+      if (rate === 0){
         setErrorMessage("Please enter an interest rate above 0!");
         return true;
       }
@@ -146,7 +145,7 @@ const LoanRecommendation = (props: PageProps) => {
           };
           repaymentSchedule.push(item);
 
-          if (month == 12){
+          if (month === 12){
             year++;
             month=1;
           }
@@ -167,7 +166,7 @@ const LoanRecommendation = (props: PageProps) => {
           };
           repaymentSchedule.push(item);
 
-          if (month == 12){
+          if (month === 12){
             year++;
             month=1;
           }
