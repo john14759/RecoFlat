@@ -63,12 +63,6 @@ const Location = (props: PageProps) => {
             <div>Nearby!</div>
           </div>
         </div>
-        <div className="location-tabs-group">
-          <div onClick={() => setView("map")} className="location-tab">
-            <img className="location-tab-icon" src="/img/location/map.png" alt="map-logo"></img>
-            <div>Back to Map!</div>
-          </div>
-        </div>
       </div>}
       <div className="location-body">
         {LocationView}
