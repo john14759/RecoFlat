@@ -5,7 +5,7 @@ import '../css/app.css'
 import { Main, LoanRecommendation, IncomeCalculator, Explore, AboutUs, How, FilterPrice, Location} from '../pages/pages'
 import Nav from './navbar';
 import { BodyProps,Flat } from '../functions/types';
-import { FilterFlatType } from '../pages/FilterFlatType';
+import { FilterFlatType } from '../pages/filterFlatType';
 
 
 // The component that displays the current page.
@@ -60,6 +60,12 @@ const App = () => {
   const switchPage = (newPage: string) => {
     setPage(newPage)
   }
+
+  const switchPrev = () => {
+    let newPage = "main"
+    if (page === "location" || page === "filterPrice" || page === "filterFlatType") newPage = "explore"
+    setPage(newPage);
+  }
   
   // To call API only once and store in FlatContext
   React.useEffect(() => {
@@ -73,6 +79,10 @@ const App = () => {
         <Nav switchTo={switchPage} />
         <Body page={page} switchTo={switchPage} />
         
+        {page !== "main" &&
+        <div className="back-btn" onClick={() => switchPrev()}>
+          <div>Go Back!</div>
+        </div>}
       </div>
     </FlatContext.Provider>
   );

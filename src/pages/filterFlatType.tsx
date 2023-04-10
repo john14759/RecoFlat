@@ -2,7 +2,7 @@ import {useContext, useState} from 'react';
 import * as React from 'react';
 import { Flat, PageProps } from '../functions/types';
 import { FlatContext } from '../components/context';
-import '../css/filterflat.css'
+import '../css/filterFlatType.css'
 import BigNumber from 'bignumber.js';
 import DropdownMenu from '../components/dropdown';
 
@@ -30,7 +30,7 @@ const FilterFlatType = (props: PageProps) => {
       flatTypeCountByTown[town] = count + 1;
     });
 
-    
+
       const table = Object.keys(flatTypeCountByTown).map((town, index) => {
         const count = flatTypeCountByTown[town];
         const totalPrice = flatTypePriceByTown[town] || 0;
@@ -39,11 +39,6 @@ const FilterFlatType = (props: PageProps) => {
         if (index === 0) {
           return (
             <React.Fragment key="table-headers">
-              <tr>
-                <th>Location:</th>
-                <th>Count:</th>
-                <th>Average Resale Price ($)</th>
-              </tr>
               <tr className='flat-table'>
                 <td className="town-entry">{town}</td>
                 <td className="count-entry">{count}</td>
@@ -67,28 +62,37 @@ const FilterFlatType = (props: PageProps) => {
       <div className = 'header-container'>
         <div className = 'title'>Filter selected: Flat Type</div>
         <div className = 'header-body'>
-        <div>Flat Type selected:</div>
-        <DropdownMenu
-  selectedOption={flatType}
-  options={[
-    { value: '1 ROOM', label: '1 Room' },
-    { value: '2 ROOM', label: '2 Room' },
-    { value: '3 ROOM', label: '3 Room' },
-    { value: '4 ROOM', label: '4 Room' },
-    { value: '5 ROOM', label: '5 Room' },
-    { value: 'EXECUTIVE', label: 'Executive' },
-    { value: 'MULTI-GENERATION', label: 'Generation' },
-  ]}
-  onOptionSelect={handleFlatTypeChange}
-/>
+          <div className="header-filter">
+            <div>Flat Type selected:</div>
+            <DropdownMenu
+              selectedOption={flatType}
+              options={[
+                { value: '1 ROOM', label: '1 Room' },
+                { value: '2 ROOM', label: '2 Room' },
+                { value: '3 ROOM', label: '3 Room' },
+                { value: '4 ROOM', label: '4 Room' },
+                { value: '5 ROOM', label: '5 Room' },
+                { value: 'EXECUTIVE', label: 'Executive' },
+                { value: 'MULTI-GENERATION', label: 'Generation' },
+              ]}
+              onOptionSelect={handleFlatTypeChange}
+            />
+          </div>
 
-        <div>Now displaying the flats in the flat type you have selected</div>
         </div>
       </div>
-      <div className= 'search-box'>Search Results:</div>
       <div className = "table-container">
       <table className = 'filter-table'>
-       {table}
+        <thead className="filter-table-head">
+          <tr>
+            <th>Location</th>
+            <th>Count</th>
+            <th>Average Resale Price ($)</th>
+          </tr>
+        </thead>
+        <tbody className="filter-table-body">
+          <div className ="body-table">{table}</div>
+        </tbody>
        </table>
        </div>
        </div>
