@@ -37,8 +37,10 @@ body {
 
 .back-btn:hover {
     font-size: 21px;
+    cursor: pointer;
 }
 
 .back-btn .back-btn-icon {
     width: 25px;
+    
 }
